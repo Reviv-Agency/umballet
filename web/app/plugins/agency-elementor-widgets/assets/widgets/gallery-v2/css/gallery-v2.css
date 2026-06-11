@@ -1,0 +1,293 @@
+/* Gallery V2 (Notched) — responsive infinite-scroll image grid. */
+
+/* Strip Elementor column / container padding so the band is full-bleed. */
+.elementor-column > .elementor-element-populated:has(.elementor-widget-agency-gallery-v2),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-gallery-v2),
+.e-con:has(.elementor-widget-agency-gallery-v2) {
+	--padding-top: 0px;
+	--padding-right: 0px;
+	--padding-bottom: 0px;
+	--padding-left: 0px;
+	padding: 0 !important;
+}
+
+/* ── Force the host section/container to full width so the inner wrapper can
+   reach its (≥1440) max-width on wide screens instead of being capped by
+   Elementor's boxed content width. ──────────────────────────────────────── */
+.elementor-section:has(.elementor-widget-agency-gallery-v2),
+.elementor-section:has(.elementor-widget-agency-gallery-v2) > .elementor-container,
+.e-con:has(.elementor-widget-agency-gallery-v2) {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+
+.aew-galv2 {
+	/* Brand tokens (scoped to the block). */
+	--notched-cards: #FFFFFF;
+	--notched-background: #F1EADF;
+	--notched-lines: #BFC0BF;
+	--notched-misc-accent: #3B413F;
+	--notched-secondary-cards: #7D958D;
+	--notched-secondary-bg: #876137;
+	--notched-secondary-accent: #3E382F;
+	--notched-text: #1B150E;
+	--notched-cta: #632B3A;
+	--notched-cta-hover: #89505F;
+
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: var(--aew-galv2-bg, var(--notched-background));
+	padding-top: 64px;
+	padding-bottom: 64px;
+	/* Design-system width model: X gutter on the outer block; inner caps at 1440. */
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.aew-galv2 *,
+.aew-galv2 *::before,
+.aew-galv2 *::after {
+	box-sizing: border-box;
+}
+
+.aew-galv2__inner {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+/* Heading on the left, optional CTA aligned to the right (matches the live
+   portfolio layout). Stays INLINE on desktop AND tablet (no-wrap; the heading
+   shrinks via min-width:0). Only stacks below on mobile (≤768px). */
+.aew-galv2__header {
+	margin-bottom: 40px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+	flex-wrap: nowrap;
+}
+
+.aew-galv2__header-text {
+	min-width: 0;
+}
+
+.aew-galv2__eyebrow {
+	margin: 0 0 12px;
+	font-family: 'Playfair Display', serif;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 140%;
+	text-transform: uppercase;
+	color: var(--aew-galv2-eyebrow, var(--notched-cta));
+}
+
+.aew-galv2 .aew-galv2__heading {
+	margin: 0;
+	font-family: var(--aew-teko);
+	font-weight: 600;
+	font-size: 64px;
+	line-height: 85%;
+	text-transform: uppercase;
+	/* Driven by the Heading color control (--aew-galv2-heading), falling back to
+	   the brand text colour. The wrapper-class prefix (0,2,0) beats the kit's
+	   `.elementor-kit-N h2 { color }` rule (0,1,1) so the chosen colour holds. */
+	color: var(--aew-galv2-heading, var(--notched-text, #1B150E));
+}
+
+/* ── Grid (uniform) ───────────────────────────────────────────────────────── */
+.aew-galv2__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.aew-galv2__item {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border-radius: 16px;
+}
+
+.aew-galv2__item--hidden {
+	display: none;
+}
+
+.aew-galv2__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 16px;
+}
+
+/* ── Bento mosaic — staggered 2×2 squares ─────────────────────────────────────
+   A 4-column grid. Each repeating band of 6 tiles fills a 4-col × 3-row block:
+     • Tile 1 → 2×2 square feature, top-left (cols 1-2, rows 1-2)
+     • Tiles 2,3 → 1×1 smalls, top-right (cols 3-4, row 1)
+     • Tile 4 → 2×2 square feature, staggered down-right (cols 3-4, rows 2-3)
+     • Tiles 5,6 → 1×1 smalls, bottom-left (cols 1-2, row 3)
+   grid-auto-flow:dense weaves the 1×1 smalls into the cells the two offset 2×2
+   squares leave open — matching the reference collage. Square row unit so the
+   2×2 tiles read as squares. */
+.aew-galv2__grid--bento {
+	display: grid;
+	/* !important so the bento's fixed 4-col structure wins over the per-instance
+	   `columns` control rule Elementor emits at `.elementor-NNN .elementor-element-X`
+	   (higher specificity than a plain class). Bento OWNS its column count. */
+	grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+	grid-auto-rows: 256px;
+	grid-auto-flow: dense;
+	gap: 16px;
+}
+
+/* The item IS the grid cell — make it a positioning context so the image can
+   fill it absolutely (a plain `height:100%` on the <img> doesn't resolve against
+   a `list-item` whose height comes from the grid track). */
+.aew-galv2__grid--bento .aew-galv2__item {
+	display: block;
+	position: relative;
+	height: 100%;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.aew-galv2__grid--bento .aew-galv2__img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Two 2×2 square feature tiles per 6-tile band: the 1st and the 4th. dense flow
+   places them staggered (top-left, then down-right) and packs the 1×1 smalls
+   into the open cells around them. */
+.aew-galv2__grid--bento .aew-galv2__item:nth-child(6n + 1),
+.aew-galv2__grid--bento .aew-galv2__item:nth-child(6n + 4) {
+	grid-column: span 2;
+	grid-row: span 2;
+}
+
+/* Masonry (CSS multi-column) ─────────────────────────────────────────────── */
+.aew-galv2__grid--masonry {
+	display: block;
+	column-count: 3;
+	column-gap: 16px;
+}
+
+.aew-galv2__grid--masonry .aew-galv2__item {
+	display: block;
+	width: 100%;
+	margin-bottom: 16px;
+	break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+}
+
+.aew-galv2__grid--masonry .aew-galv2__item--hidden {
+	display: none;
+}
+
+.aew-galv2__grid--masonry .aew-galv2__img {
+	height: auto;
+}
+
+/* ── Sentinel (IntersectionObserver target) ───────────────────────────────── */
+.aew-galv2__sentinel {
+	width: 100%;
+	height: 1px;
+	margin-top: 1px;
+	pointer-events: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+	/* X gutter from outer (40); Y on outer */
+	.aew-galv2 .aew-galv2__heading {
+		font-size: 48px;
+	}
+}
+
+@media (max-width: 768px) {
+	.aew-galv2 {
+		padding-top: 32px;
+		padding-bottom: 32px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.aew-galv2__header {
+		margin-bottom: 24px;
+	}
+
+	.aew-galv2 .aew-galv2__heading {
+		font-size: 40px;
+	}
+
+	.aew-galv2__eyebrow {
+		font-size: 16px;
+	}
+
+	/* Bento on phones: collapse to 2 columns. The feature tiles become 1-col-wide
+	   × 2-rows-tall accents (full-width 2×2 would dominate too much), and the
+	   smalls dense-pack around them. Shorter row unit. */
+	.aew-galv2__grid--bento {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		grid-auto-rows: 150px;
+	}
+	.aew-galv2__grid--bento .aew-galv2__item:nth-child(6n + 1),
+	.aew-galv2__grid--bento .aew-galv2__item:nth-child(6n + 4) {
+		grid-column: span 1;
+		grid-row: span 2;
+	}
+}
+
+/* ── Optional header CTA (e.g. "SHOP ALL KITS") ──────────────────────────────
+   Sits to the RIGHT of the heading. Brand filled button per design system:
+   #632B3A bg + white text, hover #89505F. Hex fallbacks since the var may not
+   resolve in every context. */
+.aew-galv2__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	font-family: var(--aew-font-heading, 'Teko', sans-serif);
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 1;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: var(--notched-cta, #632B3A);
+	padding: 20px 24px 16px;
+	border-radius: 8px;
+	transition: background-color 0.18s ease;
+}
+
+.aew-galv2__cta:hover,
+.aew-galv2__cta:focus-visible {
+	background-color: var(--notched-cta-hover, #89505F);
+	color: #FFFFFF;
+}
+
+/* Small phones only (≤480px): stack the heading + CTA and make the button
+   full-width. Tablets and larger phones (481px+) keep the CTA inline beside the
+   heading like desktop. */
+@media (max-width: 480px) {
+	.aew-galv2__header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.aew-galv2__cta {
+		width: 100%;
+	}
+}

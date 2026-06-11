@@ -1,0 +1,180 @@
+/* ============================================================================
+ * Crew Collage V2 — "Our Crew" copy block beside a three-image collage.
+ * Desktop = side-by-side (collage left by default); mobile = stacked.
+ * Desktop-first; step down at 1024 / 768.
+ * ========================================================================== */
+
+/* ── Brand tokens (scoped) — source of truth: design-system.md ───────────── */
+.aew-crew {
+  --notched-cards:             #FFFFFF;
+  --notched-background:        #F1EADF;
+  --notched-lines:             #BFC0BF;
+  --notched-misc-accent:       #3B413F;
+  --notched-secondary-cards:   #7D958D;
+  --notched-secondary-bg:      #876137;
+  --notched-secondary-accent:  #3E382F;
+  --notched-text:              #1B150E;
+  --notched-cta:               #632B3A;
+  --notched-cta-hover:         #89505F;
+}
+
+/* Strip Elementor's column / container padding so the section is full-bleed. */
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-crew-collage-v2),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-crew-collage-v2),
+.e-con:has(.elementor-widget-agency-crew-collage-v2) {
+  --padding-top: 0px;
+  --padding-right: 0px;
+  --padding-bottom: 0px;
+  --padding-left: 0px;
+  padding: 0 !important;
+}
+
+/* ── Outer block ─────────────────────────────────────────────────────────── */
+.aew-crew {
+  background: var(--aew-crew-section-bg, var(--notched-background));
+  width: 100%;
+  position: relative;
+}
+
+/* One inner wrapper owns max-width + responsive X padding (§6.5).
+   1600 = 1440 content + 2×80px desktop side padding. */
+/* Design-system width model: X gutter on the outer block; inner caps at a true 1440. */
+.aew-crew { padding-left: 40px; padding-right: 40px; box-sizing: border-box; }
+
+.aew-crew__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+/* Collage side toggle — default media-left (copy second). */
+.aew-crew--media-left  .aew-crew__media { order: 1; }
+.aew-crew--media-left  .aew-crew__copy  { order: 2; }
+.aew-crew--media-right .aew-crew__media { order: 2; }
+.aew-crew--media-right .aew-crew__copy  { order: 1; }
+
+/* ── Collage ─────────────────────────────────────────────────────────────── */
+/* Two columns:
+ *   LEFT  = two stacked images — top 240 tall, bottom 160 tall (+ gap)
+ *   RIGHT = one tall image, 360 tall
+ * Mirrors the live notched.com "Our Crew" arrangement. */
+.aew-crew__media {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;   /* collage hugs the right edge of its column */
+  gap: 16px;
+}
+
+.aew-crew__img {
+  display: block;
+  object-fit: cover;
+  border-radius: 16px;
+  flex: 0 0 auto;       /* keep the fixed pixel sizes; don't let flex shrink them */
+}
+
+/* LEFT column — two stacked images. */
+.aew-crew__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 0 0 auto;
+  order: 1;             /* stacked pair sits on the left */
+}
+.aew-crew__img--lead { order: 2; }   /* tall image on the right */
+
+/* media_side = right → mirror the columns. */
+.aew-crew--media-right .aew-crew__stack     { order: 2; }
+.aew-crew--media-right .aew-crew__img--lead { order: 1; }
+
+/* Extra-specific so Hello Elementor's `img { height: auto }` can't win and
+   collapse the fixed heights back to the intrinsic aspect ratio. */
+.aew-crew .aew-crew__media .aew-crew__stack .aew-crew__img { width: 240px; }
+.aew-crew .aew-crew__media .aew-crew__img--top    { height: 240px; }
+.aew-crew .aew-crew__media .aew-crew__img--bottom { height: 160px; }
+
+/* RIGHT column — one tall lead image, 360 tall. */
+.aew-crew .aew-crew__media .aew-crew__img--lead {
+  width: 240px;
+  height: 360px;
+}
+
+/* ── Copy ────────────────────────────────────────────────────────────────── */
+.aew-crew__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: start;       /* start from the top of the row, not vertically centered */
+  gap: 24px;
+}
+
+/* (0,2,0) beats the kit's .elementor-kit-N h1..h6 (0,1,1) — gotcha #20. */
+.aew-crew .aew-crew__heading {
+  margin: 0;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 85%;
+  text-transform: uppercase;
+  color: var(--aew-crew-heading, var(--notched-secondary-bg));
+}
+
+.aew-crew__text {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+  color: var(--aew-crew-text, var(--notched-text));
+}
+
+/* ── Button — design-system button spec ──────────────────────────────────── */
+.aew-crew__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 85%;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 20px 24px 16px;
+  border-radius: 8px;
+  background-color: var(--aew-crew-btn-bg, var(--notched-cta));
+  color: var(--aew-crew-btn-text, #FFFFFF);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.aew-crew__btn:hover,
+.aew-crew__btn:focus-visible {
+  background-color: var(--aew-crew-btn-bg-hover, var(--notched-cta-hover));
+  color: var(--aew-crew-btn-text-hover, var(--aew-crew-btn-text, #FFFFFF));
+}
+
+/* ── Tablet ──────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .aew-crew__inner { gap: 40px; }   /* X gutter from outer (40), Y 64 from desktop */
+  .aew-crew .aew-crew__heading { font-size: 48px; }
+}
+
+/* ── Mobile: stack, collage below copy ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .aew-crew { padding-left: 16px; padding-right: 16px; }
+  .aew-crew__inner {
+    padding: 32px 0;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  /* Copy first, collage second regardless of desktop side. */
+  .aew-crew__copy  { order: 1 !important; }
+  .aew-crew__media { order: 2 !important; aspect-ratio: 4 / 3; }
+  .aew-crew .aew-crew__heading { font-size: 40px; }
+  .aew-crew__text { font-size: 14px; }
+  .aew-crew__btn  { font-size: 16px; padding: 18px 24px 16px; }
+}

@@ -1,0 +1,617 @@
+/**
+ * Products Slider V2 — Notched brand.
+ * "Our most popular kit options" horizontal scroll-snap product slider.
+ *
+ * BEM block: aew-prsv2   |   widget: agency-products-slider-v2
+ * Desktop-first cascade: base = desktop, step DOWN at 1024 / 768.
+ */
+
+/* ── Strip Elementor's column padding (full-bleed) ─────────────────────────── */
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-products-slider-v2),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-products-slider-v2),
+.e-con:has(.elementor-widget-agency-products-slider-v2) {
+  --padding-top: 0px;
+  --padding-right: 0px;
+  --padding-bottom: 0px;
+  --padding-left: 0px;
+  padding: 0 !important;
+}
+
+/* ── Force the host section/container to full width so the inner wrapper can
+   reach its (≥1440) max-width on wide screens instead of being capped by
+   Elementor's boxed content width. ──────────────────────────────────────── */
+.elementor-section:has(.elementor-widget-agency-products-slider-v2),
+.elementor-section:has(.elementor-widget-agency-products-slider-v2) > .elementor-container,
+.e-con:has(.elementor-widget-agency-products-slider-v2) {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+
+/* ── Force the host section/column to the design background ────────────────── */
+/* The widget paints its own cream bg on .aew-prsv2, but the Elementor section
+   and column it lives in can render a white box on top/around it. Neutralize
+   the host chain to the design "Background" (#F1EADF) so no white band shows. */
+.elementor-section:has(.elementor-widget-agency-products-slider-v2),
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-products-slider-v2),
+.e-con:has(.elementor-widget-agency-products-slider-v2),
+.e-con:has(.elementor-widget-agency-products-slider-v2) > .e-con-inner {
+  background-color: #F1EADF !important;
+}
+
+/* ── Brand tokens (scoped). Source of truth: design-system.md ──────────────── */
+.aew-prsv2 {
+  --notched-cards:             #FFFFFF;
+  --notched-background:        #F1EADF;
+  --notched-lines:             #BFC0BF;
+  --notched-misc-accent:       #3B413F;
+  --notched-secondary-cards:   #7D958D;
+  --notched-secondary-bg:      #876137;
+  --notched-secondary-accent:  #3E382F;
+  --notched-text:              #1B150E;
+  --notched-cta:               #632B3A;
+  --notched-cta-hover:         #89505F;
+}
+
+/* ── Outer block: full-bleed background ────────────────────────────────────── */
+.aew-prsv2 {
+  background-color: var(--aew-prsv2-body-bg, var(--notched-background));
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  /* Belt-and-braces: the track bleeds out via negative margins to flow
+     full-bleed to the viewport edge. Clip horizontal overflow at the block so
+     nothing escapes the page (the inner track keeps its own overflow-x:auto and
+     scrolls normally inside this). NOTE: the body X-inset lives on __inner, NOT
+     here — so this clip boundary is the true viewport edge and the track's
+     right bleed (to 50vw−50%) is never cut. */
+  overflow-x: clip;
+  --prsv2-gutter: 80px;   /* trailing inset on the track; stepped down at tablet/mobile */
+  --prsv2-pad: 40px;      /* body X-inset on __inner (rail edge); 16px on mobile */
+}
+
+.aew-prsv2 *,
+.aew-prsv2 *::before,
+.aew-prsv2 *::after {
+  box-sizing: border-box;
+}
+
+/* ── Inner wrapper: max-width + responsive X/Y padding (stylesheet owns it) ── */
+/* Design-system width model: the body X-inset (40px) lives on __inner so the
+   outer block spans the full viewport and the track can bleed full-bleed to the
+   viewport edge without being clipped. Inner content (heading/header) caps at a
+   true 1440 + 40px inset, centered. */
+.aew-prsv2__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px var(--prsv2-pad);   /* Y 64px / X body inset (40px desktop, 16px mobile) */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header row: heading + (difficulty + Shop-all CTA) ─────────────────────── */
+.aew-prsv2__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Left group: heading + optional subtext, stacked. */
+.aew-prsv2__head-main {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* Right-hand group: difficulty label above/alongside the Shop-all CTA. */
+.aew-prsv2__head-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* Wrapper-class prefix raises specificity to (0,2,0) so the colour beats the
+   Elementor kit's `.elementor-kit-N h1..h6 { color }` rule (0,1,1). */
+.aew-prsv2 .aew-prsv2__heading {
+  margin: 0;
+  font-family: var(--aew-teko);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 85%;
+  text-transform: uppercase;
+  color: var(--aew-prsv2-heading, var(--notched-secondary-bg));
+}
+
+/* ── Subtext (paragraph under the heading) ─────────────────────────────────── */
+.aew-prsv2__subtext {
+  margin: 12px 0 0;
+  max-width: 820px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--aew-prsv2-subtext, var(--notched-text));
+}
+
+/* ── Assembly difficulty ───────────────────────────────────────────────────── */
+/* Label ("ASSEMBLY DIFFICULTY:") above, value ("BEGINNER") below with a dot —
+   each independently styled via its own colour + typography controls. */
+.aew-prsv2__difficulty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+}
+
+.aew-prsv2__difficulty-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--aew-prsv2-difficulty, var(--notched-text));
+}
+
+.aew-prsv2__difficulty-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--aew-prsv2-difficulty-value, var(--notched-text));
+}
+
+.aew-prsv2__difficulty-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--aew-prsv2-difficulty-dot, var(--notched-secondary-bg));
+  flex: none;
+}
+
+/* ── Shop-all CTA button ───────────────────────────────────────────────────── */
+.aew-prsv2__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+  font-family: var(--aew-teko);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 85%;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--aew-prsv2-cta-text, #fff);
+  background-color: var(--aew-prsv2-cta-bg, var(--notched-cta));
+  padding: 20px 24px 16px;
+  border-radius: 8px;
+  transition: background-color 0.18s ease;
+}
+
+.aew-prsv2__cta:hover { background-color: var(--aew-prsv2-cta-bg-hover, var(--notched-cta-hover)); color: var(--aew-prsv2-cta-text-hover, var(--aew-prsv2-cta-text, #fff)); }
+
+.aew-prsv2__cta svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+/* ── Viewport: track + flanking arrows ─────────────────────────────────────── */
+.aew-prsv2__viewport {
+  position: relative;
+}
+
+.aew-prsv2__track {
+  list-style: none;
+  /* Apple-style full-bleed peek scroller.
+
+     The track breaks out of the 1440 rail and bleeds symmetrically to BOTH
+     viewport edges (`margin-inline: 50% − 50vw`, the classic full-bleed trick:
+     50% of the centered parent vs 50% of the viewport = exactly the gap to each
+     edge). On wide screens the cards flow edge-to-edge instead of stopping at
+     the rail and leaving big empty cream margins.
+
+     `--prsv2-rail` is the inset from the viewport edge to the design rail (where
+     the heading starts). We re-add it as BOTH the leading padding (so the first
+     card aligns under the heading) AND scroll-padding-left (so cards snap to the
+     rail and are never cut off at the left edge when you scroll back). A
+     trailing gutter lets the last card scroll fully clear.
+
+     The PEEK comes from slide sizing (flex-basis below) being narrow enough that
+     the next card's edge always sits inside the viewport — never a hard cut. */
+  /* Inset from the viewport edge to where the heading starts:
+       (viewport − inner border-box)/2  +  inner's left padding.
+     inner border-box = min(1440, 100vw); padding = --prsv2-pad. */
+  --prsv2-rail: calc((100vw - min(1440px, 100vw)) / 2 + var(--prsv2-pad));
+  margin-inline: calc(50% - 50vw);
+  padding-left: var(--prsv2-rail);
+  padding-right: var(--prsv2-gutter);
+  scroll-padding-left: var(--prsv2-rail);
+  scroll-padding-right: var(--prsv2-gutter);
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  /* Explicitly clip the cross axis. With only overflow-x set, the browser
+     computes overflow-y: auto, and a few px of content overflow (image
+     aspect-ratio rounding + title) triggers a VERTICAL scrollbar gutter that
+     eats the right edge and clips the last card. overflow-y: hidden kills it. */
+  overflow-y: hidden;
+  /* proximity (not mandatory): the track may rest at the far end so the LAST
+     card is fully visible. mandatory snaps a slide's start to the track start,
+     which leaves the final card clipped at the right edge. */
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: none;          /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+.aew-prsv2__track::-webkit-scrollbar { display: none; }
+
+.aew-prsv2__slide {
+  /* Apple-style "peek": cards are a touch narrower than a clean 1/N of the
+     visible width, so the next card's edge always sits inside the viewport and
+     is partially visible — never a hard cut at the right edge. Sized off the
+     viewport (vw) rather than the bled track so it can't overflow the page.
+     clamp floors/caps it so cards stay sensible on small and ultrawide screens. */
+  flex: 0 0 clamp(300px, 28vw, 480px);
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* ── GRID MODE (layout = grid) ───────────────────────────────────────────────
+   The same cards, but wrapping in a static grid capped at the 1440 rail instead
+   of a full-bleed horizontal scroller. Arrows/dots are not rendered in grid
+   mode; the JS slider also doesn't init (no data-attr). */
+.aew-prsv2--grid .aew-prsv2__track {
+  margin-inline: 0;                /* cancel the full-bleed breakout */
+  padding-left: 0;
+  padding-right: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--aew-prsv2-grid-cols, 4), minmax(0, 1fr));
+  gap: 24px;
+  overflow: visible;               /* no horizontal scroll */
+  scroll-snap-type: none;
+}
+
+.aew-prsv2--grid .aew-prsv2__slide {
+  flex: initial;                   /* grid items, not flex */
+  width: auto;
+}
+
+/* ── RELATED MODE (single-product page) — Apple iPad-style edge-to-edge slider ─
+   The whole SECTION breaks out of the 1440 content rail to span the full viewport
+   (margin-inline: 50%−50vw). The scroll TRACK is then full-width and uses
+   padding-inline + scroll-padding equal to the content rail, so:
+     • at rest the first card aligns to the content margin (under the heading),
+     • cards scroll fully edge-to-edge (past the 1440 rail on BOTH sides),
+     • scroll-padding snaps cards back to the rail so the first/last never clip.
+   This mirrors apple.com/ipad-air. The heading uses the same rail padding so it
+   lines up with the first card. */
+.aew-prsv2--related {
+  margin-inline: calc(50% - 50vw);   /* section spans the full viewport width */
+  width: 100vw;
+  background-color: transparent;
+  overflow: visible;                 /* do NOT clip — the track owns the scroll */
+  --prsv2-gap: 24px;
+  /* inset from the viewport edge to the 1440 content rail */
+  --prsv2-rail: calc((100vw - min(1440px, 100vw)) / 2);
+}
+/* Heading sits at the content rail (matches the first card). */
+.aew-prsv2--related .aew-prsv2__inner {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: visible;
+}
+.aew-prsv2--related .aew-prsv2__head {
+  padding-left: var(--prsv2-rail);
+  padding-right: var(--prsv2-rail);
+}
+/* Full-width scroller; rail padding aligns the first card + traps snap at the rail.
+   Re-declare --prsv2-rail HERE (the base .aew-prsv2__track sets its own value with
+   +40px pad which would otherwise win over the section's inherited value). */
+.aew-prsv2--related .aew-prsv2__track {
+  --prsv2-rail: calc((100vw - min(1440px, 100vw)) / 2);
+  margin-inline: 0;
+  padding-left: var(--prsv2-rail);
+  padding-right: var(--prsv2-rail);
+  scroll-padding-left: var(--prsv2-rail);
+  scroll-padding-right: var(--prsv2-rail);
+  gap: var(--prsv2-gap);
+  scroll-snap-type: x proximity;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* Cards sized off the viewport so ~4 show with the next peeking. */
+.aew-prsv2--related .aew-prsv2__slide {
+  flex: 0 0 clamp(280px, 22vw, 360px);
+  scroll-snap-align: start;
+}
+/* Arrows sit at the content rail edges (over the first/last visible card). */
+.aew-prsv2--related .aew-prsv2__viewport { position: relative; }
+.aew-prsv2--related .aew-prsv2__arrow--prev { left: calc(var(--prsv2-rail) + 8px); }
+.aew-prsv2--related .aew-prsv2__arrow--next { right: calc(var(--prsv2-rail) + 8px); }
+
+@media (max-width: 768px) {
+  .aew-prsv2--related .aew-prsv2__slide { flex: 0 0 78%; }
+}
+
+/* ── Card: image + title + price, whole card links to product ─────────────── */
+.aew-prsv2__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.aew-prsv2__media {
+  position: relative;          /* anchor for the Quick View band */
+  display: block;
+  width: 100%;
+  /* Default to a square image. The optional "Image height" control overrides
+     this with a fixed `height` + `aspect-ratio: auto` via Elementor selectors,
+     swapping the square for a fixed-height image when a value is set. */
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  background-color: var(--notched-lines);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* ── Corner category badge ───────────────────────────────────────────────────
+   Pill in the top-left of the image (e.g. DIY KIT / TRADITIONAL). Text comes
+   from the product's category; colours/radius/typography are control-driven. */
+.aew-prsv2__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px 6px;       /* optical: Teko sits slightly low */
+  border-radius: 8px;
+  background-color: var(--aew-prsv2-badge-bg, var(--notched-cta));
+  color: var(--aew-prsv2-badge-text, #FFFFFF);
+  font-family: var(--aew-teko, 'Teko', sans-serif);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  pointer-events: none;        /* the card link handles the click */
+  white-space: nowrap;
+}
+
+/* ── Quick View band ─────────────────────────────────────────────────────────
+   Sits over the bottom of the image. Hidden (slid down + faded) by default;
+   slides up + fades in when the card is hovered. */
+.aew-prsv2__quick {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 16px 16px;
+  background-color: var(--aew-prsv2-qv-bg, var(--notched-cta));
+  color: var(--aew-prsv2-qv-text, #FFFFFF);
+  font-family: var(--aew-teko, 'Teko', sans-serif);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  pointer-events: none; /* the card link handles the click */
+}
+
+.aew-prsv2__card:hover .aew-prsv2__quick,
+.aew-prsv2__card:focus-visible .aew-prsv2__quick {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Touch devices can't hover — show the band by default there. */
+@media (hover: none) {
+  .aew-prsv2__quick {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.aew-prsv2__title {
+  font-family: var(--aew-teko);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 100%;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--aew-prsv2-title, var(--notched-text));
+}
+
+/* ── Price on card ─────────────────────────────────────────────────────────── */
+.aew-prsv2__price {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--aew-prsv2-price, var(--notched-cta));
+  margin-top: 4px;
+  display: block;
+}
+
+.aew-prsv2__card:hover .aew-prsv2__media { opacity: 0.92; }
+.aew-prsv2__card:focus-visible { outline: 2px solid var(--notched-secondary-bg); outline-offset: 4px; border-radius: 4px; }
+
+/* ── Arrows ────────────────────────────────────────────────────────────────── */
+.aew-prsv2__arrow,
+button.aew-prsv2__arrow {
+  position: absolute;
+  top: calc(50% - 28px);          /* center on the image area, above the title */
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 0 !important;
+  border-radius: 14px;
+  background-color: var(--aew-prsv2-arrow-bg, #fff) !important;
+  box-shadow: 0 6px 20px rgba(20, 28, 25, 0.16) !important;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 0;
+  /* Apple-style: arrows are always visible (not hover-gated), keeping the
+     existing white rounded-square chevron design. Disabled-at-edge still hides
+     them via the [disabled] rules below. */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
+}
+
+.aew-prsv2__arrow--prev { left: -8px; }
+.aew-prsv2__arrow--next { right: -8px; }
+
+.aew-prsv2__arrow svg {
+  width: 26px;
+  height: 26px;
+  color: var(--aew-prsv2-arrow-color, var(--notched-text));
+}
+
+.aew-prsv2__arrow:hover { transform: translateY(-50%) scale(1.04); }
+.aew-prsv2__arrow:focus-visible { outline: 2px solid var(--notched-secondary-bg); outline-offset: 2px; }
+
+/* Disabled (track at an edge) — hide the arrow that can't go any further, so
+   you only ever see the direction(s) you can actually scroll. */
+.aew-prsv2__arrow[hidden],
+.aew-prsv2__arrow[disabled] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Dots ──────────────────────────────────────────────────────────────────── */
+.aew-prsv2__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: 21px; /* 28px visual: 24px hit area leaves ~7px above the 9px dot */
+}
+.aew-prsv2__dots:empty { display: none; }
+
+/* The button is the 24×24 accessible touch target (WCAG 2.5.8); the visible
+   9px dot is drawn by ::before so the design stays unchanged. */
+.aew-prsv2__dot,
+button.aew-prsv2__dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.aew-prsv2__dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background-color: var(--aew-prsv2-dot-idle, var(--notched-lines));
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+.aew-prsv2__dot[aria-current="true"]::before {
+  background-color: var(--aew-prsv2-dot-active, var(--notched-misc-accent));
+  transform: scale(1.25);
+}
+.aew-prsv2__dot:focus-visible { outline: 2px solid var(--notched-secondary-bg); outline-offset: 2px; }
+
+/* ── Empty state ───────────────────────────────────────────────────────────── */
+.aew-prsv2__empty {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  color: var(--notched-text);
+}
+
+/* ── Tablet ≤1024 ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .aew-prsv2 { --prsv2-gutter: 40px; }   /* keep in sync with __inner padding (2.5rem) */
+  /* tablet: inner padding inherited (Y64 desktop / X40 outer) */
+  .aew-prsv2__heading { font-size: 52px; }
+  /* ~2 cards with the next peeking. */
+  .aew-prsv2__slide { flex-basis: clamp(280px, 42vw, 440px); }
+
+  /* Hide prev/next arrows on tablet + mobile — touch/swipe drives the track,
+     dots remain for paging. Match the base rule's specificity (button.…) so
+     this override wins. */
+  .aew-prsv2__arrow,
+  button.aew-prsv2__arrow { display: none; }
+
+  /* Mobile/tablet stacking order (top → bottom):
+       heading → subtext → difficulty → slider → dots → CTA button.
+     Dissolve __head, __head-main AND __head-aside (display:contents) so the
+     heading, subtext, difficulty and CTA all become direct flex children of
+     __inner and can be individually ordered. The difficulty stays ABOVE the
+     slider (under the text); the CTA drops to the very bottom. */
+  .aew-prsv2__head { display: contents; }
+  .aew-prsv2__head-main { display: contents; }
+  .aew-prsv2__head-aside { display: contents; }
+
+  .aew-prsv2__heading    { order: 0; margin-bottom: 16px; }
+  .aew-prsv2__subtext    { order: 1; margin-bottom: 24px; max-width: none; }
+  .aew-prsv2__difficulty { order: 2; align-items: flex-start; text-align: left; margin-bottom: 24px; }
+  .aew-prsv2__viewport   { order: 3; }
+  .aew-prsv2__empty      { order: 3; }
+  .aew-prsv2__dots       { order: 4; }
+  .aew-prsv2__cta        { order: 5; align-self: flex-start; margin-top: 28px; }
+}
+
+/* ── Mobile ≤768 ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Body inset drops to 16px on mobile. It lives on __inner now (the outer block
+     stays full-width so the track can bleed to the viewport edge); --prsv2-pad
+     keeps the rail calc in sync. */
+  .aew-prsv2 { --prsv2-pad: 16px; }
+  .aew-prsv2__inner { padding: 32px var(--prsv2-pad); }
+  .aew-prsv2__heading { font-size: 40px; margin-bottom: 20px; }
+  .aew-prsv2__cta { width: 100%; justify-content: center; font-size: 20px; padding: 18px 24px 16px; }
+  .aew-prsv2__price { font-size: 14px; }
+  /* Mobile: ~1 card with a generous peek of the next so swiping is obvious. */
+  .aew-prsv2__slide { flex-basis: 78vw; }
+  .aew-prsv2__track { gap: 16px; }
+  .aew-prsv2__media { border-radius: 16px; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .aew-prsv2__track { scroll-behavior: auto; }
+  .aew-prsv2__arrow,
+  .aew-prsv2__dot,
+  .aew-prsv2__dot::before,
+  .aew-prsv2__cta { transition: none; }
+}

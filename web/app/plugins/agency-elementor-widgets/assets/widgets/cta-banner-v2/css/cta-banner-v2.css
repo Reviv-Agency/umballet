@@ -1,0 +1,223 @@
+/**
+ * CTA Banner V2 — Notched
+ * A centered call-to-action (eyebrow + Teko headline + description + button)
+ * inside a large rounded card sitting on the light page background.
+ */
+
+/* Strip Elementor column padding so the banner goes full-bleed. The card's own
+   inner wrapper re-applies the max-width + responsive X padding. */
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-cta-banner-v2),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-cta-banner-v2),
+.e-con:has(.elementor-widget-agency-cta-banner-v2) {
+  --padding-top: 0px;
+  --padding-right: 0px;
+  --padding-bottom: 0px;
+  --padding-left: 0px;
+  padding: 0 !important;
+}
+
+/* ── Force the host section/container to full width so the inner wrapper can
+   reach its (≥1440) max-width on wide screens instead of being capped by
+   Elementor's boxed content width. ──────────────────────────────────────── */
+.elementor-section:has(.elementor-widget-agency-cta-banner-v2),
+.elementor-section:has(.elementor-widget-agency-cta-banner-v2) > .elementor-container,
+.e-con:has(.elementor-widget-agency-cta-banner-v2) {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+
+/* ── Brand tokens ────────────────────────────────────────────────────────── */
+/* Scoped to .aew-ctab so they don't leak into other widgets. Source of truth
+   is design-system.md. Update there first; copy here second. */
+.aew-ctab {
+  --notched-cards:             #FFFFFF;
+  --notched-background:        #F1EADF;
+  --notched-lines:             #BFC0BF;
+  --notched-misc-accent:       #3B413F;
+  --notched-secondary-cards:   #7D958D;
+  --notched-secondary-bg:      #876137;
+  --notched-secondary-accent:  #3E382F;
+  --notched-text:              #1B150E;
+  --notched-cta:               #632B3A;
+  --notched-cta-hover:         #89505F;
+}
+
+/* ── Outer block (full-bleed light page band) ────────────────────────────── */
+/* Design-system width model: X gutter on the outer block; inner caps at 1440. */
+.aew-ctab {
+  position: relative;
+  width: 100%;
+  background: var(--aew-ctab-page-bg, var(--notched-background));
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.aew-ctab *,
+.aew-ctab *::before,
+.aew-ctab *::after {
+  box-sizing: border-box;
+}
+
+/* ── Inner wrapper: true 1440 content cap (card owns Y) ──────────────────── */
+.aew-ctab__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.aew-ctab__card {
+  background: var(--aew-ctab-card-bg, #E9E0D9);
+  border-radius: 32px;
+  padding: 96px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Content column ──────────────────────────────────────────────────────── */
+.aew-ctab__content {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px; /* design-system stacking gap */
+}
+
+/* ── Eyebrow (Subhead — Playfair Display Bold 20px / 100%) ───────────────── */
+.aew-ctab__eyebrow {
+  margin: 0;
+  color: var(--aew-ctab-eyebrow, var(--notched-secondary-bg));
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* ── Headline (H2 — Teko SemiBold 64px / 85%) ────────────────────────────── */
+/* Prefixed with .aew-ctab so the colour beats the kit's .elementor-kit-N h1..h6
+   rule (0,1,1); a bare class would be (0,1,0) and lose (gotcha #20). */
+.aew-ctab .aew-ctab__headline {
+  margin: 0;
+  color: var(--aew-ctab-headline, var(--notched-secondary-bg));
+  font-family: var(--aew-teko);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+/* ── Description (Paragraph — Lato Regular 18px / 140%) ──────────────────── */
+.aew-ctab__description {
+  margin: 0;
+  color: var(--aew-ctab-description, var(--notched-text));
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+/* Centered row; multiple buttons sit side-by-side and wrap onto new lines on
+   narrow screens. */
+.aew-ctab__actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Button base — design-system: Teko SemiBold 20px / 85%, pad 20/24/16/24,
+   radius 8. The --aew-ctab-btn-* vars are set inline by render() from the
+   resolved editor values (hex or global colour); the design-system token is the
+   fallback when the user hasn't overridden that slot (§6.8). Colours live on the
+   style modifiers below so primary and secondary can differ. */
+.aew-ctab__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-decoration: none;
+  text-align: center;
+  font-family: var(--aew-teko);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 20px 24px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;   /* keeps primary & secondary the same height */
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+/* Primary (filled) */
+.aew-ctab__btn--primary {
+  background-color: var(--aew-ctab-btn-bg, var(--notched-cta));
+  color: var(--aew-ctab-btn-text, #FFFFFF);
+  border-color: var(--aew-ctab-btn-bg, var(--notched-cta));
+}
+.aew-ctab__btn--primary:hover,
+.aew-ctab__btn--primary:focus-visible {
+  background-color: var(--aew-ctab-btn-bg-hover, var(--notched-cta-hover));
+  color: var(--aew-ctab-btn-text-hover, #FFFFFF);
+  border-color: var(--aew-ctab-btn-bg-hover, var(--notched-cta-hover));
+}
+
+/* Secondary (outline by default; fully editable via the btn2_* controls) */
+.aew-ctab__btn--secondary {
+  background-color: var(--aew-ctab-btn2-bg, transparent);
+  color: var(--aew-ctab-btn2-text, var(--notched-cta-hover));
+  border-color: var(--aew-ctab-btn2-text, var(--notched-cta-hover));
+}
+.aew-ctab__btn--secondary:hover,
+.aew-ctab__btn--secondary:focus-visible {
+  background-color: var(--aew-ctab-btn2-bg-hover, var(--notched-cta-hover));
+  color: var(--aew-ctab-btn2-text-hover, #FFFFFF);
+  border-color: var(--aew-ctab-btn2-bg-hover, var(--notched-cta-hover));
+}
+
+/* Shared "target" arrow (same as media-cta). The path points left, so flip it
+   with scaleX(-1) to point forward; nudge forward on hover. */
+.aew-ctab__btn-arrow {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: -2px;
+  transform: scaleX(-1);
+  transition: transform 0.18s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aew-ctab__btn:hover .aew-ctab__btn-arrow,
+  .aew-ctab__btn:focus-visible .aew-ctab__btn-arrow {
+    transform: scaleX(-1) translateX(3px);
+  }
+}
+
+/* ── Responsive: tablet / small desktop (≤1024px) ────────────────────────── */
+@media (max-width: 1024px) {
+  .aew-ctab__card  { border-radius: 28px; padding: 72px 32px; }
+  .aew-ctab .aew-ctab__headline { font-size: 52px; }
+}
+
+/* ── Responsive: mobile (≤768px) ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .aew-ctab { padding-left: 16px; padding-right: 16px; }
+  .aew-ctab__card  { border-radius: 24px; padding: 48px 24px; }
+  .aew-ctab__eyebrow     { font-size: 20px; }
+  .aew-ctab .aew-ctab__headline { font-size: 40px; }
+  .aew-ctab__description { font-size: 14px; }
+  .aew-ctab__btn { font-size: 16px; padding: 18px 24px 16px; }
+  /* Stack buttons full-width on very narrow screens. */
+  .aew-ctab__actions { width: 100%; flex-direction: column; }
+  .aew-ctab__actions .aew-ctab__btn { width: 100%; }
+}

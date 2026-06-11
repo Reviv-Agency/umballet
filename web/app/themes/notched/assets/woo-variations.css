@@ -1,0 +1,280 @@
+/* Notched — Wix-style variation button-boxes + colour swatches on product pages.
+   Pairs with woo-variations.js. Brand tokens: gold #632B3A, text #1B150E. */
+
+/* ── Single Product template (Elementor 1707) layout tweaks ──────────────────
+   Core product section: drop the bottom padding. */
+.elementor-1707 .elementor-element.elementor-element-sfd0a283 {
+  padding-bottom: 0 !important;
+}
+/* Mobile: smaller product title (was ~5rem). */
+@media (max-width: 767px) {
+  .elementor-1707 .elementor-widget-woocommerce-product-title h1,
+  .elementor-1707 .elementor-widget-woocommerce-product-title .product_title {
+    font-size: 2.5rem !important;
+    line-height: 1.05 !important;
+  }
+}
+
+/* Anti-FOUC: before woo-variations.js converts the dropdowns to swatches, take
+   the native <select>s out of flow so they neither flash nor reserve a gap that
+   the swatches would then shift into. `aew-swatch-pending` is set on <html> by an
+   inline head script (functions.php) and removed once conversion completes (or
+   after a 3s safety timeout). Labels stay visible. */
+.aew-swatch-pending .variations select,
+.aew-swatch-pending table.variations select {
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide the native <select> (kept for WooCommerce's logic) but keep it accessible. */
+.aew-swatch-source {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  overflow: hidden; white-space: nowrap;
+}
+
+/* The WC variations table → make each row a clean stacked label + controls. */
+.variations,
+table.variations { width: 100%; border: 0; margin-bottom: 0 !important; }
+/* "Clear" reset link → brand green. */
+.woocommerce div.product form.cart .variations .reset_variations,
+.reset_variations { color: var(--notched-secondary-bg, #876137) !important; }
+/* WooCommerce hides "Clear" with visibility:hidden (still reserves space → a gap).
+   Collapse it with display:none while hidden so it takes no space until shown. */
+.woocommerce div.product form.cart .variations .reset_variations[style*="visibility: hidden"],
+.reset_variations[style*="visibility: hidden"] { display: none !important; }
+.variations tr,
+table.variations tr { display: block; margin-bottom: 22px; }
+/* No gap after the last variation row. */
+.variations tr:last-child,
+table.variations tr:last-child { margin-bottom: 0; }
+/* Kill the kit's zebra striping behind alternating variation rows. */
+.variations tbody > tr:nth-child(odd) > td,
+.variations tbody > tr:nth-child(odd) > th,
+table.variations tbody > tr:nth-child(odd) > td,
+table.variations tbody > tr:nth-child(odd) > th { background-color: transparent !important; }
+/* Kill the row-hover highlight on variation rows. */
+.variations tbody > tr:hover > td,
+.variations tbody > tr:hover > th,
+table.variations tbody > tr:hover > td,
+table.variations tbody > tr:hover > th { background-color: transparent !important; }
+.variations td,
+.variations th,
+table.variations td,
+table.variations th { display: block; padding: 0; border: 0; width: auto; }
+.variations .label label,
+table.variations .label label {
+  display: block;
+  margin: 0 0 10px;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--notched-text, #1B150E);
+}
+/* WooCommerce's "Clear" link under a chosen variation */
+.variations .reset_variations { font-size: 13px; }
+
+/* ── Swatch container ── */
+.aew-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ── Box buttons (sizes / timber / power / end-cut) ── */
+.aew-swatch--box {
+  appearance: none;
+  cursor: pointer;
+  padding: 10px 16px;
+  min-width: 56px;
+  background: #fff;
+  border: 1px solid #BFC0BF;
+  border-radius: 8px;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--notched-text, #1B150E);
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+/* High specificity + !important so hover/active beat the kit's generic
+   `.elementor-kit-7 button` styling (solid gold bg on every button). */
+.aew-swatches .aew-swatch.aew-swatch--box {
+  background-color: #fff !important;
+  background-image: none !important;
+  color: var(--notched-text, #1B150E) !important;
+  border: 1px solid #BFC0BF !important;
+}
+.aew-swatches .aew-swatch.aew-swatch--box:hover {
+  border-color: var(--notched-cta, #632B3A) !important;
+  color: var(--notched-cta, #632B3A) !important;
+}
+.aew-swatches .aew-swatch.aew-swatch--box.is-active {
+  background-color: var(--notched-cta, #632B3A) !important;
+  border-color: var(--notched-cta, #632B3A) !important;
+  color: #fff !important;
+}
+
+/* ── Colour swatches (stain / roof) ── */
+.aew-swatches--color { gap: 12px; }
+/* High specificity + !important so the swatch's own --sw colour always wins over
+   theme/Elementor/WC generic <button> background rules (which were painting every
+   swatch the brand gold). The active state only adds a ring — never recolours. */
+.aew-swatches .aew-swatch.aew-swatch--color {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(20, 28, 25, 0.18);
+  background-color: var(--sw, #ccc) !important;
+  background-image: none !important;
+  position: relative;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.aew-swatches .aew-swatch.aew-swatch--color:hover { transform: translateY(-1px); }
+.aew-swatches .aew-swatch.aew-swatch--color.is-active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--notched-cta, #632B3A);
+}
+
+/* ── Stain colour image preview (below the stain swatches) ── */
+.aew-stain-preview {
+  margin: 12px 0 0;
+  display: none;            /* hidden until a stain is hovered/selected */
+}
+.aew-stain-preview.is-shown { display: block; }
+.aew-stain-preview img {
+  display: block;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(20, 28, 25, 0.12);
+}
+.aew-stain-preview figcaption {
+  margin-top: 8px;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--notched-text, #1B150E);
+}
+
+/* ── Disabled (out-of-stock combo) ── */
+.aew-swatch.is-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  position: relative;
+}
+.aew-swatch--box.is-disabled { text-decoration: line-through; }
+
+/* Add-to-cart row spacing under the swatches. */
+.woocommerce-variation-add-to-cart { margin-top: 8px; }
+
+/* Only show the quantity + Add-to-cart block once a full variation is selected
+   (i.e. a price is available). WooCommerce marks the block
+   `woocommerce-variation-add-to-cart-disabled` until every option is chosen and a
+   matching variation is found, then swaps to `...-enabled`. Hide while disabled. */
+.woocommerce-variation-add-to-cart.woocommerce-variation-add-to-cart-disabled {
+  display: none !important;
+}
+
+/* NOTE: Add-to-Cart / Get-a-Quote BUTTON styling lives in woo-buttons.css
+   (kept separate from these variant-option styles). */
+
+/* ── Product gallery: main image on top + exactly 4 thumbnails below ──────────
+   WooCommerce/flexslider renders a main slider + an <ol class="flex-control-thumbs">
+   thumbnail nav. We lay the thumbnails out as a 4-column row and hide the 5th+
+   (all images remain available in the main slider + the PhotoSwipe lightbox). */
+/* Space between the main image and the thumbnail row below it. */
+.woocommerce-product-gallery .flex-viewport { margin-bottom: 24px; }
+.woocommerce-product-gallery .flex-control-thumbs {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.woocommerce-product-gallery .flex-control-thumbs li {
+  margin: 0;
+  width: auto !important;
+}
+.woocommerce-product-gallery .flex-control-thumbs li img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+.woocommerce-product-gallery .flex-control-thumbs li img.flex-active,
+.woocommerce-product-gallery .flex-control-thumbs li img:hover { opacity: 1; }
+/* Show only the first 4 thumbnails. */
+.woocommerce-product-gallery .flex-control-thumbs li:nth-child(n+5) { display: none; }
+
+/* Main image: rounded, full width of the gallery column. Zoom is disabled in
+   functions.php; these rules also defend against any residual hover transform
+   and keep the radius. */
+.woocommerce-product-gallery__image img,
+.woocommerce-product-gallery .flex-viewport img {
+  border-radius: 14px;
+  transform: none !important;   /* no hover zoom */
+}
+.woocommerce-product-gallery .zoomImg { display: none !important; } /* kill leftover zoom overlay */
+/* The zoom/lightbox trigger (magnifier) stays clickable to open PhotoSwipe. */
+.woocommerce-product-gallery__trigger { z-index: 5; }
+/* Whole main image is clickable to open the lightbox. */
+.woocommerce-product-gallery__image,
+.woocommerce-product-gallery__image a { cursor: zoom-in; }
+
+/* ── Lightbox thumbnail strip (injected into PhotoSwipe by woo-gallery.js) ──── */
+.pswp .aew-pswp-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1600;
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.45);
+  scrollbar-width: thin;
+  justify-content: center;
+}
+.pswp .aew-pswp-strip::-webkit-scrollbar { height: 6px; }
+.pswp .aew-pswp-strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 3px; }
+.aew-pswp-thumb {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.aew-pswp-thumb:hover { opacity: 1; }
+.aew-pswp-thumb.is-active {
+  opacity: 1;
+  border-color: var(--notched-cta, #632B3A);
+}
+/* lift PhotoSwipe's bottom caption so it doesn't collide with the strip */
+.pswp .pswp__caption { bottom: 80px; }

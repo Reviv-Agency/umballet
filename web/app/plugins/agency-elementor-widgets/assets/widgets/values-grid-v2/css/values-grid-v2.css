@@ -1,0 +1,158 @@
+/* ============================================================================
+ * Values Grid V2 — "A Few Things We Believe" icon + title + paragraph cards.
+ * Section heading above an optional panel that holds a responsive grid.
+ * Desktop-first; step down at 1024 / 768.
+ * ========================================================================== */
+
+/* ── Brand tokens (scoped) — source of truth: design-system.md ───────────── */
+.aew-vals {
+  --notched-cards:             #FFFFFF;
+  --notched-background:        #F1EADF;
+  --notched-lines:             #BFC0BF;
+  --notched-misc-accent:       #3B413F;
+  --notched-secondary-cards:   #7D958D;
+  --notched-secondary-bg:      #876137;
+  --notched-secondary-accent:  #3E382F;
+  --notched-text:              #1B150E;
+  --notched-cta:               #632B3A;
+  --notched-cta-hover:         #89505F;
+}
+
+/* Strip Elementor's column / container padding so the section is full-bleed. */
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-values-grid-v2),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-values-grid-v2),
+.e-con:has(.elementor-widget-agency-values-grid-v2) {
+  --padding-top: 0px;
+  --padding-right: 0px;
+  --padding-bottom: 0px;
+  --padding-left: 0px;
+  padding: 0 !important;
+}
+
+/* ── Outer block ─────────────────────────────────────────────────────────── */
+.aew-vals {
+  background-color: var(--aew-vals-section-bg, var(--notched-background));
+  width: 100%;
+  position: relative;
+}
+
+/* 1600 = 1440 content + 2×80px desktop side padding (§6.5). */
+/* Design-system width model: X gutter on the outer block; inner caps at a true 1440. */
+.aew-vals { padding-left: 40px; padding-right: 40px; box-sizing: border-box; }
+
+.aew-vals__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+/* (0,2,0) beats the kit's .elementor-kit-N h1..h6 (0,1,1) — gotcha #20. */
+.aew-vals .aew-vals__heading {
+  margin: 0 0 48px;
+  text-align: center;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 85%;
+  text-transform: uppercase;
+  color: var(--aew-vals-heading, var(--notched-secondary-bg));
+}
+
+/* Panel behind the grid — sits inside the 1440 rail + side padding. Holds the
+   optional background image (paper texture) so it stays within the content
+   width like every other block, not full-bleed. */
+.aew-vals__panel {
+  background-color: var(--aew-vals-panel-bg, transparent);
+  background-image: var(--aew-vals-bg-image, none);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 24px;
+  padding: var(--aew-vals-panel-pad, 48px);
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+.aew-vals__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--aew-vals-cols, 2), 1fr);
+  gap: 48px 0px;
+  align-items: start;
+}
+
+/* Vertical stagger — the right column sits lower than the left (matches the
+   live Our Story layout). Reset on mobile (single column) below. */
+.aew-vals__card:nth-child(even) {
+  margin-top: 200px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+/* A large faint wood-ring icon sits behind the upper-left of the copy; the
+   title and text are left-aligned and overlap the icon's lower portion. */
+.aew-vals__card {
+  position: relative;
+  text-align: left;
+  padding-top: 96px;            /* room for the icon to rise above the title */
+  max-width: 400px;             /* cap the content width… */
+  margin-left: auto;            /* …and centre it within the grid cell */
+  margin-right: auto;
+}
+
+/* Pre-tinted gold wood-print icon, sits behind the upper-left of the copy. */
+.aew-vals__icon {
+  position: absolute;
+  top: 0;
+  left: -40px;                  /* overlap so the title sits over its right half */
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Copy sits above the icon. */
+.aew-vals__title,
+.aew-vals__text {
+  position: relative;
+  z-index: 1;
+}
+
+/* (0,2,0) beats the kit's heading rule — gotcha #20. */
+.aew-vals .aew-vals__title {
+  margin: 0 0 12px;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: var(--aew-vals-title, #161C19);
+}
+
+.aew-vals__text {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+  color: var(--aew-vals-text, #163228);
+}
+
+/* ── Tablet ──────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* tablet: inner padding inherited (Y64 desktop / X40 outer) */
+  .aew-vals__panel { padding: 40px; }
+  .aew-vals__grid  { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .aew-vals .aew-vals__heading { font-size: 48px; }
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .aew-vals { padding-left: 16px; padding-right: 16px; }
+  .aew-vals__inner { padding: 32px 0; }
+  .aew-vals__panel { padding: 24px; }
+  .aew-vals__grid  { grid-template-columns: 1fr; gap: 32px; }
+  .aew-vals__card:nth-child(even) { margin-top: 0; }   /* no stagger when stacked */
+  .aew-vals .aew-vals__heading { font-size: 40px; margin-bottom: 32px; }
+  .aew-vals .aew-vals__title { font-size: 28px; }
+  .aew-vals__text { font-size: 14px; }
+}
