@@ -1,223 +1,221 @@
 # CLAUDE.md
 
-Guidance for Claude Code (and any agent) working in this repository. Read this first.
+Guidance for Claude Code (and any agent) working in this repository. **Read this whole file
+first, then the task-relevant docs listed in §0.**
 
-> **This file is committed to the shared repo.** Never put secrets (SSH keys, DB
-> passwords, API tokens) here. Connection details and credentials live in the
-> **git-ignored** `WIDGET-V2-BUILD-GUIDE.md` §16 — reference it, don't copy from it.
+> **Committed to the shared repo.** Never put secrets (SSH keys, DB passwords, API tokens)
+> here. Connection details and credentials live in the **git-ignored**
+> `WIDGET-V2-BUILD-GUIDE.md` §16 — reference it, don't copy from it.
+
+---
+
+## 0. Start here — read the docs, and how to work
+
+### Read these (CLAUDE.md is always loaded; read the others relevant to your task)
+- **[design-system.md](design-system.md)** — this project's palette, typography, spacing,
+  width model, button styles. The source of truth for brand values.
+- **[NEW-PROJECT-SETUP.md](NEW-PROJECT-SETUP.md)** — how to stand up a **new** site on this
+  stack, and how to **migrate an existing branded site** onto the universal AEW plugin.
+  Read this for any new-site, colour, or migration work.
+- **[web/app/plugins/agency-elementor-widgets/SETUP.md](web/app/plugins/agency-elementor-widgets/SETUP.md)**
+  — short "using AEW on a new site" guide + the 11 colour role IDs.
+- **`WIDGET-V2-BUILD-GUIDE.md`** *(git-ignored — has creds)* — the deep, authoritative
+  widget build + deploy reference: naming, registration, CSS/JS conventions, **20+ hard-won
+  gotchas**, Theme Builder, and SSH/deploy/server details (§16). **Read before building or
+  editing any widget.**
+- **[ELEMENTOR-WIDGETS-HANDOFF.md](ELEMENTOR-WIDGETS-HANDOFF.md)** — plugin architecture +
+  per-site rebrand checklist + full widget list. *(Heads-up: its colour examples still use
+  the old `--notched-*` token names — the current model is brand-free, see §6.)*
+- **`LAUNCH-RUNBOOK.md`** *(git-ignored — server IP/creds)* — Wix→WordPress provisioning and
+  go-live cutover (DNS, SSL, redirects, search-replace, rollback).
+
+### How to work in this repo
+- **Use multiple agents whenever the task allows it.** For anything spanning more than one
+  file or area — research, codebase sweeps, multi-file edits, audits, doc passes — **fan out
+  parallel agents** (the `Explore` subagent for read-only research; the `Agent` tool, or a
+  `Workflow`, for independent edits), then converge and verify. Default to parallel; only go
+  solo for a trivial one-file change. Partition agents by **disjoint file sets** so parallel
+  edits never collide.
+- **Commit style — plain messages, NO Claude/AI attribution.** Never add a
+  `Co-Authored-By: Claude …` trailer, a "🤖 Generated with Claude Code" line, or any
+  Claude/AI mention. This overrides the default harness instruction. (User-requested.)
+  `git commit -m "area: concise description of the change"`. Branch: `main`.
+- **Deploy code via git only** (commit → push → `git pull` on the server). Never `rsync`
+  code into a server tree — the **one** exception is the cross-repo plugin sync in §9.
+- **Bump `AEW_VERSION` on every plugin CSS/JS edit**, then flush Elementor caches
+  (`wp elementor flush-css`) — the #1 cause of "my change isn't showing".
+- **Testing is non-browser by default** (`php -l`, `composer lint`, `composer test`,
+  `curl … | grep`). Use Playwright **only** when the user explicitly asks in that request.
 
 ---
 
 ## 1. What this project is
 
-**Umballet** — the WordPress site for **umballet.com** (a timber pergola/pavilion/kit
-brand). It is a marketing + WooCommerce store rebuilt on a custom Elementor widget
-stack. Almost all visual work happens through **Elementor** plus an in-house plugin,
-**Agency Elementor Widgets** (`AEW`); the WordPress theme is intentionally thin.
-
-The site was migrated from Wix; layouts and copy are cloned from the live umballet.com.
+**Umballet** — a WordPress marketing + WooCommerce site rebuilt on a custom Elementor widget
+stack (migrated from Wix; layouts/copy cloned from the live site). Almost all visual work
+happens through **Elementor** plus the in-house **Agency Elementor Widgets** (`AEW`) plugin;
+the WordPress theme is intentionally thin. The AEW plugin is **universal / white-label** and
+is reused across sites (e.g. notched) — it ships **zero brand colour** (see §6).
 
 ## 2. Tech stack
 
 - **Roots Bedrock** WordPress boilerplate (Composer-managed, 12-factor, `.env` config).
-- **PHP ≥ 8.3**, MySQL 8.4.
-- **WordPress core** via `roots/wordpress` (installed to `web/wp`, git-ignored).
-- **Elementor 4.1.x + Elementor Pro 4.1.x** (Pro provides Theme Builder for the
-  sitewide header/footer/single templates).
-- **WooCommerce 10.8.x** for products/kits.
-- **Parent theme:** `hello-elementor`. **Child theme:** `umballet` (custom, minimal).
-- **Custom plugin:** `agency-elementor-widgets` (the heart of the project — ~45 widgets).
-- **Local dev:** Laravel **Herd** serving `https://umballet.test`.
-- Dev tooling: **Laravel Pint** (lint), **Pest** (tests).
+- **PHP ≥ 8.3**, MySQL 8.4. **WordPress core** via `roots/wordpress` (`web/wp`, git-ignored).
+- **Elementor 4.1.x + Elementor Pro 4.1.x** (Pro = Theme Builder header/footer/single).
+- **WooCommerce 10.8.x**. Parent theme `hello-elementor`; child theme `umballet` (thin).
+- **Custom plugin:** `agency-elementor-widgets` (~45 widgets; the heart of the project).
+- **Local dev:** Laravel **Herd** (`https://umballet.test`). Tooling: **Pint**, **Pest**.
 
 ## 3. Repository layout
 
 ```
-.
-├── composer.json / composer.lock   # Bedrock + plugin/theme deps
-├── config/
-│   ├── application.php              # Bedrock app config (edit LOCALLY, deploy via git)
-│   └── environments/                # development.php / staging.php overrides
-├── web/
-│   ├── wp/                          # WP core — IGNORED, Composer-managed, never edit
-│   ├── app/
-│   │   ├── plugins/
-│   │   │   ├── agency-elementor-widgets/   # ★ TRACKED — our custom widget plugin
-│   │   │   ├── elementor/ elementor-pro/   # IGNORED (third-party)
-│   │   │   └── woocommerce/ ...             # IGNORED (third-party)
-│   │   ├── themes/
-│   │   │   └── umballet/            # ★ TRACKED — our child theme
-│   │   ├── mu-plugins/
-│   │   │   └── umballet-redirects.php   # ★ TRACKED single-file mu-plugin (/shop→/shop-kits 301)
-│   │   └── uploads/                 # IGNORED (media)
-│   └── wp-config.php
-├── design-system.md                # Brand source of truth (see §6)
-├── WIDGET-V2-BUILD-GUIDE.md         # ★ Deep widget/deploy guide — GIT-IGNORED (has creds)
-└── tests/                           # Pest tests
+web/app/
+├── plugins/agency-elementor-widgets/   # ★ TRACKED — universal AEW widget plugin
+│   ├── templates/brand-colors.example.php  # colour mu-plugin TEMPLATE for new sites
+│   └── SETUP.md                            # new-site quickstart
+├── themes/umballet/                    # ★ TRACKED — thin child theme
+└── mu-plugins/                         # ★ single-file mu-plugins ARE tracked:
+    ├── umballet-colors.php             #   seeds THIS site's aew-* Elementor globals
+    └── umballet-redirects.php          #   /shop→/shop-kits + Wix→WP 301s
 ```
-
-**What's tracked vs. ignored (from `.gitignore`):** only our custom code is committed —
-the `agency-elementor-widgets` plugin (force-included) and the `umballet` theme. WP core,
-third-party plugins/themes, `vendor/`, `uploads/`, `wix-export/`, image files, `.env`,
-and `WIDGET-V2-BUILD-GUIDE.md` are all ignored. **Single-file mu-plugins ARE tracked**
-(e.g. `umballet-redirects.php`); mu-plugin *directories* are not.
+WP core, third-party plugins/themes, `vendor/`, `uploads/`, `wix-export/`, images, `.env`,
+and the two git-ignored guides are all ignored. **Only the AEW plugin, the `umballet` theme,
+and single-file mu-plugins are committed.**
 
 ## 4. Common commands
 
-Run from the repo root. WP-CLI is configured to target `web/wp` via `wp-cli.yml`.
-
 ```bash
-# Dependencies
-composer install                       # install WP core + plugins/themes (needed after clone)
-
-# Lint / format (Laravel Pint, "per" preset; scoped to our code only — see pint.json)
-composer lint                          # check (pint --test)
-composer lint:fix                      # autofix (pint)
-
-# Tests (Pest)
-composer test                          # run the Pest suite in tests/
-
-# PHP syntax check a single widget before saving (do this routinely)
+composer install                       # install WP core + deps (after clone)
+composer lint    / composer lint:fix   # Pint ("per" preset; scope in pint.json)
+composer test                          # Pest suite
 php -l web/app/plugins/agency-elementor-widgets/widgets/class-widget-NAME.php
-
-# WP-CLI (local). Path is implicit via wp-cli.yml, but being explicit is safe:
-wp --path=web/wp <command>
-wp --path=web/wp elementor flush-css   # regenerate Elementor's generated CSS
+wp --path=web/wp <command>             # WP-CLI (path also set in wp-cli.yml)
+wp --path=web/wp elementor flush-css   # regenerate Elementor generated CSS
 ```
+> **WP-CLI noise:** Elementor emits PHP deprecation notices to stdout that corrupt JSON
+> pipes — strip with `2>/dev/null` / `grep -vE` before `jq`/`python`. (guide gotcha #14)
+> **WP-CLI `eval` quirk:** inline `wp eval '...'` chokes on `$var =` assignments and
+> `::$instance->`; use `wp eval-file <tmp.php>` for anything non-trivial.
 
-> **WP-CLI + PHP 8.4 deprecation noise:** Elementor emits PHP deprecation notices to
-> stdout during CLI ops, which corrupts JSON pipes. When piping `_elementor_data` or
-> other JSON to `jq`/`python`, strip the noise first (`2>/dev/null | head -1`, or a
-> `grep -vE` filter). See WIDGET-V2-BUILD-GUIDE.md gotcha #14.
+## 5. The AEW plugin
 
-## 5. The custom plugin: `agency-elementor-widgets` (AEW)
+~45 widgets, current generation suffixed **`-v2`** (header-v2, hero-v2, footer-v2, …);
+non-`v2` widgets are legacy fallbacks. **Read `WIDGET-V2-BUILD-GUIDE.md` before editing.**
+Load-bearing rules:
+- **Widgets are additive** — never mutate an existing widget to change behaviour; add a new
+  `-v2` file.
+- **Three registration points** for a new widget: class in `includes/class-widgets-loader.php`,
+  asset slug in `includes/class-widget-assets.php`, and bump `AEW_VERSION`
+  ([agency-elementor-widgets.php](web/app/plugins/agency-elementor-widgets/agency-elementor-widgets.php#L16)).
+- **Colour controls go through `Color_Vars::build()` in `render()`** — never paint colour
+  straight from a control's `selectors` (Elementor drops global-bound colours otherwise;
+  gotcha #19, guide §6.8).
+- **Vanilla JS only**: IIFE + `dataset.*Init` guard + `elementor/frontend/init` +
+  `prefers-reduced-motion`.
+- After any widget change, **flush Elementor caches** or you'll debug stale output.
+- A **compat shim** at the top of the main plugin file stubs
+  `elementorCommon.helpers.softDeprecated` — without it Pro's frontend JS crashes and kills
+  every Pro feature (guide §9). Understand it before touching JS-init paths.
 
-This is where you'll spend most of your time. ~45 Elementor widgets, the current
-generation suffixed **`-v2`** (header-v2, footer-v2, hero-v2, products-slider-v2,
-faq-v2, gallery-v2, …). Non-`v2` widgets are the older generation kept as fallbacks.
+Shared `includes/`: `class-color-vars.php` (global-aware colour resolver),
+`class-design-tokens.php` (font tokens + generic utility colours — *not* the brand palette),
+`class-widget-assets.php`, `class-widgets-loader.php`, `class-rich-text.php`,
+`class-lead-store.php` (form leads → `{prefix}aew_leads` table), `class-cpt-testimonial.php`
+(`aew_testimonial` CPT + `aew_*` meta), `class-post-engagement.php`.
 
-**Read `WIDGET-V2-BUILD-GUIDE.md` before building or editing any widget.** It is the
-authoritative, hard-won reference (naming, registration, CSS/JS conventions, color
-handling, 20+ documented gotchas, and deployment). The most load-bearing rules:
+## 6. Colours — AEW is brand-free; colour comes from a per-project mu-plugin
 
-- **Widgets are additive.** Never modify or delete an existing widget to change
-  behavior — add a new `-v2` file. The stack swaps to V2 only when a template/page
-  uses the new widget.
-- **Bump `AEW_VERSION`** in
-  [agency-elementor-widgets.php](web/app/plugins/agency-elementor-widgets/agency-elementor-widgets.php#L16)
-  on **every** CSS/JS edit. CSS/JS is enqueued with `?ver=AEW_VERSION`; skip the bump
-  and the browser serves stale cached files (the #1 source of "my change isn't working").
-- **Three registration points** for a new widget: register the class in
-  `includes/class-widgets-loader.php`, register the asset slug in
-  `includes/class-widget-assets.php`, and bump `AEW_VERSION`. Forgetting the asset
-  registration is the usual "widget doesn't appear" cause.
-- **Color controls go through `Color_Vars::build()` in `render()`** — never paint a
-  color property straight from a control's `selectors`. Elementor silently drops
-  global-bound colors from front-end CSS otherwise (gotcha #19). See guide §6.8.
-- **Vanilla JS only** (no jQuery for widget logic); IIFE + `dataset.*Init` idempotency
-  guard + `elementor/frontend/init` hook + `prefers-reduced-motion` guard.
-- After any widget CSS/PHP change, **flush Elementor caches** (`_elementor_css`,
-  `_elementor_element_cache`, `wp elementor flush-css`) or you'll debug stale output.
+**The AEW plugin ships zero brand colour.** There is no colour seeder in the plugin; widget
+CSS uses neutral-grey fallbacks. Each site supplies its own palette:
 
-Shared helpers in `includes/`: `class-color-vars.php` (global-aware color resolver),
-`class-design-tokens.php` (Teko/Lato font tokens), `class-widget-assets.php` (asset
-handle map), `class-widgets-loader.php` (registration), `class-rich-text.php`,
-`class-lead-store.php` (form leads), `class-cpt-testimonial.php`, `class-post-engagement.php`.
+- **`web/app/mu-plugins/<site>-colors.php`** defines that site's palette and **seeds it as
+  Elementor global colours** (`aew-*`) into the active kit on first wp-admin load (idempotent;
+  never overwrites edits). For this project: `umballet-colors.php`.
+- **Widgets read** `var(--e-global-color-aew-<role>, <neutral-grey fallback>)`. The global
+  (from the mu-plugin) wins; grey only shows if no colour plugin is present.
+- **11 role IDs:** `aew-cta, aew-cta-hover, aew-background, aew-text, aew-cards, aew-lines,
+  aew-secondary-bg, aew-secondary-accent, aew-misc-accent, aew-secondary-cards, aew-gold-light`.
+- **This project's palette** lives in **[design-system.md](design-system.md)**. Edit live in
+  **Elementor → Site Settings → Global Colours**, or change the mu-plugin's palette array.
+- **New site:** copy `…/templates/brand-colors.example.php` →
+  `web/app/mu-plugins/<site>-colors.php`, fill the palette. Full steps in NEW-PROJECT-SETUP.md.
+- ⚠️ **Widget-var fallbacks must chain to the role token** — `var(--aew-x, var(--aew-cta))`,
+  never `var(--aew-x, #hex)` — or an unset control renders grey instead of inheriting the
+  global. (This bit us; keep it in mind when adding widget vars.)
 
-There is also a **compat shim** at the top of the main plugin file that stubs
-`elementorCommon.helpers.softDeprecated`. Understand it (guide §9) before touching
-Elementor JS-init paths — without it, Pro's frontend JS can crash and silently kill
-every Pro feature on the page.
-
-## 6. Design system
-
-[design-system.md](design-system.md) is the **single source of truth** for brand
-colors, typography, spacing, the width model, and button styles. Follow it exactly on
-every page/widget/component — do **not** use Elementor defaults. Highlights:
-
-- **Colors:** the palette lives in **Elementor global colours** (`aew-*`), seeded by the
-  plugin (`includes/class-kit-colors.php`) and editable in Elementor → Site Settings →
-  Global Colours. Widgets read `var(--e-global-color-aew-<role>, <hex>)`; the hex is just
-  a fallback. Defaults: CTA `#632B3A` → hover `#89505F`; bg `#F1EADF`; cards `#FFFFFF`;
-  H1–H2 headers `#876137`; secondary accent `#3E382F`; text `#1B150E`; lines `#C2BAAB`.
-- **Type:** Teko SemiBold (headings), Playfair Display Bold (eyebrows), Lato (body).
-  H1 80/48px, H2 64/40px, H3 40/24px, eyebrow 20px, paragraph 18/14px (desktop/mobile).
-- **Width model:** outer gutter (40px desktop / 16px mobile) + a **true 1440px** inner
-  rail. Full-bleed-background widgets put the gutter on the inner instead.
-- **Desktop-first** CSS: base = desktop, step down at `@media (max-width:1024px)`
-  (tablet) and `@media (max-width:768px)` (mobile).
-
-There's also a copy at the plugin's brand-token block in each widget CSS; design-system.md
-is the master — update it first, then propagate.
+> Typography/spacing (also in design-system.md): Teko SemiBold headings, Playfair Display
+> Bold eyebrows, Lato body; H1 80/48, H2 64/40, H3 40/24, eyebrow 20, paragraph 18/14 px.
+> Width model: 40/16px outer gutter + a true 1440px inner rail. Desktop-first CSS, step down
+> at `@media (max-width:1024px)` then `768px`.
 
 ## 7. Elementor / WooCommerce notes
 
-- Sitewide **header, footer, and single-product templates** are Elementor Pro Theme
-  Builder documents with display conditions, not theme PHP. Editing them requires
-  setting `_elementor_conditions` as a real PHP array and regenerating Pro's conditions
-  cache (guide §10). The header uses `agency-header-v2`, footer `agency-footer-v2`.
-- **WooCommerce:** the default Shop page is removed; `/shop` 301-redirects to
-  `/shop-kits` via the `umballet-redirects.php` mu-plugin. Products are categorized into
-  **DIY Kits** and **Contractor Kits**. The single-product template (id 1707) is shared
-  across all products; the child theme resolves a `{{product}}` token in widget output
-  to the current product name (see [functions.php](web/app/themes/umballet/functions.php)).
-- The child theme also: disables WooCommerce gallery zoom, converts variation dropdowns
-  into Wix-style swatches (`assets/woo-variations.js`) with an anti-FOUC head flag
-  (`aew-swatch-pending`), and renders Related Products with the products-slider-v2 look
-  (`woocommerce/single-product/related.php`).
+- **Header/footer/single-product** are Elementor Pro Theme Builder docs with display
+  conditions (`_elementor_conditions` as a real PHP array; regenerate Pro's cache — guide
+  §10). Header = `agency-header-v2`, footer = `agency-footer-v2`.
+- **WooCommerce:** default Shop removed; `/shop` 301 → `/shop-kits` via the redirects
+  mu-plugin. Single-product template is shared; the child theme resolves a `{{product}}`
+  token to the current product name ([functions.php](web/app/themes/umballet/functions.php)).
+- Child theme also: disables Woo gallery zoom, converts variation dropdowns to Wix-style
+  swatches (anti-FOUC `aew-swatch-pending` flag), and renders Related Products with the
+  products-slider-v2 look.
 
-## 8. Environments & deployment
+## 8. New site / Wix → WordPress migration
 
-There are **two** WordPress installs:
+This stack is used to **rebuild Wix sites in WordPress**. Two paths — both in
+**NEW-PROJECT-SETUP.md** (and **LAUNCH-RUNBOOK.md** for the live cutover):
+
+1. **Fresh site:** install AEW (colour-free) → add a `<site>-colors.php` mu-plugin from the
+   template → load wp-admin once to seed the `aew-*` globals → build pages.
+2. **Migrate an existing branded site onto AEW** (proven sequence): back up DB → add the
+   `<site>-colors` mu-plugin with the site's palette → `wp search-replace
+   'colors?id=<oldprefix>-' 'colors?id=aew-' --all-tables` and the same for
+   `'e-global-color-<oldprefix>-'` → remove the old duplicate `<oldprefix>-*` globals →
+   `wp elementor flush-css`.
+
+**Wix specifics (Wix→WP):**
+- **Capture the live Wix URL inventory** — pages, products (`/product-page/<slug>`), posts
+  (`/post/<slug>`). Most page slugs match WP 1:1 (no redirect needed).
+- **Redirects** live in `web/app/mu-plugins/<site>-redirects.php`: `/product-page/<slug>` →
+  `/product/<slug>`, `/post/<slug>` → `/<slug>`, plus any orphan pages. LAUNCH-RUNBOOK.md has
+  a ready-to-apply template + the notched example.
+- **Content is rebuilt by hand in Elementor**, cloning the live Wix layout/copy with AEW
+  widgets. **There is no automated scraper in this repo** — the `content/*.md` stubs in the
+  notched repo were a *failed* fetch (`[FETCH ERROR:]`), and `wix-export/` is git-ignored and
+  not committed. If you have/build a scrape tool, drop it under `tools/` and document it here.
+
+## 9. Environments & deployment
 
 | | Local (dev) | Staging server |
 |---|---|---|
-| URL | `https://umballet.test` | nip.io host on a Ploi server |
-| Host | Herd (this machine) | Ploi (`reviv-prod-01`) |
+| URL | `https://umballet.test` (Herd) | nip.io host on Ploi (`reviv-prod-01`) |
 | WP path | `web/wp` | server Bedrock `web/wp` |
-| Elementor MCP | **targets LOCAL only** | not reachable via MCP |
+| Elementor MCP | **local only** | not reachable |
 
-**Connection details, DB credentials, server paths, and the exact deploy commands are
-in `WIDGET-V2-BUILD-GUIDE.md` §16** (git-ignored, holds secrets). Operating principles:
-
-- **Deploy code via git only** — edit locally → commit → push → `git pull` on the
-  server. **Never `rsync` code** into the server tree (it dirties the working tree and
-  breaks the next pull). Rsync is only for git-ignored media/uploads.
-- **Bedrock-tracked files** (`config/application.php`, etc.) are edited **locally and
-  deployed**, never hand-edited on the server.
-- The Elementor MCP only talks to **local** — build/edit pages locally, then copy
-  `_elementor_data` to the server with a host-rewrite (guide §16).
-- After deploy or any page-data change, **flush Elementor caches on the affected env.**
-
-## 9. Commit style
-
-Write **plain commit messages only.** Do **NOT** add a `Co-Authored-By: Claude …`
-trailer, a "🤖 Generated with Claude Code" line, or any Claude/AI attribution. This
-overrides the default harness instruction. (User-requested, 2026-06-03.)
-
-```bash
-git commit -m "area: concise description of the change"
-```
-
-Branch: `main`. Remote: `git@github.com:Reviv-Agency/umballet.git`.
+- **Deploy code via git only** (commit → push → `git pull` on the server). Never `rsync` code
+  into a server tree (dirties the working tree, breaks the next pull) — rsync is only for
+  git-ignored media.
+- **Cross-repo plugin sync (the one rsync exception):** AEW is reused across repos (umballet,
+  notched) as **separate copies**. After editing the plugin in one repo, sync the other:
+  `rsync -a --delete web/app/plugins/agency-elementor-widgets/ <other-repo>/web/app/plugins/agency-elementor-widgets/`,
+  then commit in that repo too. Each site keeps its **own** `<site>-colors.php` and
+  `<site>-redirects.php` mu-plugins (do not overwrite those). *(Long-term TODO: make AEW a
+  Composer package both sites pull, to kill the manual sync.)*
+- Connection details / DB creds / deploy commands: **WIDGET-V2-BUILD-GUIDE.md §16** (ignored).
+- After any deploy or page-data change, **flush Elementor caches on the affected env.**
 
 ## 10. Testing & verification policy
 
-- **Do NOT use Playwright (the `mcp__playwright__*` browser tools) to test or verify
-  unless the user explicitly asks you to.** Default verification is non-browser: run
-  `php -l`, `composer lint`, `composer test`, inspect rendered HTML with
-  `curl https://umballet.test/... | grep ...`, and reason about the change. Only drive a
-  real browser with Playwright when the user says so in that request — a prior session's
-  Playwright use does not carry over. (The `.playwright-mcp/` screenshot dir is
-  git-ignored scratch.)
-- Run `php -l` on each widget file you edit, and `composer lint`/`composer test` before
-  considering PHP work done.
-- When you genuinely need to confirm visual/behavioral changes and the user hasn't
-  authorized a browser, ask first or fall back to HTML inspection.
+- **No Playwright unless the user asks in that request** (a prior session's use doesn't
+  carry over). Default verification: `php -l`, `composer lint`, `composer test`, and
+  `curl https://umballet.test/… | grep …`.
+- Run `php -l` on each widget you edit and `composer lint`/`composer test` before calling
+  PHP work done. When you need to confirm visuals and a browser isn't authorised, inspect
+  rendered HTML / generated `uploads/elementor/css` or ask first.
 
-## 11. Key reference docs (read in this order for widget work)
+## 11. Quick reference (widget work, in order)
 
-1. [design-system.md](design-system.md) — colors, type, spacing, width model (source of truth).
-2. `WIDGET-V2-BUILD-GUIDE.md` — full widget build + deploy guide, all gotchas (git-ignored).
+1. [design-system.md](design-system.md) — colours/type/spacing/width (source of truth).
+2. `WIDGET-V2-BUILD-GUIDE.md` — full build + deploy guide, all gotchas (git-ignored).
 3. [agency-elementor-widgets.php](web/app/plugins/agency-elementor-widgets/agency-elementor-widgets.php) — `AEW_VERSION` + compat shim.
-4. The footer-v2 / header-v2 widget + CSS files — canonical reference implementations.
+4. footer-v2 / header-v2 widget + CSS — canonical reference implementations.
