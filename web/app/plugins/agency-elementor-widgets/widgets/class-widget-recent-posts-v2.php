@@ -88,7 +88,7 @@ class Widget_Recent_Posts_V2 extends Widget_Base {
 
 		$this->add_control( 'section_bg', [
 			'label' => esc_html__( 'Background', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#F1EADF', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-bg: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-bg: {{VALUE}};' ],
 		] );
 		$this->add_responsive_control( 'grid_gap', [
 			'label' => esc_html__( 'Gap between cards', 'agency-elementor-widgets' ), 'type' => Controls_Manager::SLIDER,
@@ -105,11 +105,11 @@ class Widget_Recent_Posts_V2 extends Widget_Base {
 
 		$this->add_control( 'heading_color', [
 			'label' => esc_html__( 'Heading color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#1B150E', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-heading: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-heading: {{VALUE}};' ],
 		] );
 		$this->add_control( 'see_all_color', [
 			'label' => esc_html__( '"See All" color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#632B3A', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-see-all: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-see-all: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
 			'name' => 'heading_typo', 'selector' => '{{WRAPPER}} .aew-rpv2__heading',
@@ -136,11 +136,11 @@ class Widget_Recent_Posts_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'title_color', [
 			'label' => esc_html__( 'Title color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#1B150E', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-title: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-title: {{VALUE}};' ],
 		] );
 		$this->add_control( 'stat_color', [
 			'label' => esc_html__( 'Stat color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#3B413F', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-stat: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-stat: {{VALUE}};' ],
 		] );
 		$this->add_control( 'like_color', [
 			'label' => esc_html__( 'Liked heart color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,

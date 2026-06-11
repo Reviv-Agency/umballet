@@ -96,7 +96,7 @@ class Widget_Parallax_Image_V2 extends Widget_Base {
 		$this->add_control( 'band_bg', [
 			'label'     => 'Backdrop color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'description' => 'Shown behind the image while it loads or if it does not cover the band.',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pimg-bg: {{VALUE}};' ],
 		] );
@@ -162,7 +162,7 @@ class Widget_Parallax_Image_V2 extends Widget_Base {
 		$this->add_control( 'blend_color', [
 			'label'     => 'Blend color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'condition' => [ 'blend_enable' => 'yes' ],
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pimg-blend: {{VALUE}};' ],
 			'description' => 'Match this to the background of the section directly below.',

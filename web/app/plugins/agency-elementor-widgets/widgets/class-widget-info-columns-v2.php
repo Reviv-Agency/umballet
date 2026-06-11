@@ -370,7 +370,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#876137',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-infc-bg: {{VALUE}};',
 				],
@@ -382,7 +382,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Heading color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#F1EADF',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-infc-heading: {{VALUE}};',
 				],
@@ -412,7 +412,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Column title color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#632B3A',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-infc-title: {{VALUE}};',
 				],
@@ -442,7 +442,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Column text color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#F1EADF',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-infc-text: {{VALUE}};',
 				],
@@ -516,7 +516,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#632B3A',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-infc-btn-bg: {{VALUE}};',
 				],
@@ -528,7 +528,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#89505F',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-infc-btn-bg-hover: {{VALUE}};',
 				],

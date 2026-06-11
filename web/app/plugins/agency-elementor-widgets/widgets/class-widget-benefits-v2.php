@@ -145,7 +145,7 @@ class Widget_Benefits_V2 extends Widget_Base {
 		$this->add_control( 'body_bg', [
 			'label'     => 'Background',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bnv2-body-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'image_size', [
@@ -164,7 +164,7 @@ class Widget_Benefits_V2 extends Widget_Base {
 		$this->add_control( 'title_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bnv2-title: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -186,7 +186,7 @@ class Widget_Benefits_V2 extends Widget_Base {
 		$this->add_control( 'item_heading_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bnv2-heading: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -208,7 +208,7 @@ class Widget_Benefits_V2 extends Widget_Base {
 		$this->add_control( 'item_text_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bnv2-text: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [

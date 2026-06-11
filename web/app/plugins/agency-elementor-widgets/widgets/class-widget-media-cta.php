@@ -767,7 +767,7 @@ class Widget_Media_Cta extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#89505F',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-media-cta-btn-bg-hover: {{VALUE}};',
 				],

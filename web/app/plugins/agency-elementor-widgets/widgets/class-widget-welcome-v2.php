@@ -140,7 +140,7 @@ class Widget_Welcome_V2 extends Widget_Base {
 		$this->add_control( 'body_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#3E382F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-welc-bg: {{VALUE}};' ],
 		] );
 
@@ -272,19 +272,19 @@ class Widget_Welcome_V2 extends Widget_Base {
 		$this->add_control( 'btn_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-welc-btn-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_text', [
 			'label'     => esc_html__( 'Text color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-welc-btn-text: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_bg_hover', [
 			'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-welc-btn-bg-hover: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_text_hover', [

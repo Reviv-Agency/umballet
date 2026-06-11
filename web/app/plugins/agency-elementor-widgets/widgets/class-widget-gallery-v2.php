@@ -343,7 +343,7 @@ class Widget_Gallery_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#F1EADF',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-galv2-bg: {{VALUE}};',
 				],
@@ -355,7 +355,7 @@ class Widget_Gallery_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Heading color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#1B150E',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-galv2-heading: {{VALUE}};',
 				],
@@ -367,7 +367,7 @@ class Widget_Gallery_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Eyebrow color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#632B3A',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-galv2-eyebrow: {{VALUE}};',
 				],

@@ -569,7 +569,7 @@ class Widget_Header extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#89505F',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}} .aew-header__cta:hover'         => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .aew-header__cta:focus-visible' => 'background-color: {{VALUE}};',

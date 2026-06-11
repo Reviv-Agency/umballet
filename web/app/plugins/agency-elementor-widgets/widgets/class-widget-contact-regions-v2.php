@@ -266,7 +266,7 @@ class Widget_Contact_Regions_V2 extends Widget_Base {
 		$this->add_control( 'section_bg', [
 			'label'     => esc_html__( 'Section background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-crgn-section-bg: {{VALUE}};' ],
 		] );
 
@@ -284,7 +284,7 @@ class Widget_Contact_Regions_V2 extends Widget_Base {
 		$this->add_control( 'box_bg', [
 			'label'     => esc_html__( 'Box background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#7D958D',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-crgn-box-bg: {{VALUE}};' ],
 		] );
 

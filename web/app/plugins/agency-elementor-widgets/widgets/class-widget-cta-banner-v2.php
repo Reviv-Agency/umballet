@@ -184,7 +184,7 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'page_bg', [
 			'label'     => esc_html__( 'Page background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-page-bg: {{VALUE}};' ],
 		] );
 
@@ -245,7 +245,7 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'eyebrow_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-eyebrow: {{VALUE}};' ],
 		] );
 
@@ -270,7 +270,7 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'headline_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-headline: {{VALUE}};' ],
 		] );
 
@@ -295,7 +295,7 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'description_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-description: {{VALUE}};' ],
 		] );
 
@@ -324,7 +324,7 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'btn_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-btn-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_text', [
@@ -336,7 +336,7 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'btn_bg_hover', [
 			'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-btn-bg-hover: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_text_hover', [
@@ -364,13 +364,13 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 		$this->add_control( 'btn2_text', [
 			'label'     => esc_html__( 'Text / border color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-btn2-text: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn2_bg_hover', [
 			'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-ctab-btn2-bg-hover: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn2_text_hover', [

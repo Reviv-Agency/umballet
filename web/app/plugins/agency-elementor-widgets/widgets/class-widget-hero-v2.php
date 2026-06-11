@@ -354,7 +354,7 @@ class Widget_Hero_V2 extends Widget_Base {
 		$this->add_control( 'primary_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-hev2-pri-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'primary_color', [
@@ -366,7 +366,7 @@ class Widget_Hero_V2 extends Widget_Base {
 		$this->add_control( 'primary_bg_hover', [
 			'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-hev2-pri-bg-hover: {{VALUE}};' ],
 		] );
 		$this->add_control( 'primary_color_hover', [
@@ -393,7 +393,7 @@ class Widget_Hero_V2 extends Widget_Base {
 		$this->add_control( 'secondary_color_hover', [
 			'label'     => esc_html__( 'Text color (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-hev2-sec-text-hover: {{VALUE}};' ],
 		] );
 

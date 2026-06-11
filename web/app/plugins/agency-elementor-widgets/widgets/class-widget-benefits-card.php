@@ -127,7 +127,7 @@ class Widget_Benefits_Card extends Widget_Base {
 		$this->add_control( 'card_bg', [
 			'label'     => esc_html__( 'Card background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bcard-card-bg: {{VALUE}};' ],
 		] );
 
@@ -152,28 +152,28 @@ class Widget_Benefits_Card extends Widget_Base {
 		$this->add_control( 'heading_color', [
 			'label'     => esc_html__( 'Heading color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bcard-heading: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'text_color', [
 			'label'     => esc_html__( 'Text color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bcard-text: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'btn_bg', [
 			'label'     => esc_html__( 'Button background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bcard-btn-bg: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'btn_text', [
 			'label'     => esc_html__( 'Button text color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-bcard-btn-text: {{VALUE}};' ],
 		] );
 

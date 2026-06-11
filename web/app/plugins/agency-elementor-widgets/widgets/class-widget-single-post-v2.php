@@ -87,7 +87,7 @@ class Widget_Single_Post_V2 extends Widget_Base {
 
 		$this->add_control( 'section_bg', [
 			'label' => esc_html__( 'Background', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#F1EADF', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-bg: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-bg: {{VALUE}};' ],
 		] );
 
 		$this->end_controls_section();
@@ -119,7 +119,7 @@ class Widget_Single_Post_V2 extends Widget_Base {
 
 		$this->add_control( 'title_color', [
 			'label' => esc_html__( 'Color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#876137', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-title: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-title: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
 			'name' => 'title_typo', 'selector' => '{{WRAPPER}} .aew-spv2__title',
@@ -139,11 +139,11 @@ class Widget_Single_Post_V2 extends Widget_Base {
 
 		$this->add_control( 'body_color', [
 			'label' => esc_html__( 'Color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#1B150E', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-body: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-body: {{VALUE}};' ],
 		] );
 		$this->add_control( 'link_color', [
 			'label' => esc_html__( 'Link color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#632B3A', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-link: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-link: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
 			'name' => 'body_typo', 'selector' => '{{WRAPPER}} .aew-spv2__content',
@@ -168,11 +168,11 @@ class Widget_Single_Post_V2 extends Widget_Base {
 
 		$this->add_control( 'meta_color', [
 			'label' => esc_html__( 'Meta text color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#3B413F', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-meta: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-meta: {{VALUE}};' ],
 		] );
 		$this->add_control( 'stat_color', [
 			'label' => esc_html__( 'Stat / icon color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#3B413F', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-stat: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-stat: {{VALUE}};' ],
 		] );
 		$this->add_control( 'like_color', [
 			'label' => esc_html__( 'Liked heart color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,

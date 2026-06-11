@@ -128,7 +128,7 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'section_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-bg: {{VALUE}};' ],
 		] );
 
@@ -151,7 +151,7 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'heading_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-heading: {{VALUE}};' ],
 		] );
 
@@ -204,14 +204,14 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'title_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-title: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'title_hover', [
 			'label'     => esc_html__( 'Color (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-title-hover: {{VALUE}};' ],
 		] );
 
@@ -236,7 +236,7 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'excerpt_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-excerpt: {{VALUE}};' ],
 		] );
 
@@ -260,14 +260,14 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'meta_color', [
 			'label'     => esc_html__( 'Date / read-time color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#3B413F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-meta: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'stat_color', [
 			'label'     => esc_html__( 'Stat color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#3B413F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-stat: {{VALUE}};' ],
 		] );
 

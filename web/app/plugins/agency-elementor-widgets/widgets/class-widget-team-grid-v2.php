@@ -344,7 +344,7 @@ class Widget_Team_Grid_V2 extends Widget_Base {
 		$this->add_control( 'photo_bg', [
 			'label'     => esc_html__( 'Photo placeholder colour', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#7D958D',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-team-photo-bg: {{VALUE}};' ],
 		] );
 
@@ -352,7 +352,7 @@ class Widget_Team_Grid_V2 extends Widget_Base {
 			'label'       => esc_html__( 'Name/title box colour', 'agency-elementor-widgets' ),
 			'description' => esc_html__( 'The box under each photo holding the name + role. Leave empty for none.', 'agency-elementor-widgets' ),
 			'type'        => Controls_Manager::COLOR,
-			'default'     => '#F1EADF',
+			'default'     => '',
 			'selectors'   => [ '{{WRAPPER}}' => '--aew-team-textbox-bg: {{VALUE}};' ],
 		] );
 

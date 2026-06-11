@@ -282,7 +282,7 @@ class Widget_Image_Cta_Band_V2 extends Widget_Base {
 		$this->add_control( 'box_bg', [
 			'label'     => esc_html__( 'Box background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-icb-box-bg: {{VALUE}};' ],
 		] );
 
@@ -347,7 +347,7 @@ class Widget_Image_Cta_Band_V2 extends Widget_Base {
 		$this->add_control( 'btn_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-icb-btn-bg: {{VALUE}};' ],
 		] );
 
@@ -361,7 +361,7 @@ class Widget_Image_Cta_Band_V2 extends Widget_Base {
 		$this->add_control( 'btn_bg_hover', [
 			'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-icb-btn-bg-hover: {{VALUE}};' ],
 		] );
 

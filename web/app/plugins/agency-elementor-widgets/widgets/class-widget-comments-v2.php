@@ -69,7 +69,7 @@ class Widget_Comments_V2 extends Widget_Base {
 
 		$this->add_control( 'section_bg', [
 			'label' => esc_html__( 'Background', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#F1EADF', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-bg: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-bg: {{VALUE}};' ],
 		] );
 
 		$this->end_controls_section();
@@ -88,11 +88,11 @@ class Widget_Comments_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'heading_color', [
 			'label' => esc_html__( 'Heading color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#1B150E', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-heading: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-heading: {{VALUE}};' ],
 		] );
 		$this->add_control( 'text_color', [
 			'label' => esc_html__( 'Text color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#1B150E', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-text: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-text: {{VALUE}};' ],
 		] );
 		$this->add_control( 'field_border', [
 			'label' => esc_html__( 'Field border', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
@@ -100,11 +100,11 @@ class Widget_Comments_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'btn_bg', [
 			'label' => esc_html__( 'Button background', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#632B3A', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-btn-bg: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-btn-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_bg_hover', [
 			'label' => esc_html__( 'Button background (hover)', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#89505F', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-btn-bg-hover: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-btn-bg-hover: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
 			'name' => 'heading_typo', 'selector' => '{{WRAPPER}} .aew-cmv2__heading',

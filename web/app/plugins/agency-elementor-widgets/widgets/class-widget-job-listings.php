@@ -130,7 +130,7 @@ class Widget_Job_Listings extends Widget_Base {
 		$this->add_control( 'card_bg', [
 			'label'     => esc_html__( 'Card background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-jobs-card-bg: {{VALUE}};' ],
 		] );
 
@@ -146,35 +146,35 @@ class Widget_Job_Listings extends Widget_Base {
 		$this->add_control( 'heading_color', [
 			'label'     => esc_html__( 'Heading color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-jobs-heading: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'title_color', [
 			'label'     => esc_html__( 'Role title color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-jobs-title: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'text_color', [
 			'label'     => esc_html__( 'Text color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-jobs-text: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'btn_bg', [
 			'label'     => esc_html__( 'Button background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-jobs-btn-bg: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'btn_text_color', [
 			'label'     => esc_html__( 'Button text color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-jobs-btn-text: {{VALUE}};' ],
 		] );
 

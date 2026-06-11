@@ -345,7 +345,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'eyebrow_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-eyebrow: {{VALUE}};' ],
 		] );
 
@@ -371,7 +371,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'heading_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-heading: {{VALUE}};' ],
 		] );
 
@@ -396,7 +396,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'step_title_color', [
 			'label'     => esc_html__( 'Step title color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-step-title: {{VALUE}};' ],
 		] );
 
@@ -415,7 +415,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'step_text_color', [
 			'label'     => esc_html__( 'Step description color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#3B413F',
+			'default'   => '',
 			'separator' => 'before',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-step-text: {{VALUE}};' ],
 		] );
@@ -448,7 +448,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'pri_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-pri-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'pri_text', [
@@ -460,7 +460,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'pri_bg_hover', [
 			'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-pri-bg-hover: {{VALUE}};' ],
 		] );
 		$this->add_control( 'pri_text_hover', [
@@ -480,7 +480,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'sec_color', [
 			'label'     => esc_html__( 'Border & text color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-sec-color: {{VALUE}};' ],
 		] );
 		$this->add_control( 'sec_bg_hover', [
@@ -492,7 +492,7 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 		$this->add_control( 'sec_text_hover', [
 			'label'     => esc_html__( 'Text color (hover)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fbv2-sec-text-hover: {{VALUE}};' ],
 		] );
 

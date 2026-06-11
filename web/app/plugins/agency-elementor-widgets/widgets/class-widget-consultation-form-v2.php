@@ -167,7 +167,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'body_bg', [
 			'label'     => 'Section background',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-body-bg: {{VALUE}};' ],
 		] );
 
@@ -212,7 +212,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'heading_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-heading: {{VALUE}};' ],
 		] );
 
@@ -237,7 +237,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'subtext_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-subtext: {{VALUE}};' ],
 		] );
 
@@ -261,7 +261,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'form_label_color', [
 			'label'     => 'Field label color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-form-label: {{VALUE}};' ],
 		] );
 
@@ -282,14 +282,14 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'btn_bg', [
 			'label'     => 'Button background',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-btn-bg: {{VALUE}};' ],
 		] );
 
 		$this->add_control( 'btn_bg_hover', [
 			'label'     => 'Button background (hover)',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#89505F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-btn-bg-hover: {{VALUE}};' ],
 		] );
 

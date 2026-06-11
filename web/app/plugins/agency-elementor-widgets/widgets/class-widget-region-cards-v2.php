@@ -341,7 +341,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Card background', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#F1EADF',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-rgcv2-card-bg: {{VALUE}};',
 				],
@@ -457,7 +457,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#632B3A',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-rgcv2-title: {{VALUE}};',
 				],
@@ -469,7 +469,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'       => esc_html__( 'Second colour (accent)', 'agency-elementor-widgets' ),
 				'type'        => Controls_Manager::COLOR,
-				'default'     => '#876137',
+				'default'     => '',
 				'description' => esc_html__( 'Colour applied to each panel’s “second-colour text”.', 'agency-elementor-widgets' ),
 				'selectors'   => [
 					'{{WRAPPER}}' => '--aew-rgcv2-title-accent: {{VALUE}};',
@@ -531,7 +531,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#1B150E',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-rgcv2-text: {{VALUE}};',
 				],
@@ -592,7 +592,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#632B3A',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-rgcv2-btn-bg: {{VALUE}};',
 				],
@@ -604,7 +604,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#89505F',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}}' => '--aew-rgcv2-btn-bg-hover: {{VALUE}};',
 				],

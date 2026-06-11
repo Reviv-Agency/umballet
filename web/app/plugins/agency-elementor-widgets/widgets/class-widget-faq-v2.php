@@ -183,7 +183,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'body_bg', [
 			'label'     => 'Outer background',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'description' => 'The full-bleed band behind the FAQ panel.',
 			'selectors' => [
 				// Belt + suspenders: drive the CSS var (consumed in the stylesheet)
@@ -231,7 +231,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'title_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-title: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -253,7 +253,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'search_text_color', [
 			'label'     => 'Text color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-search-text: {{VALUE}};' ],
 		] );
 		$this->add_control( 'search_border_color', [
@@ -270,13 +270,13 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'cat_active_color', [
 			'label'     => 'Active color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-cat-active: {{VALUE}};' ],
 		] );
 		$this->add_control( 'cat_color', [
 			'label'     => 'Inactive color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-cat: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -298,7 +298,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'card_bg', [
 			'label'     => 'Card background',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-card-bg: {{VALUE}};' ],
 		] );
 		$this->add_control( 'card_border_color', [
@@ -310,7 +310,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'icon_color', [
 			'label'     => 'Expand/collapse icon',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-icon: {{VALUE}};' ],
 		] );
 		$this->add_responsive_control( 'card_gap', [
@@ -337,19 +337,19 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'question_color', [
 			'label'     => 'Question color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-question: {{VALUE}};' ],
 		] );
 		$this->add_control( 'answer_color', [
 			'label'     => 'Answer color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-answer: {{VALUE}};' ],
 		] );
 		$this->add_control( 'share_color', [
 			'label'     => 'Share icon color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#3B413F',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-share: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [

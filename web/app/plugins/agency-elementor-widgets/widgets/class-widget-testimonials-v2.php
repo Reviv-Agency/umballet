@@ -232,7 +232,7 @@ class Widget_Testimonials_V2 extends Widget_Base {
 		$this->add_control( 'body_bg', [
 			'label'     => 'Background',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-tsv2-body-bg: {{VALUE}};' ],
 		] );
 		$this->end_controls_section();
@@ -243,7 +243,7 @@ class Widget_Testimonials_V2 extends Widget_Base {
 		$this->add_control( 'star_color', [
 			'label'     => 'Star color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#632B3A',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-tsv2-star: {{VALUE}};' ],
 		] );
 		$this->end_controls_section();
@@ -254,7 +254,7 @@ class Widget_Testimonials_V2 extends Widget_Base {
 		$this->add_control( 'title_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-tsv2-title: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -276,7 +276,7 @@ class Widget_Testimonials_V2 extends Widget_Base {
 		$this->add_control( 'name_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-tsv2-name: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -299,7 +299,7 @@ class Widget_Testimonials_V2 extends Widget_Base {
 		$this->add_control( 'review_color', [
 			'label'     => 'Color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#1B150E',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-tsv2-review: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [

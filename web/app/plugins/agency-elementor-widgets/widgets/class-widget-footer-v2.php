@@ -231,7 +231,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'body_bg', [
 			'label'   => 'Background',
 			'type'    => Controls_Manager::COLOR,
-			'default' => '#3E382F',
+			'default' => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fov2-body-bg: {{VALUE}};' ],
 		] );
 		$this->add_responsive_control( 'body_max_w', [
@@ -275,7 +275,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'heading_color', [
 			'label'   => 'Color',
 			'type'    => Controls_Manager::COLOR,
-			'default' => '#C2BAAB',
+			'default' => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fov2-heading: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -297,13 +297,13 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'link_color', [
 			'label'   => 'Color',
 			'type'    => Controls_Manager::COLOR,
-			'default' => '#C2BAAB',
+			'default' => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fov2-link: {{VALUE}};' ],
 		] );
 		$this->add_control( 'link_color_hover', [
 			'label'   => 'Hover color',
 			'type'    => Controls_Manager::COLOR,
-			'default' => '#632B3A',
+			'default' => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fov2-link-hover: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -325,7 +325,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'address_color', [
 			'label'   => 'Color',
 			'type'    => Controls_Manager::COLOR,
-			'default' => '#C2BAAB',
+			'default' => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fov2-address: {{VALUE}};' ],
 		] );
 		$this->add_group_control( Group_Control_Typography::get_type(), [
@@ -346,7 +346,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'bottom_text_color', [
 			'label'   => 'Text color',
 			'type'    => Controls_Manager::COLOR,
-			'default' => '#C2BAAB',
+			'default' => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-fov2-bottom-text: {{VALUE}};' ],
 		] );
 		$this->add_control( 'bottom_divider_color', [

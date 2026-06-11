@@ -116,7 +116,7 @@ class Widget_Icon_Cards extends Widget_Base {
 		$this->add_control( 'section_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}} .aew-iccr' => 'background-color: {{VALUE}};' ],
 		] );
 
@@ -150,7 +150,7 @@ class Widget_Icon_Cards extends Widget_Base {
 		$this->add_control( 'card_bg', [
 			'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#876137',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}} .aew-iccr__card' => 'background-color: {{VALUE}};' ],
 		] );
 
@@ -191,7 +191,7 @@ class Widget_Icon_Cards extends Widget_Base {
 		$this->add_control( 'icon_color', [
 			'label'     => esc_html__( 'Color (built-in icon)', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#7D958D',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}} .aew-iccr__icon svg' => 'fill: {{VALUE}};' ],
 		] );
 
@@ -223,7 +223,7 @@ class Widget_Icon_Cards extends Widget_Base {
 		$this->add_control( 'text_color', [
 			'label'     => esc_html__( 'Color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#F1EADF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}} .aew-iccr__text' => 'color: {{VALUE}};' ],
 		] );
 

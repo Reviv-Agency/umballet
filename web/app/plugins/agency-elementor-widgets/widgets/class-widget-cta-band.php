@@ -559,7 +559,7 @@ class Widget_Cta_Band extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#632B3A',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}} .aew-cta-band__button' => 'background-color: {{VALUE}};',
 				],
@@ -583,7 +583,7 @@ class Widget_Cta_Band extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Background (hover)', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#89505F',
+				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}} .aew-cta-band__button:hover'         => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .aew-cta-band__button:focus-visible' => 'background-color: {{VALUE}};',
