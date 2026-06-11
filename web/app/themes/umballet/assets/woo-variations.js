@@ -13,12 +13,12 @@
 	// Colour attributes render as swatches; everything else as button-boxes.
 	var COLOR_ATTRS = ['attribute_pa_stain-color', 'attribute_pa_roof-color'];
 	// hex map injected by the theme (slug -> #hex), see functions.php
-	var HEX = window.NotchedSwatchHex || {};
+	var HEX = window.UmballetSwatchHex || {};
 	// Attributes that get an image preview (slug -> { url, name }) below their
 	// swatches/boxes: stain colour + end cut. Injected by the theme.
 	var PREVIEW_MAPS = {
-		'attribute_pa_stain-color': window.NotchedStainImg || {},
-		'attribute_pa_end-cut': window.NotchedCutImg || {}
+		'attribute_pa_stain-color': window.UmballetStainImg || {},
+		'attribute_pa_end-cut': window.UmballetCutImg || {}
 	};
 
 	function labelFor(select) {

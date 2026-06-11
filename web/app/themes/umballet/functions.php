@@ -254,7 +254,7 @@ add_action('wp_enqueue_scripts', function () {
     // Version by file mtime so edits to style.css bust the browser cache.
     $css = get_stylesheet_directory() . '/style.css';
     $ver = is_readable($css) ? (string) filemtime($css) : null;
-    wp_enqueue_style('notched-style', get_stylesheet_uri(), [], $ver);
+    wp_enqueue_style('umballet-style', get_stylesheet_uri(), [], $ver);
 
     /*
      * Single product pages render the Related Products section with the
@@ -287,10 +287,10 @@ add_action('wp_enqueue_scripts', function () {
         $jsv  = is_readable("$dir/assets/woo-variations.js")  ? (string) filemtime("$dir/assets/woo-variations.js")  : null;
         $btnv = is_readable("$dir/assets/woo-buttons.css")    ? (string) filemtime("$dir/assets/woo-buttons.css")    : null;
         $galv = is_readable("$dir/assets/woo-gallery.js")     ? (string) filemtime("$dir/assets/woo-gallery.js")     : null;
-        wp_enqueue_style('notched-woo-variations', "$uri/assets/woo-variations.css", [], $cssv);
-        wp_enqueue_style('notched-woo-buttons', "$uri/assets/woo-buttons.css", [], $btnv);
-        wp_enqueue_script('notched-woo-variations', "$uri/assets/woo-variations.js", ['jquery'], $jsv, true);
-        wp_enqueue_script('notched-woo-gallery', "$uri/assets/woo-gallery.js", [], $galv, true);
+        wp_enqueue_style('umballet-woo-variations', "$uri/assets/woo-variations.css", [], $cssv);
+        wp_enqueue_style('umballet-woo-buttons', "$uri/assets/woo-buttons.css", [], $btnv);
+        wp_enqueue_script('umballet-woo-variations', "$uri/assets/woo-variations.js", ['jquery'], $jsv, true);
+        wp_enqueue_script('umballet-woo-gallery', "$uri/assets/woo-gallery.js", [], $galv, true);
 
         // slug => #hex map for the colour attributes, read from term meta `swatch_hex`.
         $hex = [];
@@ -301,7 +301,7 @@ add_action('wp_enqueue_scripts', function () {
                 if ($h) { $hex[$t->slug] = $h; }
             }
         }
-        wp_localize_script('notched-woo-variations', 'NotchedSwatchHex', $hex);
+        wp_localize_script('umballet-woo-variations', 'UmballetSwatchHex', $hex);
 
         // slug => image URL for the STAIN COLOR swatches (term meta `stain_img`),
         // used to preview the selected/hovered stain below the swatch row.
@@ -312,7 +312,7 @@ add_action('wp_enqueue_scripts', function () {
                 if ($img) { $stainImg[$t->slug] = ['url' => $img, 'name' => $t->name]; }
             }
         }
-        wp_localize_script('notched-woo-variations', 'NotchedStainImg', $stainImg);
+        wp_localize_script('umballet-woo-variations', 'UmballetStainImg', $stainImg);
 
         // slug => image URL for the END CUT boxes (term meta `cut_img`),
         // previewed the same way as the stain image.
@@ -323,7 +323,7 @@ add_action('wp_enqueue_scripts', function () {
                 if ($img) { $cutImg[$t->slug] = ['url' => $img, 'name' => $t->name]; }
             }
         }
-        wp_localize_script('notched-woo-variations', 'NotchedCutImg', $cutImg);
+        wp_localize_script('umballet-woo-variations', 'UmballetCutImg', $cutImg);
     }
 }, 20);
 
