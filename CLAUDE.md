@@ -10,12 +10,12 @@ Guidance for Claude Code (and any agent) working in this repository. Read this f
 
 ## 1. What this project is
 
-**Notched** — the WordPress site for **notched.com** (a timber pergola/pavilion/kit
+**Umballet** — the WordPress site for **umballet.com** (a timber pergola/pavilion/kit
 brand). It is a marketing + WooCommerce store rebuilt on a custom Elementor widget
 stack. Almost all visual work happens through **Elementor** plus an in-house plugin,
 **Agency Elementor Widgets** (`AEW`); the WordPress theme is intentionally thin.
 
-The site was migrated from Wix; layouts and copy are cloned from the live notched.com.
+The site was migrated from Wix; layouts and copy are cloned from the live umballet.com.
 
 ## 2. Tech stack
 
@@ -27,7 +27,7 @@ The site was migrated from Wix; layouts and copy are cloned from the live notche
 - **WooCommerce 10.8.x** for products/kits.
 - **Parent theme:** `hello-elementor`. **Child theme:** `umballet` (custom, minimal).
 - **Custom plugin:** `agency-elementor-widgets` (the heart of the project — ~45 widgets).
-- **Local dev:** Laravel **Herd** serving `https://notched.test`.
+- **Local dev:** Laravel **Herd** serving `https://umballet.test`.
 - Dev tooling: **Laravel Pint** (lint), **Pest** (tests).
 
 ## 3. Repository layout
@@ -48,7 +48,7 @@ The site was migrated from Wix; layouts and copy are cloned from the live notche
 │   │   ├── themes/
 │   │   │   └── umballet/            # ★ TRACKED — our child theme
 │   │   ├── mu-plugins/
-│   │   │   └── notched-redirects.php   # ★ TRACKED single-file mu-plugin (/shop→/shop-kits 301)
+│   │   │   └── umballet-redirects.php   # ★ TRACKED single-file mu-plugin (/shop→/shop-kits 301)
 │   │   └── uploads/                 # IGNORED (media)
 │   └── wp-config.php
 ├── design-system.md                # Brand source of truth (see §6)
@@ -60,7 +60,7 @@ The site was migrated from Wix; layouts and copy are cloned from the live notche
 the `agency-elementor-widgets` plugin (force-included) and the `umballet` theme. WP core,
 third-party plugins/themes, `vendor/`, `uploads/`, `wix-export/`, image files, `.env`,
 and `WIDGET-V2-BUILD-GUIDE.md` are all ignored. **Single-file mu-plugins ARE tracked**
-(e.g. `notched-redirects.php`); mu-plugin *directories* are not.
+(e.g. `umballet-redirects.php`); mu-plugin *directories* are not.
 
 ## 4. Common commands
 
@@ -155,7 +155,7 @@ is the master — update it first, then propagate.
   setting `_elementor_conditions` as a real PHP array and regenerating Pro's conditions
   cache (guide §10). The header uses `agency-header-v2`, footer `agency-footer-v2`.
 - **WooCommerce:** the default Shop page is removed; `/shop` 301-redirects to
-  `/shop-kits` via the `notched-redirects.php` mu-plugin. Products are categorized into
+  `/shop-kits` via the `umballet-redirects.php` mu-plugin. Products are categorized into
   **DIY Kits** and **Contractor Kits**. The single-product template (id 1707) is shared
   across all products; the child theme resolves a `{{product}}` token in widget output
   to the current product name (see [functions.php](web/app/themes/umballet/functions.php)).
@@ -170,7 +170,7 @@ There are **two** WordPress installs:
 
 | | Local (dev) | Staging server |
 |---|---|---|
-| URL | `https://notched.test` | nip.io host on a Ploi server |
+| URL | `https://umballet.test` | nip.io host on a Ploi server |
 | Host | Herd (this machine) | Ploi (`reviv-prod-01`) |
 | WP path | `web/wp` | server Bedrock `web/wp` |
 | Elementor MCP | **targets LOCAL only** | not reachable via MCP |
@@ -204,7 +204,7 @@ Branch: `main`. Remote: `git@github.com:Reviv-Agency/umballet.git`.
 - **Do NOT use Playwright (the `mcp__playwright__*` browser tools) to test or verify
   unless the user explicitly asks you to.** Default verification is non-browser: run
   `php -l`, `composer lint`, `composer test`, inspect rendered HTML with
-  `curl https://notched.test/... | grep ...`, and reason about the change. Only drive a
+  `curl https://umballet.test/... | grep ...`, and reason about the change. Only drive a
   real browser with Playwright when the user says so in that request — a prior session's
   Playwright use does not carry over. (The `.playwright-mcp/` screenshot dir is
   git-ignored scratch.)

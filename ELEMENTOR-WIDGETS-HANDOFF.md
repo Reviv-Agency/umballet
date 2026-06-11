@@ -16,7 +16,7 @@ change per project.**
 | **`agency-elementor-widgets` (AEW)** | The custom plugin — ~48 widgets, all suffixed `-v2` for the current generation. **This is the reusable asset.** |
 | Theme | A thin **hello-elementor child** (`functions.php` + `style.css`). Layout lives in Elementor + AEW, not theme PHP. |
 
-Optional companions used on Notched (not required for the widgets): WooCommerce,
+Optional companions used on Umballet (not required for the widgets): WooCommerce,
 WP Mail SMTP, hello-elementor parent.
 
 ---
@@ -27,7 +27,7 @@ WP Mail SMTP, hello-elementor parent.
 2. **Copy the `agency-elementor-widgets` plugin** into `wp-content/plugins/`
    (or `web/app/plugins/` on Bedrock) and activate it.
    - On Bedrock/Composer sites, third-party plugins go through Composer; the
-     custom AEW plugin is force-included and tracked in git (see Notched's
+     custom AEW plugin is force-included and tracked in git (see Umballet's
      `.gitignore` / `composer.json` for the pattern).
 3. **Create a thin child theme** (clone hello-elementor child): `style.css` +
    `functions.php`. Most page CSS comes from the widgets, not the theme.
@@ -98,9 +98,9 @@ Change a font by swapping the family in `class-design-tokens.php`
 (`font_heading` / `font_body`) — the sizes/line-heights stay.
 
 ### 4b. Colours — CHANGE PER BRAND
-Notched palette (replace the hexes, keep the variable names):
+Umballet palette (replace the hexes, keep the variable names):
 
-| Role | Notched hex | Token name |
+| Role | Umballet hex | Token name |
 |---|---|---|
 | Background (cream) | `#F6F0EC` | `--notched-background` |
 | Secondary BG / H1–H2 | `#2A4F41` | `--notched-secondary-bg` |
@@ -212,7 +212,7 @@ class Widget_My_Thing extends \Elementor\Widget_Base {
       `--notched-*` tokens + control defaults to the new palette.
 - [ ] **Swap fonts** (family only) in `class-design-tokens.php` if the brand differs
       — keep the type scale.
-- [ ] Rename brand strings in widget `get_title()` (e.g. "… (Notched)" → "… (NewBrand)").
+- [ ] Rename brand strings in widget `get_title()` (e.g. "… (Umballet)" → "… (NewBrand)").
 - [ ] Build header/footer/single templates in Theme Builder.
 - [ ] Wire the consultation form recipient (`notify_email` per widget) + SMTP
       (WP Mail SMTP) if using forms.

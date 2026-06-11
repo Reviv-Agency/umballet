@@ -55,7 +55,7 @@ add_filter('elementor/widget/render_content', function ($content) {
  * brand default. Output early in <head> so crawlers find it before asset tags.
  */
 add_action('wp_head', function () {
-    $default = 'Notched builds handcrafted timber pergola, pavilion and zen den kits — '
+    $default = 'Umballet builds handcrafted timber pergola, pavilion and zen den kits — '
              . 'precision pre-cut, dovetail-notched and ready to assemble in your backyard.';
     $desc = '';
     if (is_front_page()) {

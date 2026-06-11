@@ -18,7 +18,7 @@ Config::define('SCRIPT_DEBUG', true);
  * The Ploi staging server runs with WP_ENV=development, so this flag governs
  * it too. Indexing is allowed so PageSpeed/Lighthouse SEO audits pass
  * (requested 2026-06-10); flip back to `true` to noindex staging again.
- * Local (notched.test) is not publicly reachable, so this is moot locally.
+ * Local (umballet.test) is not publicly reachable, so this is moot locally.
  */
 Config::define('DISALLOW_INDEXING', false);
 

@@ -1,5 +1,5 @@
 /**
- * Notched — convert WooCommerce variation <select> dropdowns into the Wix-style
+ * Umballet — convert WooCommerce variation <select> dropdowns into the Wix-style
  * button-boxes (sizes / power / end-cut) and colour swatches (stain / roof).
  *
  * Works WITH WooCommerce's variations form: we keep the original <select> (hidden)

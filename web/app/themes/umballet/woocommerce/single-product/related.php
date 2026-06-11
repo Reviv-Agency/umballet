@@ -9,7 +9,7 @@
  *
  * Override of woocommerce/templates/single-product/related.php
  *
- * @package Notched
+ * @package Umballet
  */
 
 defined( 'ABSPATH' ) || exit;

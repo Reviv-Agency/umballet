@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Notched Redirects
+ * Plugin Name: Umballet Redirects
  * Description: Site-specific 301 redirects (single-file mu-plugin, always loaded).
  *
- * @package Notched
+ * @package Umballet
  */
 
 defined( 'ABSPATH' ) || exit;

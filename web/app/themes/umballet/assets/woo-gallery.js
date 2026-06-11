@@ -1,5 +1,5 @@
 /**
- * Notched — product gallery tweaks.
+ * Umballet — product gallery tweaks.
  *  1) Whole main image opens the PhotoSwipe lightbox (not just the magnifier),
  *     and the raw <a href="image.jpg"> no longer navigates to a separate page.
  *  2) A thumbnail strip is injected at the bottom of the open lightbox listing
