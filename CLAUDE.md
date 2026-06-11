@@ -25,7 +25,7 @@ The site was migrated from Wix; layouts and copy are cloned from the live notche
 - **Elementor 4.1.x + Elementor Pro 4.1.x** (Pro provides Theme Builder for the
   sitewide header/footer/single templates).
 - **WooCommerce 10.8.x** for products/kits.
-- **Parent theme:** `hello-elementor`. **Child theme:** `notched` (custom, minimal).
+- **Parent theme:** `hello-elementor`. **Child theme:** `umballet` (custom, minimal).
 - **Custom plugin:** `agency-elementor-widgets` (the heart of the project — ~45 widgets).
 - **Local dev:** Laravel **Herd** serving `https://notched.test`.
 - Dev tooling: **Laravel Pint** (lint), **Pest** (tests).
@@ -46,7 +46,7 @@ The site was migrated from Wix; layouts and copy are cloned from the live notche
 │   │   │   ├── elementor/ elementor-pro/   # IGNORED (third-party)
 │   │   │   └── woocommerce/ ...             # IGNORED (third-party)
 │   │   ├── themes/
-│   │   │   └── notched/             # ★ TRACKED — our child theme
+│   │   │   └── umballet/            # ★ TRACKED — our child theme
 │   │   ├── mu-plugins/
 │   │   │   └── notched-redirects.php   # ★ TRACKED single-file mu-plugin (/shop→/shop-kits 301)
 │   │   └── uploads/                 # IGNORED (media)
@@ -57,7 +57,7 @@ The site was migrated from Wix; layouts and copy are cloned from the live notche
 ```
 
 **What's tracked vs. ignored (from `.gitignore`):** only our custom code is committed —
-the `agency-elementor-widgets` plugin (force-included) and the `notched` theme. WP core,
+the `agency-elementor-widgets` plugin (force-included) and the `umballet` theme. WP core,
 third-party plugins/themes, `vendor/`, `uploads/`, `wix-export/`, image files, `.env`,
 and `WIDGET-V2-BUILD-GUIDE.md` are all ignored. **Single-file mu-plugins ARE tracked**
 (e.g. `notched-redirects.php`); mu-plugin *directories* are not.
@@ -158,7 +158,7 @@ is the master — update it first, then propagate.
   `/shop-kits` via the `notched-redirects.php` mu-plugin. Products are categorized into
   **DIY Kits** and **Contractor Kits**. The single-product template (id 1707) is shared
   across all products; the child theme resolves a `{{product}}` token in widget output
-  to the current product name (see [functions.php](web/app/themes/notched/functions.php)).
+  to the current product name (see [functions.php](web/app/themes/umballet/functions.php)).
 - The child theme also: disables WooCommerce gallery zoom, converts variation dropdowns
   into Wix-style swatches (`assets/woo-variations.js`) with an anti-FOUC head flag
   (`aew-swatch-pending`), and renders Related Products with the products-slider-v2 look
@@ -197,7 +197,7 @@ overrides the default harness instruction. (User-requested, 2026-06-03.)
 git commit -m "area: concise description of the change"
 ```
 
-Branch: `main`. Remote: `git@github.com:Reviv-Agency/notched.git`.
+Branch: `main`. Remote: `git@github.com:Reviv-Agency/umballet.git`.
 
 ## 10. Testing & verification policy
 
