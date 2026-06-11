@@ -190,7 +190,7 @@ class Widget_Header_V2 extends Widget_Base
 		$this->start_controls_section('ss_drawer', ['label' => 'Drawer', 'tab' => Controls_Manager::TAB_STYLE]);
 		$this->add_control('drawer_bg',          ['label' => 'Background', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer' => 'background-color: {{VALUE}};']]);
 		$this->add_control('drawer_parent_color', ['label' => 'Parent link color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer-list .is-parent > a' => 'color: {{VALUE}};']]);
-		$this->add_control('drawer_child_color',  ['label' => 'Child link color', 'type' => Controls_Manager::COLOR, 'default' => '#BFC0BF', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer-list .is-child > a' => 'color: {{VALUE}};']]);
+		$this->add_control('drawer_child_color',  ['label' => 'Child link color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer-list .is-child > a' => 'color: {{VALUE}};']]);
 		$this->end_controls_section();
 	}
 

@@ -25,15 +25,15 @@
 .aew-galv2 {
 	/* Brand tokens (scoped to the block). */
 	--aew-cards: var(--e-global-color-aew-cards, #FFFFFF);
-	--aew-background: var(--e-global-color-aew-background, #F1EADF);
-	--aew-lines: var(--e-global-color-aew-lines, #BFC0BF);
-	--aew-misc-accent: var(--e-global-color-aew-misc-accent, #3E382F);
-	--aew-secondary-cards: var(--e-global-color-aew-secondary-cards, #C2BAAB);
-	--aew-secondary-bg: var(--e-global-color-aew-secondary-bg, #876137);
-	--aew-secondary-accent: var(--e-global-color-aew-secondary-accent, #3E382F);
-	--aew-text: var(--e-global-color-aew-text, #1B150E);
-	--aew-cta: var(--e-global-color-aew-cta, #632B3A);
-	--aew-cta-hover: var(--e-global-color-aew-cta-hover, #89505F);
+	--aew-background: var(--e-global-color-aew-background, #F4F4F4);
+	--aew-lines: var(--e-global-color-aew-lines, #DDDDDD);
+	--aew-misc-accent: var(--e-global-color-aew-misc-accent, #666666);
+	--aew-secondary-cards: var(--e-global-color-aew-secondary-cards, #EEEEEE);
+	--aew-secondary-bg: var(--e-global-color-aew-secondary-bg, #333333);
+	--aew-secondary-accent: var(--e-global-color-aew-secondary-accent, #555555);
+	--aew-text: var(--e-global-color-aew-text, #1A1A1A);
+	--aew-cta: var(--e-global-color-aew-cta, #444444);
+	--aew-cta-hover: var(--e-global-color-aew-cta-hover, #2B2B2B);
 
 	display: block;
 	box-sizing: border-box;
@@ -96,7 +96,7 @@
 	/* Driven by the Heading color control (--aew-galv2-heading), falling back to
 	   the brand text colour. The wrapper-class prefix (0,2,0) beats the kit's
 	   `.elementor-kit-N h2 { color }` rule (0,1,1) so the chosen colour holds. */
-	color: var(--aew-galv2-heading, var(--aew-text, #1B150E));
+	color: var(--aew-galv2-heading, var(--aew-text, #1A1A1A));
 }
 
 /* ── Grid (uniform) ───────────────────────────────────────────────────────── */
@@ -252,7 +252,7 @@
 
 /* ── Optional header CTA (e.g. "SHOP ALL KITS") ──────────────────────────────
    Sits to the RIGHT of the heading. Brand filled button per design system:
-   #632B3A bg + white text, hover #89505F. Hex fallbacks since the var may not
+   #444444 bg + white text, hover #2B2B2B. Hex fallbacks since the var may not
    resolve in every context. */
 .aew-galv2__cta {
 	display: inline-flex;
@@ -267,7 +267,7 @@
 	text-transform: uppercase;
 	text-decoration: none;
 	color: #FFFFFF;
-	background-color: var(--aew-cta, #632B3A);
+	background-color: var(--aew-cta, #444444);
 	padding: 20px 24px 16px;
 	border-radius: 8px;
 	transition: background-color 0.18s ease;
@@ -275,7 +275,7 @@
 
 .aew-galv2__cta:hover,
 .aew-galv2__cta:focus-visible {
-	background-color: var(--aew-cta-hover, #89505F);
+	background-color: var(--aew-cta-hover, #2B2B2B);
 	color: #FFFFFF;
 }
 

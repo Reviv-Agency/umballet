@@ -347,7 +347,7 @@ class Widget_Icon_Grid_V2 extends Widget_Base {
 		$this->add_control( 'cards_box_bg', [
 			'label'       => esc_html__( 'Cards box background', 'agency-elementor-widgets' ),
 			'type'        => Controls_Manager::COLOR,
-			'default'     => '#A27E4D1A',
+			'default'     => '',
 			'selectors'   => [ '{{WRAPPER}}' => '--aew-igv2-cards-box-bg: {{VALUE}};' ],
 			'description' => esc_html__( 'Background of the box that wraps all the cards (separate from the section background). Leave empty for none.', 'agency-elementor-widgets' ),
 		] );

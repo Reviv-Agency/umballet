@@ -2,7 +2,7 @@
 /**
  * Numbered Features V2 Elementor widget.
  *
- * A FULL-BLEED dark band (paper-texture image + #3E382F colour overlay) split
+ * A FULL-BLEED dark band (paper-texture image + #555555 colour overlay) split
  * into two columns: a left COPY column (Teko heading + Lato intro) and a right
  * GRID of numbered features — each a gold circle with a number above a short
  * gold uppercase title. Recreates the "WHY [COMPANY]?" section from example.com.

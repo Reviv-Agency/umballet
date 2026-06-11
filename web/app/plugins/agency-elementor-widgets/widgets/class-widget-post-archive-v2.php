@@ -182,7 +182,7 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'card_border', [
 			'label'     => esc_html__( 'Card border', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#BFC0BF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-card-border: {{VALUE}};' ],
 		] );
 
@@ -281,7 +281,7 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 		$this->add_control( 'divider_color', [
 			'label'     => esc_html__( 'Divider color', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#BFC0BF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-pav2-divider: {{VALUE}};' ],
 		] );
 

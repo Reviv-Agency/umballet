@@ -518,7 +518,7 @@ class Widget_Products_Slider_V2 extends Widget_Base {
 		$this->add_control( 'dot_color_idle', [
 			'label'     => 'Dot color (idle)',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#BFC0BF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-prsv2-dot-idle: {{VALUE}};' ],
 		] );
 		$this->end_controls_section();

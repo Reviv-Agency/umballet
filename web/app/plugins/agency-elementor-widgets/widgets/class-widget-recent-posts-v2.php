@@ -132,7 +132,7 @@ class Widget_Recent_Posts_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'card_border', [
 			'label' => esc_html__( 'Card border', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#BFC0BF', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-card-border: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-rpv2-card-border: {{VALUE}};' ],
 		] );
 		$this->add_control( 'title_color', [
 			'label' => esc_html__( 'Title color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,

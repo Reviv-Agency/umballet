@@ -102,7 +102,7 @@ class Widget_Single_Post_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'card_border', [
 			'label' => esc_html__( 'Card border', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#BFC0BF', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-card-border: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-card-border: {{VALUE}};' ],
 		] );
 		$this->add_responsive_control( 'card_radius', [
 			'label' => esc_html__( 'Card corner radius', 'agency-elementor-widgets' ), 'type' => Controls_Manager::SLIDER,
@@ -180,7 +180,7 @@ class Widget_Single_Post_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'divider_color', [
 			'label' => esc_html__( 'Divider color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#BFC0BF', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-divider: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-spv2-divider: {{VALUE}};' ],
 		] );
 
 		$this->end_controls_section();

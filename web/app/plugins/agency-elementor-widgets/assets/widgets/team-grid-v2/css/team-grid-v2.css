@@ -6,15 +6,15 @@
 /* ── Brand tokens (scoped) — source of truth: design-system.md ───────────── */
 .aew-team {
   --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
-  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
-  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
-  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
-  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
-  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
-  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
-  --aew-text:              var(--e-global-color-aew-text, #1B150E);
-  --aew-cta:               var(--e-global-color-aew-cta, #632B3A);
-  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #89505F);
+  --aew-background:        var(--e-global-color-aew-background, #F4F4F4);
+  --aew-lines:             var(--e-global-color-aew-lines, #DDDDDD);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #666666);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #EEEEEE);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #333333);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #555555);
+  --aew-text:              var(--e-global-color-aew-text, #1A1A1A);
+  --aew-cta:               var(--e-global-color-aew-cta, #444444);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #2B2B2B);
 }
 
 /* Strip Elementor's column / container padding so the section is full-bleed. */
@@ -92,9 +92,9 @@
   gap: 10px;
   padding: 16px 28px 14px;
   border-radius: 8px;
-  border: 1px solid var(--aew-team-btn-border, var(--aew-cta, #632B3A));
+  border: 1px solid var(--aew-team-btn-border, var(--aew-cta, #444444));
   background: var(--aew-team-btn-bg, transparent);
-  color: var(--aew-team-btn-text, var(--aew-cta, #632B3A));
+  color: var(--aew-team-btn-text, var(--aew-cta, #444444));
   font-family: "Teko", sans-serif;
   font-weight: 600;
   font-size: 18px;
@@ -146,7 +146,7 @@
 
 /* Name + title box under the photo. */
 .aew-team__textbox {
-  background: var(--aew-team-textbox-bg, var(--aew-background, #F1EADF));
+  background: var(--aew-team-textbox-bg, var(--aew-background, #F4F4F4));
   border-radius: 0 0 24px 24px;
   padding: 20px 24px 24px;
   margin-top: -16px;
@@ -160,7 +160,7 @@
   font-size: 28px;
   line-height: 100%;
   text-transform: uppercase;
-  color: var(--aew-team-name, var(--aew-text, #1B150E));
+  color: var(--aew-team-name, var(--aew-text, #1A1A1A));
 }
 
 .aew-team__role {

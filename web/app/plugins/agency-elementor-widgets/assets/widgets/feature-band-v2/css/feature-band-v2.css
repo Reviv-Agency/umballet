@@ -10,15 +10,15 @@
 /* ── Brand tokens (scoped) — source of truth: design-system.md ───────────── */
 .aew-fbv2 {
   --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
-  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
-  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
-  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
-  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
-  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
-  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
-  --aew-text:              var(--e-global-color-aew-text, #1B150E);
-  --aew-cta:               var(--e-global-color-aew-cta, #632B3A);
-  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #89505F);
+  --aew-background:        var(--e-global-color-aew-background, #F4F4F4);
+  --aew-lines:             var(--e-global-color-aew-lines, #DDDDDD);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #666666);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #EEEEEE);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #333333);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #555555);
+  --aew-text:              var(--e-global-color-aew-text, #1A1A1A);
+  --aew-cta:               var(--e-global-color-aew-cta, #444444);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #2B2B2B);
 }
 
 /* Strip Elementor's column / container padding so the band is full-bleed. The
@@ -153,7 +153,7 @@ html .e-con:has(.elementor-widget-agency-feature-band-v2) {
 .aew-fbv2 .aew-fbv2__heading {
   margin: 0;
   /* dark text on the white card (brand forest green) — override per-instance */
-  color: var(--aew-fbv2-heading, #876137);
+  color: var(--aew-fbv2-heading, #333333);
   font-family: var(--aew-teko);
   font-weight: 600;
   font-size: 56px;
@@ -176,7 +176,7 @@ html .e-con:has(.elementor-widget-agency-feature-band-v2) {
 
 .aew-fbv2 .aew-fbv2__step-title {
   margin: 0;
-  color: var(--aew-fbv2-step-title, #1B150E);
+  color: var(--aew-fbv2-step-title, #1A1A1A);
   font-family: var(--aew-teko);
   font-weight: 600;
   font-size: 24px;
@@ -186,7 +186,7 @@ html .e-con:has(.elementor-widget-agency-feature-band-v2) {
 
 .aew-fbv2__step-text {
   margin: 0;
-  color: var(--aew-fbv2-step-text, #3B413F);
+  color: var(--aew-fbv2-step-text, var(--e-global-color-aew-misc-accent, #666666));
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -251,15 +251,15 @@ html .e-con:has(.elementor-widget-agency-feature-band-v2) {
 .aew-fbv2__btn--secondary {
   background-color: transparent;
   /* gold outline+text on the white card (override per-instance) */
-  color: var(--aew-fbv2-sec-color, #632B3A);
-  border-color: var(--aew-fbv2-sec-color, #632B3A);
+  color: var(--aew-fbv2-sec-color, #444444);
+  border-color: var(--aew-fbv2-sec-color, #444444);
 }
 
 .aew-fbv2__btn--secondary:hover,
 .aew-fbv2__btn--secondary:focus-visible {
-  background-color: var(--aew-fbv2-sec-bg-hover, #632B3A);
+  background-color: var(--aew-fbv2-sec-bg-hover, #444444);
   color: var(--aew-fbv2-sec-text-hover, #FFFFFF);
-  border-color: var(--aew-fbv2-sec-bg-hover, #632B3A);
+  border-color: var(--aew-fbv2-sec-bg-hover, #444444);
 }
 
 .aew-fbv2__btn-icon {

@@ -275,7 +275,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'form_field_border', [
 			'label'     => 'Field border color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#BFC0BF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-cfv2-form-field-border: {{VALUE}};' ],
 		] );
 

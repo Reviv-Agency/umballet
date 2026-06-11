@@ -84,7 +84,7 @@ class Widget_Comments_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'card_border', [
 			'label' => esc_html__( 'Card border', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#BFC0BF', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-card-border: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-card-border: {{VALUE}};' ],
 		] );
 		$this->add_control( 'heading_color', [
 			'label' => esc_html__( 'Heading color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
@@ -96,7 +96,7 @@ class Widget_Comments_V2 extends Widget_Base {
 		] );
 		$this->add_control( 'field_border', [
 			'label' => esc_html__( 'Field border', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,
-			'default' => '#BFC0BF', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-field-border: {{VALUE}};' ],
+			'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-cmv2-field-border: {{VALUE}};' ],
 		] );
 		$this->add_control( 'btn_bg', [
 			'label' => esc_html__( 'Button background', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR,

@@ -287,7 +287,7 @@ class Widget_Media_Cta extends Widget_Base {
 		$yellow_default = $tokens['color_yellow'] ?? '#EBC543';
 		$dark_default   = $tokens['color_blue_dark'] ?? '#252F37';
 		$white_default  = $tokens['color_white'] ?? '#FFFFFF';
-		$cta_default    = '#632B3A';   /* brand CTA — filled button background */
+		$cta_default    = '';   /* brand CTA — filled button background */
 
 		$this->start_controls_section(
 			'section_style',

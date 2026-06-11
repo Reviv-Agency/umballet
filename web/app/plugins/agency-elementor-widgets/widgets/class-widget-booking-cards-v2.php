@@ -356,7 +356,7 @@ class Widget_Booking_Cards_V2 extends Widget_Base {
 			[
 				'label'     => esc_html__( 'Border colour', 'agency-elementor-widgets' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#BFC0BF',
+				'default'   => '',
 				'selectors' => [ '{{WRAPPER}}' => '--aew-bkcv2-border: {{VALUE}};' ],
 			]
 		);

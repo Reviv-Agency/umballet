@@ -259,7 +259,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'search_border_color', [
 			'label'     => 'Underline color',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#BFC0BF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-search-border: {{VALUE}};' ],
 		] );
 		$this->end_controls_section();
@@ -304,7 +304,7 @@ class Widget_Faq_V2 extends Widget_Base {
 		$this->add_control( 'card_border_color', [
 			'label'     => 'Card border',
 			'type'      => Controls_Manager::COLOR,
-			'default'   => '#BFC0BF',
+			'default'   => '',
 			'selectors' => [ '{{WRAPPER}}' => '--aew-faqv2-card-border: {{VALUE}};' ],
 		] );
 		$this->add_control( 'icon_color', [

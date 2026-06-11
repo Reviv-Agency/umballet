@@ -32,27 +32,27 @@
 /* ── Force the host section/column to the design background ────────────────── */
 /* The widget paints its own cream bg on .aew-prsv2, but the Elementor section
    and column it lives in can render a white box on top/around it. Neutralize
-   the host chain to the design "Background" (#F1EADF) so no white band shows. */
+   the host chain to the design "Background" (#F4F4F4) so no white band shows. */
 .elementor-section:has(.elementor-widget-agency-products-slider-v2),
 .elementor-column
   > .elementor-element-populated:has(.elementor-widget-agency-products-slider-v2),
 .e-con:has(.elementor-widget-agency-products-slider-v2),
 .e-con:has(.elementor-widget-agency-products-slider-v2) > .e-con-inner {
-  background-color: #F1EADF !important;
+  background-color: var(--e-global-color-aew-background, #F4F4F4) !important;
 }
 
 /* ── Brand tokens (scoped). Source of truth: design-system.md ──────────────── */
 .aew-prsv2 {
   --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
-  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
-  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
-  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
-  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
-  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
-  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
-  --aew-text:              var(--e-global-color-aew-text, #1B150E);
-  --aew-cta:               var(--e-global-color-aew-cta, #632B3A);
-  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #89505F);
+  --aew-background:        var(--e-global-color-aew-background, #F4F4F4);
+  --aew-lines:             var(--e-global-color-aew-lines, #DDDDDD);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #666666);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #EEEEEE);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #333333);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #555555);
+  --aew-text:              var(--e-global-color-aew-text, #1A1A1A);
+  --aew-cta:               var(--e-global-color-aew-cta, #444444);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #2B2B2B);
 }
 
 /* ── Outer block: full-bleed background ────────────────────────────────────── */
