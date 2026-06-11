@@ -8,22 +8,20 @@ Source: Figma (captured 2026-05-28). **Use these values for every page, widget, 
 
 | Role | Hex | Elementor Global ID |
 |------|-----|---------------------|
-| Cards | `#FFFFFF` | `notched-cards` |
-| Background | `#F1EADF` | `notched-background` |
-| Lines & Accents | `#C2BAAB` | `notched-lines` |
-| Misc Accent | `#3B413F` | `notched-misc-accent` |
-| Secondary Cards | `#7D958D` | `notched-secondary-cards` |
-| Secondary BG / H1–H2 | `#876137` | `notched-secondary-bg` |
-| Secondary Accent | `#3E382F` | `notched-secondary-accent` |
-| Header H3+ / Paragraph | `#1B150E` | `notched-text` |
-| Main CTA | `#632B3A` | `notched-cta` |
-| CTA Hover | `#89505F` | `notched-cta-hover` |
+| Cards | `#FFFFFF` | `umballet-cards` |
+| Background | `#F1EADF` | `umballet-background` |
+| Lines & Accents | `#C2BAAB` | `umballet-lines` |
+| Headers (H1–H2) | `#876137` | `umballet-headers` |
+| Secondary Accent | `#3E382F` | `umballet-secondary-accent` |
+| Header (H3+) / Paragraph | `#1B150E` | `umballet-text` |
+| Main CTA | `#632B3A` | `umballet-cta` |
+| CTA Hover | `#89505F` | `umballet-cta-hover` |
 
-> **Palette refresh (2026-06-11, from Figma):** brand moved to a warm brown/maroon
-> system. The **CTA** is now maroon `#632B3A` (hover `#89505F`); the gold `#876137`
-> is now the **H1–H2 header** colour (`notched-secondary-bg`); body text is `#1B150E`.
-> Token *names* (`--notched-*`) are unchanged. White text on the `#632B3A` CTA and on
-> `#876137` headers both exceed WCAG AA 4.5:1.
+> **Palette (2026-06-11, from Figma):** warm brown/maroon system. The **CTA** is maroon
+> `#632B3A` (hover `#89505F`); gold `#876137` is the **H1–H2 header** colour; body text
+> is `#1B150E`. These 8 colours are registered as Elementor global colours (`umballet-*`)
+> in the active kit. White text on the `#632B3A` CTA and on `#876137` headers both exceed
+> WCAG AA 4.5:1.
 
 ---
 
