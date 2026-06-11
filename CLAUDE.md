@@ -185,22 +185,27 @@ This stack is used to **rebuild Wix sites in WordPress**. Two paths — both in
 
 ### The `copy from wix` command — rebuild a Wix page with our widgets
 
-**Trigger ONLY when the user says "copy from wix" (or clearly asks to copy a Wix page) and
-gives a Wix page URL.** A bare Wix link *without* that phrase is just reference — the user
-may want a brand-new page, so do **not** auto-rebuild. When triggered:
+**Trigger ONLY when the user says "copy from wix" (or clearly asks to copy a Wix page) with a
+Wix page URL.** When triggered it **always creates a NEW WP page that replicates that exact
+Wix page**, built with our AEW widgets (and native Elementor widgets where they fit). A Wix
+link sent *without* the phrase is just reference — do **not** rebuild; ask first. When triggered:
 
 1. **Fetch the page** — `WebFetch` the Wix URL and extract its sections in order: eyebrows,
    headings, body copy, lists, buttons/CTAs (text + link), image URLs, and the rough layout
    (hero / feature rows / cards / FAQ / testimonials / CTA band / footer, …). Wix is JS-heavy,
    so if WebFetch misses content, tell the user what you couldn't read rather than guessing.
-2. **Map each section to an existing AEW `-v2` widget** (catalogue: ELEMENTOR-WIDGETS-HANDOFF.md
-   §9 and `widgets/`). **Reuse an existing widget whenever its structure fits** the content.
-3. **Build the page in Elementor** — assemble the `_elementor_data` from the matched widgets +
-   the scraped content. Build LOCALLY via the Elementor MCP (`mcp__elementor__*`, local-only),
-   then copy to the server with a host-rewrite (WIDGET-V2-BUILD-GUIDE §16), create/assign the
-   WP page, and `wp elementor flush-css`.
-4. **No widget fits a section → build a NEW `-v2` widget** (the 3 registration points,
-   brand-free colours via `aew-*` globals, vanilla JS — per WIDGET-V2-BUILD-GUIDE).
+2. **Map each section to a widget, in priority order:** (a) an existing **AEW `-v2` widget**
+   whose structure fits (catalogue: ELEMENTOR-WIDGETS-HANDOFF.md §9 / `widgets/`) — **reuse
+   first**; (b) a **native Elementor widget** for a simple/standard block no AEW widget covers;
+   (c) a new AEW widget (step 4). Reuse beats new.
+3. **Build the page as a NEW WP page** — assemble its `_elementor_data` from the matched
+   widgets + scraped content, matching the Wix layout. Build LOCALLY via the Elementor MCP
+   (`mcp__elementor__*`, local-only), then copy to the server with a host-rewrite
+   (WIDGET-V2-BUILD-GUIDE §16), create the WP page, and `wp elementor flush-css`.
+4. **Nothing fits a section → use a native Elementor widget if one does; otherwise build a NEW
+   AEW `-v2` widget** (3 registration points, brand-free colours via `aew-*` globals, vanilla
+   JS — per WIDGET-V2-BUILD-GUIDE). Prefer a new AEW widget for distinctive/reusable sections;
+   a native Elementor widget is fine for a one-off standard block.
 5. **An existing widget needs a tweak to fit → change it ADDITIVELY only.** Add a new control
    whose **default reproduces the current behaviour**, so every existing page using that widget
    stays byte-for-byte identical. If the change can't be made without altering existing output,
