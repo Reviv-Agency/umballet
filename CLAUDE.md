@@ -135,9 +135,9 @@ every Pro feature on the page.
 colors, typography, spacing, the width model, and button styles. Follow it exactly on
 every page/widget/component — do **not** use Elementor defaults. Highlights:
 
-- **Colors:** CTA `#AA7D44` → hover `#876137`; bg `#F6F0EC`; dark green `#2A4F41` /
-  `#093328`; text `#141C19`; light gold `#CDB797`. Use scoped `--notched-*` CSS vars
-  (with hex fallbacks), never bare hardcoded hex.
+- **Colors:** CTA `#632B3A` → hover `#89505F`; bg `#F1EADF`; cards `#FFFFFF`; H1–H2
+  headers `#876137`; secondary accent `#3E382F`; text `#1B150E`; lines `#C2BAAB`. Use
+  scoped `--notched-*` CSS vars (with hex fallbacks), never bare hardcoded hex.
 - **Type:** Teko SemiBold (headings), Playfair Display Bold (eyebrows), Lato (body).
   H1 80/48px, H2 64/40px, H3 40/24px, eyebrow 20px, paragraph 18/14px (desktop/mobile).
 - **Width model:** outer gutter (40px desktop / 16px mobile) + a **true 1440px** inner

@@ -9,21 +9,21 @@ Source: Figma (captured 2026-05-28). **Use these values for every page, widget, 
 | Role | Hex | Elementor Global ID |
 |------|-----|---------------------|
 | Cards | `#FFFFFF` | `notched-cards` |
-| Background | `#F6F0EC` | `notched-background` |
-| Lines & Accents | `#BFC0BF` | `notched-lines` |
+| Background | `#F1EADF` | `notched-background` |
+| Lines & Accents | `#C2BAAB` | `notched-lines` |
 | Misc Accent | `#3B413F` | `notched-misc-accent` |
 | Secondary Cards | `#7D958D` | `notched-secondary-cards` |
-| Secondary BG / H1–H2 | `#2A4F41` | `notched-secondary-bg` |
-| Secondary Accent | `#093328` | `notched-secondary-accent` |
-| Header H3+ / Paragraph | `#141C19` | `notched-text` |
-| Main CTA | `#876137` | `notched-cta` |
-| CTA Hover | `#6E4F2D` | `notched-cta-hover` |
+| Secondary BG / H1–H2 | `#876137` | `notched-secondary-bg` |
+| Secondary Accent | `#3E382F` | `notched-secondary-accent` |
+| Header H3+ / Paragraph | `#1B150E` | `notched-text` |
+| Main CTA | `#632B3A` | `notched-cta` |
+| CTA Hover | `#89505F` | `notched-cta-hover` |
 
-> **Accessibility note (2026-06-10):** the CTA gold was darkened from `#AA7D44`
-> to `#876137` (the former hover tone) so white-on-gold buttons and gold-on-cream
-> text meet WCAG AA 4.5:1 contrast (`#AA7D44` measured only ~3.1:1 against white).
-> The hover tone moved to `#6E4F2D`. `#AA7D44` remains acceptable for decorative,
-> non-text use (icons, borders, illustrations).
+> **Palette refresh (2026-06-11, from Figma):** brand moved to a warm brown/maroon
+> system. The **CTA** is now maroon `#632B3A` (hover `#89505F`); the gold `#876137`
+> is now the **H1–H2 header** colour (`notched-secondary-bg`); body text is `#1B150E`.
+> Token *names* (`--notched-*`) are unchanged. White text on the `#632B3A` CTA and on
+> `#876137` headers both exceed WCAG AA 4.5:1.
 
 ---
 
@@ -44,8 +44,8 @@ Source: Figma (captured 2026-05-28). **Use these values for every page, widget, 
 | Subhead (eyebrow) | 1.25rem / 20px | 1.25rem / 20px | 100% |
 | Paragraph | 1.125rem / 18px | 0.875rem / 14px | 140% |
 
-### H1–H2 Color: `#2A4F41`
-### H3+ / Body Color: `#141C19`
+### H1–H2 Color: `#876137`
+### H3+ / Body Color: `#1B150E`
 
 ---
 
@@ -88,6 +88,6 @@ Source: Figma (captured 2026-05-28). **Use these values for every page, widget, 
 | Padding Bottom | 16px | 16px |
 | Padding X | 24px | 24px |
 | Border Radius | 8px | 8px |
-| BG Default | `#876137` | `#876137` |
-| BG Hover | `#6E4F2D` | `#6E4F2D` |
+| BG Default | `#632B3A` | `#632B3A` |
+| BG Hover | `#89505F` | `#89505F` |
 | Text Color | `#FFFFFF` | `#FFFFFF` |
