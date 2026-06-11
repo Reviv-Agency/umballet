@@ -1,7 +1,7 @@
 <?php
 /**
  * Job Listings — a stack of open-role cards, each with a title, a rich
- * qualifications block, and an APPLY button. Built for the notched.com
+ * qualifications block, and an APPLY button. Built for the example.com
  * /career listings section.
  *
  * @package Agency_Elementor_Widgets
@@ -44,7 +44,7 @@ class Widget_Job_Listings extends Widget_Base {
 	}
 
 	public function get_keywords(): array {
-		return [ 'jobs', 'careers', 'openings', 'listings', 'apply', 'notched' ];
+		return [ 'jobs', 'careers', 'openings', 'listings', 'apply' ];
 	}
 
 	private function default_jobs(): array {

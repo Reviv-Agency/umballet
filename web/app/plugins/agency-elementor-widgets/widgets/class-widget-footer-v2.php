@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer V2 — Acme brand.
+ * Footer V2 — [Company] brand.
  *
  * Matches Wix original: forest hero band, dark green body with
  * logo + MENU + QUICK LINKS + ADDRESS/CONTACT columns, bottom bar
@@ -195,7 +195,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'email_address', [
 			'label'   => 'Email',
 			'type'    => Controls_Manager::TEXT,
-			'default' => 'hello@acme.com',
+			'default' => 'hello@example.com',
 		] );
 		$this->end_controls_section();
 	}
@@ -205,7 +205,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'copyright', [
 			'label'   => 'Copyright text',
 			'type'    => Controls_Manager::TEXT,
-			'default' => '© ' . gmdate( 'Y' ) . ' Acme Timber. All rights reserved.',
+			'default' => '© ' . gmdate( 'Y' ) . ' [Company] Timber. All rights reserved.',
 		] );
 		$rep = new Repeater();
 		$rep->add_control( 'label', [ 'label' => 'Label', 'type' => Controls_Manager::TEXT, 'default' => 'Link' ] );

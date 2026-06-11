@@ -1,6 +1,6 @@
 <?php
 /**
- * CTA Banner V2 — Acme brand.
+ * CTA Banner V2 — [Company] brand.
  *
  * A centered call-to-action banner inside a large rounded card sitting on the
  * light page background: eyebrow + Teko headline + description + single CTA

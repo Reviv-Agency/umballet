@@ -25,7 +25,7 @@ class Widget_Quote_Band extends Widget_Base {
 	private const ASSET_SLUG = 'quote-band';
 
 	public function get_name(): string { return 'agency-quote-band'; }
-	public function get_title(): string { return esc_html__( 'Quote Band (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string { return esc_html__( 'Quote Band', 'agency-elementor-widgets' ); }
 	public function get_icon(): string { return 'eicon-call-to-action'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
 	public function get_style_depends(): array { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }

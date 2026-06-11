@@ -1,6 +1,6 @@
 <?php
 /**
- * Single Post Content V2 — Acme.
+ * Single Post Content V2 — [Company].
  *
  * Renders the CURRENT post for an Elementor "Single Post" theme template:
  * author avatar + name · date · read-time, a 3-dot Share menu, the title, an

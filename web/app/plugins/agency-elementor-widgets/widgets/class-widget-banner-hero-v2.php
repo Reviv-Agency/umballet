@@ -1,6 +1,6 @@
 <?php
 /**
- * Banner Hero V2 — Acme brand.
+ * Banner Hero V2 — [Company] brand.
  *
  * A boxed page-top banner (NOT full-bleed): a large rounded banner image inside
  * a padded inner wrapper, with a centered floating card overlaying it. The card
@@ -108,7 +108,7 @@ class Widget_Banner_Hero_V2 extends Widget_Base {
 		$this->add_control( 'subtext', [
 			'label'   => esc_html__( 'Subtext', 'agency-elementor-widgets' ),
 			'type'    => Controls_Manager::TEXTAREA,
-			'default' => esc_html__( 'If you can dream it, Acme can do it.', 'agency-elementor-widgets' ),
+			'default' => esc_html__( 'If you can dream it, [Company] can do it.', 'agency-elementor-widgets' ),
 			'rows'    => 3,
 		] );
 

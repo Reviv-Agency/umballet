@@ -13,7 +13,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AEW_VERSION', '1.23.0' );
+define( 'AEW_VERSION', '1.24.0' );
 define( 'AEW_PLUGIN_FILE', __FILE__ );
 define( 'AEW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AEW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -21,6 +21,7 @@ define( 'AEW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 require_once AEW_PLUGIN_DIR . 'includes/class-design-tokens.php';
 require_once AEW_PLUGIN_DIR . 'includes/class-rich-text.php';
 require_once AEW_PLUGIN_DIR . 'includes/class-color-vars.php';
+require_once AEW_PLUGIN_DIR . 'includes/class-kit-colors.php';
 require_once AEW_PLUGIN_DIR . 'includes/class-widget-assets.php';
 require_once AEW_PLUGIN_DIR . 'includes/class-settings.php';
 require_once AEW_PLUGIN_DIR . 'includes/class-cpt-testimonial.php';
@@ -31,6 +32,7 @@ require_once AEW_PLUGIN_DIR . 'includes/class-plugin.php';
 
 AEW\Lead_Store::init();
 AEW\Post_Engagement::init();
+AEW\Kit_Colors::init();
 
 /**
  * @return void
@@ -39,6 +41,7 @@ function aew_activate(): void {
 	AEW\Design_Tokens::seed_defaults();
 	AEW\Cpt_Testimonial::register_post_type();
 	AEW\Lead_Store::install();
+	AEW\Kit_Colors::seed();
 	flush_rewrite_rules();
 }
 

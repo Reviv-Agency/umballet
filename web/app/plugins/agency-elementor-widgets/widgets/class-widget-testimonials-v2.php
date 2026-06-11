@@ -1,8 +1,8 @@
 <?php
 /**
- * Testimonials V2 — Acme brand.
+ * Testimonials V2 — [Company] brand.
  *
- * "Acme Client Testimonials" section: a centered gold star eyebrow over a
+ * "[Company] Client Testimonials" section: a centered gold star eyebrow over a
  * section title, then a grid of testimonial cards. Each card shows a rounded
  * project image, a circular avatar (image or initial-letter fallback), a gold
  * star rating, a client name and a review paragraph.
@@ -136,7 +136,7 @@ class Widget_Testimonials_V2 extends Widget_Base {
 		$this->add_control( 'title', [
 			'label'       => 'Title',
 			'type'        => Controls_Manager::TEXT,
-			'default'     => 'Acme Client Testimonials',
+			'default'     => '[Company] Client Testimonials',
 			'label_block' => true,
 		] );
 		$this->add_control( 'title_tag', [
@@ -207,17 +207,17 @@ class Widget_Testimonials_V2 extends Widget_Base {
 				[
 					'stars'  => '5',
 					'name'   => 'Skeeter Draper',
-					'review' => 'The Acme team built our pergola one afternoon a little over 2 years ago and we have been very happy with the fit, finish, and utility of its form and function. I would chose to work with Acme again!',
+					'review' => 'The [Company] team built our pergola one afternoon a little over 2 years ago and we have been very happy with the fit, finish, and utility of its form and function. I would chose to work with [Company] again!',
 				],
 				[
 					'stars'  => '5',
 					'name'   => 'Ty Tillotson',
-					'review' => 'We have been working with Acme for years! Jardin and his team have always treated us well and done fantastic work for us. Very professional and our clients are always thrilled with their work!',
+					'review' => 'We have been working with [Company] for years! Jardin and his team have always treated us well and done fantastic work for us. Very professional and our clients are always thrilled with their work!',
 				],
 				[
 					'stars'  => '5',
 					'name'   => 'Mandy Taylor',
-					'review' => 'Acme built us a Zen Den, and it\'s our favorite place to gather outside! Provides awesome shade and still looks amazing! They were very easy to work with and responsive! Highly recommend!',
+					'review' => '[Company] built us a Zen Den, and it\'s our favorite place to gather outside! Provides awesome shade and still looks amazing! They were very easy to work with and responsive! Highly recommend!',
 				],
 			],
 		] );

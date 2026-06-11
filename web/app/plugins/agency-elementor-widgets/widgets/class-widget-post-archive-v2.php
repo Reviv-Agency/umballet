@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Archive V2 — Acme blog index ("All Posts").
+ * Post Archive V2 — [Company] blog index ("All Posts").
  *
  * Renders a vertical list of blog cards (image left, copy right) with date +
  * read-time, title, excerpt, and a like / view / comment stat row plus a 3-dot

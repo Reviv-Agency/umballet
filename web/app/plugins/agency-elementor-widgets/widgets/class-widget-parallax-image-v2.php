@@ -1,6 +1,6 @@
 <?php
 /**
- * Parallax Image V2 — Acme brand.
+ * Parallax Image V2 — [Company] brand.
  *
  * Standalone scroll-parallax image band, extracted from Footer V2's forest
  * hero. As the band scrolls through the viewport the image pans horizontally

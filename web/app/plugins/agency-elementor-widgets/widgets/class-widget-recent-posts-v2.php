@@ -1,6 +1,6 @@
 <?php
 /**
- * Recent Posts V2 — Acme ("Recent Posts" / related posts row).
+ * Recent Posts V2 — [Company] ("Recent Posts" / related posts row).
  *
  * A "Recent Posts  ·  See All" header above a compact grid of post cards
  * (image on top, title + views/comments/like beneath). On a single post it

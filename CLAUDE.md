@@ -135,9 +135,11 @@ every Pro feature on the page.
 colors, typography, spacing, the width model, and button styles. Follow it exactly on
 every page/widget/component — do **not** use Elementor defaults. Highlights:
 
-- **Colors:** CTA `#632B3A` → hover `#89505F`; bg `#F1EADF`; cards `#FFFFFF`; H1–H2
-  headers `#876137`; secondary accent `#3E382F`; text `#1B150E`; lines `#C2BAAB`. Use
-  scoped `--notched-*` CSS vars (with hex fallbacks), never bare hardcoded hex.
+- **Colors:** the palette lives in **Elementor global colours** (`aew-*`), seeded by the
+  plugin (`includes/class-kit-colors.php`) and editable in Elementor → Site Settings →
+  Global Colours. Widgets read `var(--e-global-color-aew-<role>, <hex>)`; the hex is just
+  a fallback. Defaults: CTA `#632B3A` → hover `#89505F`; bg `#F1EADF`; cards `#FFFFFF`;
+  H1–H2 headers `#876137`; secondary accent `#3E382F`; text `#1B150E`; lines `#C2BAAB`.
 - **Type:** Teko SemiBold (headings), Playfair Display Bold (eyebrows), Lato (body).
   H1 80/48px, H2 64/40px, H3 40/24px, eyebrow 20px, paragraph 18/14px (desktop/mobile).
 - **Width model:** outer gutter (40px desktop / 16px mobile) + a **true 1440px** inner

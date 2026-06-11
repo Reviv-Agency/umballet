@@ -1,5 +1,5 @@
 /**
- * Footer V2 — Acme
+ * Footer V2
  * Forest hero band + dark green body (logo + MENU + QUICK LINKS + ADDRESS/CONTACT)
  * + bottom bar (copyright + legal links).
  */
@@ -30,17 +30,17 @@
 /* Scoped to .aew-fov2 so they don't leak into other widgets. Source of truth
    is design-system.md. Update there first; copy here second. */
 .aew-fov2 {
-  --aew-cards:             #FFFFFF;
-  --aew-background:        #F1EADF;
-  --aew-lines:             #BFC0BF;
-  --aew-misc-accent:       #3B413F;
-  --aew-secondary-cards:   #7D958D;
-  --aew-secondary-bg:      #876137;
-  --aew-secondary-accent:  #3E382F;
-  --aew-text:              #1B150E;
-  --aew-cta:               #632B3A;
-  --aew-cta-hover:         #89505F;
-  --aew-gold-light:        #C2BAAB;   /* Light Gold — footer text */
+  --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
+  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
+  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
+  --aew-text:              var(--e-global-color-aew-text, #1B150E);
+  --aew-cta:               var(--e-global-color-aew-cta, #632B3A);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #89505F);
+  --aew-gold-light:        var(--e-global-color-aew-gold-light, #876137);   /* Light Gold — footer text */
 }
 
 /* ── Outer block ─────────────────────────────────────────────────────────── */

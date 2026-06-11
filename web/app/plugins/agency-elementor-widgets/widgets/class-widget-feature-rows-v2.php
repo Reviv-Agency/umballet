@@ -1,6 +1,6 @@
 <?php
 /**
- * Feature Rows V2 — Acme brand.
+ * Feature Rows V2 — [Company] brand.
  *
  * A flexible grid band built from up to 4 SEPARATE rows. Each row is its own
  * self-contained control group: a column count (2 or 3) and that many slots
@@ -114,7 +114,7 @@ class Widget_Feature_Rows_V2 extends Widget_Base {
 		$this->add_control( 'heading', [
 			'label'     => esc_html__( 'Heading', 'agency-elementor-widgets' ),
 			'type'      => Controls_Manager::TEXTAREA,
-			'default'   => esc_html__( 'What makes Acme different?', 'agency-elementor-widgets' ),
+			'default'   => esc_html__( 'What makes [Company] different?', 'agency-elementor-widgets' ),
 			'condition' => [ 'show_header' => 'yes' ],
 		] );
 

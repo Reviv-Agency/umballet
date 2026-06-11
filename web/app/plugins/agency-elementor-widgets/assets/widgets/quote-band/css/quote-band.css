@@ -4,14 +4,14 @@
 
 /* Brand tokens (scoped). */
 .aew-qb {
-  --notched-background: #F1EADF;
-  --notched-cta:        #632B3A;
-  --notched-cta-hover:  #89505F;
-  --aew-qb-bg:          var(--notched-cta);
-  --aew-qb-heading:     var(--notched-background);
+  --aew-background: var(--e-global-color-aew-background, #F1EADF);
+  --aew-cta:        var(--e-global-color-aew-cta, #632B3A);
+  --aew-cta-hover:  var(--e-global-color-aew-cta-hover, #89505F);
+  --aew-qb-bg:          var(--aew-cta);
+  --aew-qb-heading:     var(--aew-background);
   --aew-qb-btn-bg:      #FFFFFF;
-  --aew-qb-btn-text:    var(--notched-cta);
-  --aew-qb-btn-bg-hover:   var(--notched-cta-hover);
+  --aew-qb-btn-text:    var(--aew-cta);
+  --aew-qb-btn-bg-hover:   var(--aew-cta-hover);
   --aew-qb-btn-text-hover: #FFFFFF;
 }
 

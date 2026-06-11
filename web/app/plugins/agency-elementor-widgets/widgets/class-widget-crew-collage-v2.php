@@ -4,7 +4,7 @@
  *
  * A split section: a copy block (eyebrow-free heading + paragraph + button) on
  * one side and a three-image collage on the other (one tall lead image plus two
- * stacked supporting images), mirroring acme.com/contact-us "Our Crew".
+ * stacked supporting images), mirroring example.com/contact-us "Our Crew".
  * Desktop = side-by-side; mobile = stacked with the collage below the copy.
  * Colours and the button are editable per-instance from the Style tab (§6.8).
  *
@@ -123,7 +123,7 @@ class Widget_Crew_Collage_V2 extends Widget_Base {
 			'label'   => esc_html__( 'Paragraph', 'agency-elementor-widgets' ),
 			'type'    => Controls_Manager::TEXTAREA,
 			'rows'    => 6,
-			'default' => esc_html__( 'With expertise spanning from design conception through to meticulous building and seamless installation, our experienced team at Acme ensures every project is crafted with precision and care. Whether you’re envisioning a custom timber structure or assembling one of our DIY kits, trust our seasoned professionals to bring your outdoor vision to life with expertise and dedication.', 'agency-elementor-widgets' ),
+			'default' => esc_html__( 'With expertise spanning from design conception through to meticulous building and seamless installation, our experienced team at [Company] ensures every project is crafted with precision and care. Whether you’re envisioning a custom timber structure or assembling one of our DIY kits, trust our seasoned professionals to bring your outdoor vision to life with expertise and dedication.', 'agency-elementor-widgets' ),
 		] );
 
 		$this->add_control( 'btn_text', [
@@ -182,7 +182,7 @@ class Widget_Crew_Collage_V2 extends Widget_Base {
 		$this->add_control( 'image_alt', [
 			'label'       => esc_html__( 'Images alt text', 'agency-elementor-widgets' ),
 			'type'        => Controls_Manager::TEXT,
-			'default'     => esc_html__( 'The Acme crew', 'agency-elementor-widgets' ),
+			'default'     => esc_html__( 'The [Company] crew', 'agency-elementor-widgets' ),
 		] );
 
 		$this->end_controls_section();

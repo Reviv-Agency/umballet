@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Header V2 — Acme brand.
+ * Header V2 — [Company] brand.
  *
  * Right-side layout (matches Wix original):
  *   Account icon | Cart icon (live count) | Phone | SHOP KITS (arrow) | Hamburger

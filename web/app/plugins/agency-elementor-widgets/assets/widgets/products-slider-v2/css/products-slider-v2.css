@@ -1,5 +1,5 @@
 /**
- * Products Slider V2 — Acme brand.
+ * Products Slider V2
  * "Our most popular kit options" horizontal scroll-snap product slider.
  *
  * BEM block: aew-prsv2   |   widget: agency-products-slider-v2
@@ -43,16 +43,16 @@
 
 /* ── Brand tokens (scoped). Source of truth: design-system.md ──────────────── */
 .aew-prsv2 {
-  --aew-cards:             #FFFFFF;
-  --aew-background:        #F1EADF;
-  --aew-lines:             #BFC0BF;
-  --aew-misc-accent:       #3B413F;
-  --aew-secondary-cards:   #7D958D;
-  --aew-secondary-bg:      #876137;
-  --aew-secondary-accent:  #3E382F;
-  --aew-text:              #1B150E;
-  --aew-cta:               #632B3A;
-  --aew-cta-hover:         #89505F;
+  --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
+  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
+  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
+  --aew-text:              var(--e-global-color-aew-text, #1B150E);
+  --aew-cta:               var(--e-global-color-aew-cta, #632B3A);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #89505F);
 }
 
 /* ── Outer block: full-bleed background ────────────────────────────────────── */

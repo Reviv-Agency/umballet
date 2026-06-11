@@ -1,6 +1,6 @@
 <?php
 /**
- * Icon Cards — Notched brand.
+ * Icon Cards — [Company] brand.
  *
  * A row of dark-green cards, each with a check (or custom) icon above a bold
  * Teko statement. Desktop = equal-width row; mobile = stacked. Repeater-driven
@@ -25,10 +25,10 @@ class Widget_Icon_Cards extends Widget_Base {
 	private const ASSET_SLUG = 'icon-cards';
 
 	public function get_name(): string      { return 'agency-icon-cards'; }
-	public function get_title(): string     { return esc_html__( 'Icon Cards (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Icon Cards', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-checkbox'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'cards', 'icon', 'check', 'features', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'cards', 'icon', 'check', 'features' ]; }
 
 	public function get_style_depends(): array { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 

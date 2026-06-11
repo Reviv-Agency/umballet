@@ -6,7 +6,7 @@
  * tagline, a duration label (e.g. "30 min") on a divided footer row, and a
  * "Book Now" button. Unlike Region Cards V2 there is NO background image; the
  * cards are flat surfaces on the section background, matching the live
- * acme.com/book-online consultation layout. Colours, the card surface and
+ * example.com/book-online consultation layout. Colours, the card surface and
  * the button are editable per-instance from the Style tab (§6.8 var pattern).
  *
  * @package Agency_Elementor_Widgets
@@ -110,21 +110,21 @@ class Widget_Booking_Cards_V2 extends Widget_Base {
 	private function default_cards(): array {
 		return [
 			[
-				'heading'  => 'Free Acme Consultation | Virtual',
+				'heading'  => 'Free [Company] Consultation | Virtual',
 				'tagline'  => 'Anytime, Anywhere!',
 				'duration' => '30 min',
 				'btn_text' => 'Book Now',
 				'btn_link' => [ 'url' => '#' ],
 			],
 			[
-				'heading'  => 'Free Acme Consultation | Utah',
+				'heading'  => 'Free [Company] Consultation | Utah',
 				'tagline'  => "Living in Utah? Let's chat in person!",
 				'duration' => '30 min',
 				'btn_text' => 'Book Now',
 				'btn_link' => [ 'url' => '#' ],
 			],
 			[
-				'heading'  => 'Free Acme Consultation | Arizona',
+				'heading'  => 'Free [Company] Consultation | Arizona',
 				'tagline'  => "Want a timber structure in Arizona? Let's chat!",
 				'duration' => '30 min',
 				'btn_text' => 'Book Now',
@@ -157,7 +157,7 @@ class Widget_Booking_Cards_V2 extends Widget_Base {
 			[
 				'label'   => esc_html__( 'Heading', 'agency-elementor-widgets' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Free Acme Consultation | Virtual', 'agency-elementor-widgets' ),
+				'default' => esc_html__( 'Free [Company] Consultation | Virtual', 'agency-elementor-widgets' ),
 			]
 		);
 

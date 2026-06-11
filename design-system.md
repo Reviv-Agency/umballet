@@ -6,22 +6,26 @@ Source: Figma (captured 2026-05-28). **Use these values for every page, widget, 
 
 ## Colors
 
-| Role | Hex | Elementor Global ID |
-|------|-----|---------------------|
-| Cards | `#FFFFFF` | `umballet-cards` |
-| Background | `#F1EADF` | `umballet-background` |
-| Lines & Accents | `#C2BAAB` | `umballet-lines` |
-| Headers (H1–H2) | `#876137` | `umballet-headers` |
-| Secondary Accent | `#3E382F` | `umballet-secondary-accent` |
-| Header (H3+) / Paragraph | `#1B150E` | `umballet-text` |
-| Main CTA | `#632B3A` | `umballet-cta` |
-| CTA Hover | `#89505F` | `umballet-cta-hover` |
+| Role | Default hex | Elementor Global ID |
+|------|-------------|---------------------|
+| Cards | `#FFFFFF` | `aew-cards` |
+| Background | `#F1EADF` | `aew-background` |
+| Lines & Accents | `#C2BAAB` | `aew-lines` |
+| Headers (H1–H2) | `#876137` | `aew-secondary-bg` |
+| Secondary Accent | `#3E382F` | `aew-secondary-accent` |
+| Header (H3+) / Paragraph | `#1B150E` | `aew-text` |
+| Main CTA | `#632B3A` | `aew-cta` |
+| CTA Hover | `#89505F` | `aew-cta-hover` |
+| Misc Accent | `#3E382F` | `aew-misc-accent` |
+| Secondary Cards | `#C2BAAB` | `aew-secondary-cards` |
+| Gold Light | `#876137` | `aew-gold-light` |
 
-> **Palette (2026-06-11, from Figma):** warm brown/maroon system. The **CTA** is maroon
-> `#632B3A` (hover `#89505F`); gold `#876137` is the **H1–H2 header** colour; body text
-> is `#1B150E`. These 8 colours are registered as Elementor global colours (`umballet-*`)
-> in the active kit. White text on the `#632B3A` CTA and on `#876137` headers both exceed
-> WCAG AA 4.5:1.
+> **How colours work:** the AEW plugin (`includes/class-kit-colors.php`) seeds this
+> palette into the active Elementor kit as **global colours** (`aew-*`), and every widget
+> reads `var(--e-global-color-aew-<role>, <hex fallback>)`. **Edit the palette in
+> Elementor → Site Settings → Global Colours** to recolour the whole site — the hexes
+> above are just the seeded defaults/fallbacks. White text on the `#632B3A` CTA and on
+> `#876137` headers both exceed WCAG AA 4.5:1.
 
 ---
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Feature Band V2 — Acme brand.
+ * Feature Band V2 — [Company] brand.
  *
  * A FULL-BLEED background-image band (edge to edge, NOT capped at the 1440
  * content rail) with a content BOX overlaying it plus an optional tall side

@@ -99,14 +99,14 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'heading'   => esc_html__( 'BUILT FOR UTAH', 'agency-elementor-widgets' ),
 				'paragraph' => esc_html__( 'Explore timber pergola kits designed specifically for Utah snow load, elevation, temperature swings, and long-term outdoor durability.', 'agency-elementor-widgets' ),
-				'btn_text'  => esc_html__( 'WHY UTAH CHOOSES ACME', 'agency-elementor-widgets' ),
+				'btn_text'  => esc_html__( 'WHY UTAH CHOOSES [COMPANY]', 'agency-elementor-widgets' ),
 				'btn_link'  => [ 'url' => '#' ],
 				'image'     => [ 'url' => Widget_Assets::url( self::ASSET_SLUG, 'images/region-1.webp' ) ],
 			],
 			[
 				'heading'   => esc_html__( 'BUILT FOR ARIZONA', 'agency-elementor-widgets' ),
 				'paragraph' => esc_html__( 'Explore timber pergola kits designed specifically for Arizona heat, UV exposure, dry climates, and long-term outdoor living.', 'agency-elementor-widgets' ),
-				'btn_text'  => esc_html__( 'WHY ARIZONA CHOOSES ACME', 'agency-elementor-widgets' ),
+				'btn_text'  => esc_html__( 'WHY ARIZONA CHOOSES [COMPANY]', 'agency-elementor-widgets' ),
 				'btn_link'  => [ 'url' => '#' ],
 				'image'     => [ 'url' => Widget_Assets::url( self::ASSET_SLUG, 'images/region-2.webp' ) ],
 			],
@@ -198,7 +198,7 @@ class Widget_Region_Cards_V2 extends Widget_Base {
 			[
 				'label'   => esc_html__( 'Button label', 'agency-elementor-widgets' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( 'WHY UTAH CHOOSES ACME', 'agency-elementor-widgets' ),
+				'default' => esc_html__( 'WHY UTAH CHOOSES [COMPANY]', 'agency-elementor-widgets' ),
 			]
 		);
 

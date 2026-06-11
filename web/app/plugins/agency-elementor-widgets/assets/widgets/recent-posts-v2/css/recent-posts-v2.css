@@ -1,5 +1,5 @@
 /**
- * Recent Posts V2 — Acme.
+ * Recent Posts V2
  * "Recent Posts  ·  See All" header + a grid of compact vertical post cards
  * (image on top, title + views/comments/likes beneath).
  */
@@ -18,8 +18,8 @@
 }
 
 .aew-rpv2 {
-  --aew-cards: #FFFFFF; --aew-background: #F1EADF; --aew-lines: #BFC0BF;
-  --aew-misc-accent: #3B413F; --aew-text: #1B150E; --aew-cta: #632B3A;
+  --aew-cards: var(--e-global-color-aew-cards, #FFFFFF); --aew-background: var(--e-global-color-aew-background, #F1EADF); --aew-lines: var(--e-global-color-aew-lines, #BFC0BF);
+  --aew-misc-accent: var(--e-global-color-aew-misc-accent, #3E382F); --aew-text: var(--e-global-color-aew-text, #1B150E); --aew-cta: var(--e-global-color-aew-cta, #632B3A);
   width: 100%;
   background-color: var(--aew-rpv2-bg, var(--aew-background));
   /* Design-system width model: X gutter on the outer block; inner caps at 1440. */

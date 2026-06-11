@@ -1,6 +1,6 @@
 <?php
 /**
- * Comments V2 — Acme.
+ * Comments V2 — [Company].
  *
  * Renders the native WordPress comment list + form for the current post,
  * brand-styled, inside a card. Uses wp_list_comments() + comment_form() so

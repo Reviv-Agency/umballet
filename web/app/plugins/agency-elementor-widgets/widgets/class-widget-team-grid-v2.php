@@ -4,7 +4,7 @@
  *
  * An optional section heading + subtext, then a responsive grid of member
  * cards — each a photo with the member's name and role beneath it. Mirrors
- * acme.com/our-crew. Column count, gap, image radius and all colours are
+ * example.com/our-crew. Column count, gap, image radius and all colours are
  * editable per-instance from the Style tab (§6.8 var pattern).
  *
  * @package Agency_Elementor_Widgets

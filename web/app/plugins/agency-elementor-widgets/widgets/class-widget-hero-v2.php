@@ -1,6 +1,6 @@
 <?php
 /**
- * Hero V2 — Acme brand.
+ * Hero V2 — [Company] brand.
  *
  * Full-bleed background video (edge to edge, no padding, no rounded corners)
  * with a centered overlay: eyebrow + large Teko headline + description +
@@ -521,7 +521,7 @@ class Widget_Hero_V2 extends Widget_Base {
 		<?php
 		/*
 		 * The mobile/tablet hero is a CSS background-image (≤1024px, see
-		 * hero-v2.css), invisible to the preload scanner. The Acme child
+		 * hero-v2.css), invisible to the preload scanner. The [Company] child
 		 * theme preloads it from wp_head (earlier discovery than a mid-body
 		 * tag) by reading mobile_image out of the page's _elementor_data —
 		 * keep that in sync if this control is ever renamed.

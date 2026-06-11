@@ -1,6 +1,6 @@
 <?php
 /**
- * Benefits V2 — Acme brand.
+ * Benefits V2 — [Company] brand.
  *
  * "Benefits of a Traditional Pergola" band: a section title over a row of
  * feature columns, each with a circular image, a heading and a paragraph.

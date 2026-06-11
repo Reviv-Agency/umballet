@@ -4,7 +4,7 @@
  *
  * A FULL-BLEED background image (edge to edge, not capped at the 1440 content
  * width) with a centered content box floating on top — eyebrow + heading +
- * description + button. Mirrors acme.com "Want to Know More About Acme?".
+ * description + button. Mirrors example.com "Want to Know More About [Company]?".
  * The background image, box surface, colours and button are editable from the
  * Style tab (§6.8 var pattern). An optional dark overlay improves legibility.
  *
@@ -124,7 +124,7 @@ class Widget_Image_Cta_Band_V2 extends Widget_Base {
 			'label'   => esc_html__( 'Heading', 'agency-elementor-widgets' ),
 			'type'    => Controls_Manager::TEXTAREA,
 			'rows'    => 2,
-			'default' => esc_html__( 'Want to Know More About Acme?', 'agency-elementor-widgets' ),
+			'default' => esc_html__( 'Want to Know More About [Company]?', 'agency-elementor-widgets' ),
 		] );
 
 		$this->add_control( 'heading_tag', [

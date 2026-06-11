@@ -1,5 +1,5 @@
 /**
- * Header V2 — Acme
+ * Header V2
  * Matches Wix original: Logo | Account | Cart | Phone | SHOP KITS (arrow) | Hamburger
  */
 
@@ -19,16 +19,16 @@
 /* Scoped to .aew-hv2 so they don't leak into other widgets. Source of truth
    is design-system.md. Update there first; copy here second. */
 .aew-hv2 {
-  --aew-cards: #ffffff;
-  --aew-background: #F1EADF;
-  --aew-lines: #bfc0bf;
-  --aew-misc-accent: #3b413f;
-  --aew-secondary-cards: #7d958d;
-  --aew-secondary-bg: #876137;
-  --aew-secondary-accent: #3E382F;
-  --aew-text: #1B150E;
-  --aew-cta: #632B3A;
-  --aew-cta-hover: #89505F;
+  --aew-cards: var(--e-global-color-aew-cards, #ffffff);
+  --aew-background: var(--e-global-color-aew-background, #F1EADF);
+  --aew-lines: var(--e-global-color-aew-lines, #bfc0bf);
+  --aew-misc-accent: var(--e-global-color-aew-misc-accent, #3E382F);
+  --aew-secondary-cards: var(--e-global-color-aew-secondary-cards, #C2BAAB);
+  --aew-secondary-bg: var(--e-global-color-aew-secondary-bg, #876137);
+  --aew-secondary-accent: var(--e-global-color-aew-secondary-accent, #3E382F);
+  --aew-text: var(--e-global-color-aew-text, #1B150E);
+  --aew-cta: var(--e-global-color-aew-cta, #632B3A);
+  --aew-cta-hover: var(--e-global-color-aew-cta-hover, #89505F);
 }
 
 .aew-hv2 {

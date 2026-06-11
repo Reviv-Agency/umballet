@@ -1,5 +1,5 @@
 /**
- * Icon Cards — Notched
+ * Icon Cards
  * Row of dark-green cards (check icon + bold Teko statement).
  * Desktop = equal-width row; mobile = stacked.
  */
@@ -28,23 +28,23 @@
 /* Scoped to .aew-iccr so they don't leak into other widgets. Source of truth
    is design-system.md. Update there first; copy here second. */
 .aew-iccr {
-  --notched-cards:             #FFFFFF;
-  --notched-background:        #F1EADF;
-  --notched-lines:             #BFC0BF;
-  --notched-misc-accent:       #3B413F;
-  --notched-secondary-cards:   #7D958D;
-  --notched-secondary-bg:      #876137;
-  --notched-secondary-accent:  #3E382F;
-  --notched-text:              #1B150E;
-  --notched-cta:               #632B3A;
-  --notched-cta-hover:         #89505F;
+  --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
+  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
+  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
+  --aew-text:              var(--e-global-color-aew-text, #1B150E);
+  --aew-cta:               var(--e-global-color-aew-cta, #632B3A);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #89505F);
 }
 
 /* ── Outer block ─────────────────────────────────────────────────────────── */
 /* Design-system width model: X gutter on the outer block; inner caps at 1440. */
 .aew-iccr {
   width: 100%;
-  background-color: var(--notched-background);
+  background-color: var(--aew-background);
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -80,7 +80,7 @@
   gap: 28px;
   min-height: 320px;
   padding: 40px 32px;
-  background-color: var(--notched-secondary-bg);
+  background-color: var(--aew-secondary-bg);
   border-radius: 24px;        /* design-system card radius */
 }
 
@@ -103,14 +103,14 @@
 }
 
 .aew-iccr__icon svg {
-  fill: var(--notched-secondary-cards);
+  fill: var(--aew-secondary-cards);
 }
 
 /* ── Text (Teko SemiBold — design-system H3 scale) ──────────────────────── */
 .aew-iccr__text {
   margin: 0;
   max-width: 100%;
-  color: var(--notched-background);
+  color: var(--aew-background);
   font-family: var(--aew-teko);
   font-weight: 600;
   font-size: 40px;

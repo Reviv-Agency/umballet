@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════════════
-   Sticky Image (Notched) — agency-sticky-image
+   Sticky Image — agency-sticky-image
    A single image pinned to the page: sticky / fixed / absolute, anchored to a
    corner with X/Y offsets. Position is driven by CSS custom properties emitted
    by the widget's render() method; this file just consumes them.
@@ -9,16 +9,16 @@
    Scoped to .aew-stim so they don't leak. Source of truth is design-system.md.
    Update there first; copy here second. */
 .aew-stim {
-  --notched-cards:             #FFFFFF;
-  --notched-background:        #F1EADF;
-  --notched-lines:             #BFC0BF;
-  --notched-misc-accent:       #3B413F;
-  --notched-secondary-cards:   #7D958D;
-  --notched-secondary-bg:      #876137;
-  --notched-secondary-accent:  #3E382F;
-  --notched-text:              #1B150E;
-  --notched-cta:               #89505F;
-  --notched-cta-hover:         #632B3A;
+  --aew-cards:             var(--e-global-color-aew-cards, #FFFFFF);
+  --aew-background:        var(--e-global-color-aew-background, #F1EADF);
+  --aew-lines:             var(--e-global-color-aew-lines, #BFC0BF);
+  --aew-misc-accent:       var(--e-global-color-aew-misc-accent, #3E382F);
+  --aew-secondary-cards:   var(--e-global-color-aew-secondary-cards, #C2BAAB);
+  --aew-secondary-bg:      var(--e-global-color-aew-secondary-bg, #876137);
+  --aew-secondary-accent:  var(--e-global-color-aew-secondary-accent, #3E382F);
+  --aew-text:              var(--e-global-color-aew-text, #1B150E);
+  --aew-cta:               var(--e-global-color-aew-cta, #89505F);
+  --aew-cta-hover:         var(--e-global-color-aew-cta-hover, #632B3A);
 }
 
 /* ── Strip Elementor's column padding so the widget can float freely ─────────── */
@@ -175,6 +175,6 @@
 
 /* ── Focus visibility (don't strip outlines globally) ────────────────────────── */
 .aew-stim__link:focus-visible {
-  outline: 2px solid var(--notched-cta);
+  outline: 2px solid var(--aew-cta);
   outline-offset: 3px;
 }

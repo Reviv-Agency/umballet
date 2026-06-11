@@ -1,6 +1,6 @@
 <?php
 /**
- * Products Slider V2 — Acme brand.
+ * Products Slider V2 — [Company] brand.
  *
  * "Our most popular kit options" — a horizontal, scroll-snapping slider of
  * WooCommerce products. Each card shows the product image + title and links
