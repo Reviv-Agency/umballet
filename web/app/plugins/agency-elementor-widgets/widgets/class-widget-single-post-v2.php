@@ -1,6 +1,6 @@
 <?php
 /**
- * Single Post Content V2 — Notched.
+ * Single Post Content V2 — Acme.
  *
  * Renders the CURRENT post for an Elementor "Single Post" theme template:
  * author avatar + name · date · read-time, a 3-dot Share menu, the title, an
@@ -27,10 +27,10 @@ class Widget_Single_Post_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'single-post-v2';
 
 	public function get_name(): string      { return 'agency-single-post-v2'; }
-	public function get_title(): string     { return esc_html__( 'Single Post Content V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Single Post Content V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-post-content'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'single', 'post', 'content', 'blog', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'single', 'post', 'content', 'blog' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }

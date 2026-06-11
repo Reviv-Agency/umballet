@@ -1,6 +1,6 @@
 <?php
 /**
- * Products Slider V2 — Notched brand.
+ * Products Slider V2 — Acme brand.
  *
  * "Our most popular kit options" — a horizontal, scroll-snapping slider of
  * WooCommerce products. Each card shows the product image + title and links
@@ -23,10 +23,10 @@ class Widget_Products_Slider_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'products-slider-v2';
 
 	public function get_name(): string      { return 'agency-products-slider-v2'; }
-	public function get_title(): string     { return esc_html__( 'Products Slider V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Products Slider V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-media-carousel'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'products', 'slider', 'carousel', 'grid', 'shop', 'woocommerce', 'kits', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'products', 'slider', 'carousel', 'grid', 'shop', 'woocommerce', 'kits' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }

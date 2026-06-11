@@ -1,6 +1,6 @@
 <?php
 /**
- * Parallax Image V2 — Notched brand.
+ * Parallax Image V2 — Acme brand.
  *
  * Standalone scroll-parallax image band, extracted from Footer V2's forest
  * hero. As the band scrolls through the viewport the image pans horizontally
@@ -22,10 +22,10 @@ class Widget_Parallax_Image_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'parallax-image-v2';
 
 	public function get_name(): string      { return 'agency-parallax-image-v2'; }
-	public function get_title(): string     { return esc_html__( 'Parallax Image V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Parallax Image V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-image'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'parallax', 'image', 'scroll', 'notched', 'forest' ]; }
+	public function get_keywords(): array   { return [ 'parallax', 'image', 'scroll', 'forest' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }

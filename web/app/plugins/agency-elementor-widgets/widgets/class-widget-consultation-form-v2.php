@@ -1,6 +1,6 @@
 <?php
 /**
- * Consultation Form V2 — Notched brand.
+ * Consultation Form V2 — Acme brand.
  *
  * Self-contained lead-capture banner: a large rounded photo on the left and an
  * overlapping white card on the right holding a heading, subtext and a WORKING
@@ -10,7 +10,7 @@
  * Submission is handled by this plugin (no Elementor Pro Form needed): the form
  * posts to admin-ajax (`aew_consultation_submit`), which validates, emails the
  * lead to a configurable address, and stores it in the `notched_leads` table.
- * Review leads under wp-admin → Notched Leads. See includes/class-lead-store.php.
+ * Review leads under wp-admin → Acme Leads. See includes/class-lead-store.php.
  *
  * @package Agency_Elementor_Widgets
  */
@@ -28,10 +28,10 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'consultation-form-v2';
 
 	public function get_name(): string      { return 'agency-consultation-form-v2'; }
-	public function get_title(): string     { return esc_html__( 'Consultation Form V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Consultation Form V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-form-horizontal'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'form', 'consultation', 'contact', 'lead', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'form', 'consultation', 'contact', 'lead' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }
@@ -89,7 +89,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'photo_alt', [
 			'label'     => 'Alt text',
 			'type'      => Controls_Manager::TEXT,
-			'default'   => 'A custom Notched backyard pergola and seating area',
+			'default'   => 'A custom Acme backyard pergola and seating area',
 			'condition' => [ 'show_photo' => 'yes' ],
 		] );
 
@@ -133,8 +133,8 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 			'type'        => Controls_Manager::TEXT,
 			'input_type'  => 'email',
 			'default'     => '',
-			'placeholder' => 'sales@notched.com',
-			'description' => 'Leave blank to only store leads in wp-admin → Notched Leads (no email sent).',
+			'placeholder' => 'sales@acme.com',
+			'description' => 'Leave blank to only store leads in wp-admin → Acme Leads (no email sent).',
 		] );
 
 		// Field labels (editable).
@@ -147,7 +147,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 		$this->add_control( 'consent_text', [
 			'label'   => 'Consent text',
 			'type'    => Controls_Manager::TEXT,
-			'default' => 'I agree to be contacted by a notched expert!',
+			'default' => 'I agree to be contacted by an Acme expert!',
 		] );
 
 		$this->add_control( 'button_text', [
@@ -332,7 +332,7 @@ class Widget_Consultation_Form_V2 extends Widget_Base {
 
 		$notify_email = sanitize_email( (string) ( $s['notify_email'] ?? '' ) );
 		$button_text  = (string) ( $s['button_text'] ?? 'Get Your Free Consultation' );
-		$consent_text = (string) ( $s['consent_text'] ?? 'I agree to be contacted by a notched expert!' );
+		$consent_text = (string) ( $s['consent_text'] ?? 'I agree to be contacted by an Acme expert!' );
 
 		$uid = 'aew-cfv2-' . $this->get_id();
 

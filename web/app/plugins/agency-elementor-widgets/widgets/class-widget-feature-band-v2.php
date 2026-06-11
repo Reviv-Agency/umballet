@@ -1,6 +1,6 @@
 <?php
 /**
- * Feature Band V2 — Notched brand.
+ * Feature Band V2 — Acme brand.
  *
  * A FULL-BLEED background-image band (edge to edge, NOT capped at the 1440
  * content rail) with a content BOX overlaying it plus an optional tall side
@@ -31,10 +31,10 @@ class Widget_Feature_Band_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'feature-band-v2';
 
 	public function get_name(): string      { return 'agency-feature-band-v2'; }
-	public function get_title(): string     { return esc_html__( 'Feature Band V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Feature Band V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-image-box'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'feature', 'band', 'steps', 'process', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'feature', 'band', 'steps', 'process' ]; }
 
 	public function get_style_depends(): array { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }

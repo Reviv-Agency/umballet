@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer V2 — Notched brand.
+ * Footer V2 — Acme brand.
  *
  * Matches Wix original: forest hero band, dark green body with
  * logo + MENU + QUICK LINKS + ADDRESS/CONTACT columns, bottom bar
@@ -23,10 +23,10 @@ class Widget_Footer_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'footer-v2';
 
 	public function get_name(): string      { return 'agency-footer-v2'; }
-	public function get_title(): string     { return esc_html__( 'Footer V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Footer V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-footer'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'footer', 'notched', 'menu', 'contact' ]; }
+	public function get_keywords(): array   { return [ 'footer', 'menu', 'contact' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }
@@ -195,7 +195,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'email_address', [
 			'label'   => 'Email',
 			'type'    => Controls_Manager::TEXT,
-			'default' => 'hello@notched.com',
+			'default' => 'hello@acme.com',
 		] );
 		$this->end_controls_section();
 	}
@@ -205,7 +205,7 @@ class Widget_Footer_V2 extends Widget_Base {
 		$this->add_control( 'copyright', [
 			'label'   => 'Copyright text',
 			'type'    => Controls_Manager::TEXT,
-			'default' => '© ' . gmdate( 'Y' ) . ' Notched Timber. All rights reserved.',
+			'default' => '© ' . gmdate( 'Y' ) . ' Acme Timber. All rights reserved.',
 		] );
 		$rep = new Repeater();
 		$rep->add_control( 'label', [ 'label' => 'Label', 'type' => Controls_Manager::TEXT, 'default' => 'Link' ] );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Archive V2 — Notched blog index ("All Posts").
+ * Post Archive V2 — Acme blog index ("All Posts").
  *
  * Renders a vertical list of blog cards (image left, copy right) with date +
  * read-time, title, excerpt, and a like / view / comment stat row plus a 3-dot
@@ -26,10 +26,10 @@ class Widget_Post_Archive_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'post-archive-v2';
 
 	public function get_name(): string      { return 'agency-post-archive-v2'; }
-	public function get_title(): string     { return esc_html__( 'Post Archive V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Post Archive V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-posts-grid'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'posts', 'blog', 'archive', 'all posts', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'posts', 'blog', 'archive', 'all posts' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Header V2 — Notched brand.
+ * Header V2 — Acme brand.
  *
  * Right-side layout (matches Wix original):
  *   Account icon | Cart icon (live count) | Phone | SHOP KITS (arrow) | Hamburger
@@ -29,7 +29,7 @@ class Widget_Header_V2 extends Widget_Base
 	}
 	public function get_title(): string
 	{
-		return esc_html__('Header V2 (Notched)', 'agency-elementor-widgets');
+		return esc_html__('Header V2', 'agency-elementor-widgets');
 	}
 	public function get_icon(): string
 	{
@@ -41,7 +41,7 @@ class Widget_Header_V2 extends Widget_Base
 	}
 	public function get_keywords(): array
 	{
-		return ['header', 'navigation', 'menu', 'logo', 'notched'];
+		return ['header', 'navigation', 'menu', 'logo'];
 	}
 
 	public function get_style_depends(): array

@@ -5,16 +5,16 @@
 
 /* ── Brand tokens (scoped) — source of truth: design-system.md ───────────── */
 .aew-crgn {
-  --notched-cards:             #FFFFFF;
-  --notched-background:        #F1EADF;
-  --notched-lines:             #BFC0BF;
-  --notched-misc-accent:       #3B413F;
-  --notched-secondary-cards:   #7D958D;
-  --notched-secondary-bg:      #876137;
-  --notched-secondary-accent:  #3E382F;
-  --notched-text:              #1B150E;
-  --notched-cta:               #632B3A;
-  --notched-cta-hover:         #89505F;
+  --aew-cards:             #FFFFFF;
+  --aew-background:        #F1EADF;
+  --aew-lines:             #BFC0BF;
+  --aew-misc-accent:       #3B413F;
+  --aew-secondary-cards:   #7D958D;
+  --aew-secondary-bg:      #876137;
+  --aew-secondary-accent:  #3E382F;
+  --aew-text:              #1B150E;
+  --aew-cta:               #632B3A;
+  --aew-cta-hover:         #89505F;
 }
 
 /* Strip Elementor's column / container padding so the section is full-bleed. */
@@ -31,7 +31,7 @@
 
 /* ── Outer block ─────────────────────────────────────────────────────────── */
 .aew-crgn {
-  background: var(--aew-crgn-section-bg, var(--notched-secondary-bg));
+  background: var(--aew-crgn-section-bg, var(--aew-secondary-bg));
   width: 100%;
   position: relative;
 }
@@ -69,7 +69,7 @@
   line-height: 85%;
   text-transform: uppercase;
   text-align: left;
-  color: var(--aew-crgn-heading, var(--notched-secondary-cards));
+  color: var(--aew-crgn-heading, var(--aew-secondary-cards));
 }
 
 .aew-crgn__intro {
@@ -80,7 +80,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 140%;
-  color: var(--aew-crgn-intro, var(--notched-cards));
+  color: var(--aew-crgn-intro, var(--aew-cards));
 }
 
 /* Stacked variant centers both. */
@@ -101,7 +101,7 @@
 
 /* ── Box — text lives INSIDE here ────────────────────────────────────────── */
 .aew-crgn__box {
-  background: var(--aew-crgn-box-bg, var(--notched-secondary-cards));
+  background: var(--aew-crgn-box-bg, var(--aew-secondary-cards));
   border-radius: 24px;
   min-height: 220px;
   padding: 40px;
@@ -119,7 +119,7 @@
   font-size: 40px;
   line-height: 85%;
   text-transform: uppercase;
-  color: var(--aew-crgn-name, var(--notched-cards));
+  color: var(--aew-crgn-name, var(--aew-cards));
 }
 
 .aew-crgn__line {
@@ -128,7 +128,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
-  color: var(--aew-crgn-line, var(--notched-cta));
+  color: var(--aew-crgn-line, var(--aew-cta));
 }
 
 .aew-crgn__link {
@@ -140,7 +140,7 @@
 
 .aew-crgn__link:hover,
 .aew-crgn__link:focus-visible {
-  color: var(--aew-crgn-line-hover, var(--notched-cta-hover));
+  color: var(--aew-crgn-line-hover, var(--aew-cta-hover));
 }
 
 /* ── Tablet: header stacks (heading above intro, left-aligned) ───────────── */

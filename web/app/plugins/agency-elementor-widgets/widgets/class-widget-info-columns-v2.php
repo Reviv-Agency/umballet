@@ -37,7 +37,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 	 * @return string
 	 */
 	public function get_title(): string {
-		return esc_html__( 'Info Columns V2 (Notched)', 'agency-elementor-widgets' );
+		return esc_html__( 'Info Columns V2', 'agency-elementor-widgets' );
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 	 * @return array<int, string>
 	 */
 	public function get_keywords(): array {
-		return [ 'columns', 'info', 'feature', 'notched' ];
+		return [ 'columns', 'info', 'feature' ];
 	}
 
 	/**
@@ -97,7 +97,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 		return [
 			[
 				'image' => [ 'url' => '' ],
-				'title' => esc_html__( 'Notched Kits', 'agency-elementor-widgets' ),
+				'title' => esc_html__( 'Acme Kits', 'agency-elementor-widgets' ),
 				'text'  => esc_html__( 'Pre-cut, pre-drilled timber frame kits engineered to fit together precisely — no guesswork, no specialty tools.', 'agency-elementor-widgets' ),
 			],
 			[
@@ -172,7 +172,7 @@ class Widget_Info_Columns_V2 extends Widget_Base {
 			[
 				'label'   => esc_html__( 'Title', 'agency-elementor-widgets' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Notched Kits', 'agency-elementor-widgets' ),
+				'default' => esc_html__( 'Acme Kits', 'agency-elementor-widgets' ),
 			]
 		);
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Recent Posts V2 — Notched ("Recent Posts" / related posts row).
+ * Recent Posts V2 — Acme ("Recent Posts" / related posts row).
  *
  * A "Recent Posts  ·  See All" header above a compact grid of post cards
  * (image on top, title + views/comments/like beneath). On a single post it
@@ -26,10 +26,10 @@ class Widget_Recent_Posts_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'recent-posts-v2';
 
 	public function get_name(): string      { return 'agency-recent-posts-v2'; }
-	public function get_title(): string     { return esc_html__( 'Recent Posts V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Recent Posts V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-posts-grid'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'recent', 'related', 'posts', 'blog', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'recent', 'related', 'posts', 'blog' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ Widget_Assets::handle( self::ASSET_SLUG ) ]; }

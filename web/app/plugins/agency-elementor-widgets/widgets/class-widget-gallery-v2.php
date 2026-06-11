@@ -38,7 +38,7 @@ class Widget_Gallery_V2 extends Widget_Base {
 	 * @return string
 	 */
 	public function get_title(): string {
-		return esc_html__( 'Gallery V2 (Notched)', 'agency-elementor-widgets' );
+		return esc_html__( 'Gallery V2', 'agency-elementor-widgets' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class Widget_Gallery_V2 extends Widget_Base {
 	 * @return array<int, string>
 	 */
 	public function get_keywords(): array {
-		return [ 'gallery', 'grid', 'images', 'infinite scroll', 'notched' ];
+		return [ 'gallery', 'grid', 'images', 'infinite scroll' ];
 	}
 
 	/**

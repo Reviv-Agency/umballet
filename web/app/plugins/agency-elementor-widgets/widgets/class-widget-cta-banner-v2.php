@@ -1,6 +1,6 @@
 <?php
 /**
- * CTA Banner V2 — Notched brand.
+ * CTA Banner V2 — Acme brand.
  *
  * A centered call-to-action banner inside a large rounded card sitting on the
  * light page background: eyebrow + Teko headline + description + single CTA
@@ -27,10 +27,10 @@ class Widget_Cta_Banner_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'cta-banner-v2';
 
 	public function get_name(): string      { return 'agency-cta-banner-v2'; }
-	public function get_title(): string     { return esc_html__( 'CTA Banner V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'CTA Banner V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-call-to-action'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'cta', 'banner', 'call to action', 'notched', 'consultation' ]; }
+	public function get_keywords(): array   { return [ 'cta', 'banner', 'call to action', 'consultation' ]; }
 
 	public function get_style_depends(): array { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 

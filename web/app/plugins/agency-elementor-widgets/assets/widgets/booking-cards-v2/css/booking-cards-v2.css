@@ -1,21 +1,21 @@
 /* ============================================================================
  * Booking Cards V2 — clean consultation cards (icon + copy + duration + CTA).
  * No background image (unlike Region Cards V2). Flat cards on the section BG,
- * matching notched.com/book-online. Desktop-first; step down at 1024 / 768.
+ * matching acme.com/book-online. Desktop-first; step down at 1024 / 768.
  * ========================================================================== */
 
 /* ── Brand tokens (scoped) — source of truth: design-system.md ───────────── */
 .aew-bkcv2 {
-  --notched-cards:             #FFFFFF;
-  --notched-background:        #F1EADF;
-  --notched-lines:             #BFC0BF;
-  --notched-misc-accent:       #3B413F;
-  --notched-secondary-cards:   #7D958D;
-  --notched-secondary-bg:      #876137;
-  --notched-secondary-accent:  #3E382F;
-  --notched-text:              #1B150E;
-  --notched-cta:               #632B3A;
-  --notched-cta-hover:         #89505F;
+  --aew-cards:             #FFFFFF;
+  --aew-background:        #F1EADF;
+  --aew-lines:             #BFC0BF;
+  --aew-misc-accent:       #3B413F;
+  --aew-secondary-cards:   #7D958D;
+  --aew-secondary-bg:      #876137;
+  --aew-secondary-accent:  #3E382F;
+  --aew-text:              #1B150E;
+  --aew-cta:               #632B3A;
+  --aew-cta-hover:         #89505F;
 }
 
 /* Strip Elementor's column / container padding so the section is full-bleed. */
@@ -35,7 +35,7 @@
    gutter sits on the OUTER block so above ~1520 it becomes empty centring
    margin (content stays a true 1440), and below it the gutter shows. */
 .aew-bkcv2 {
-  background: var(--aew-bkcv2-section-bg, var(--notched-background));
+  background: var(--aew-bkcv2-section-bg, var(--aew-background));
   width: 100%;
   position: relative;
   padding-left: 40px;
@@ -61,8 +61,8 @@
 /* ── Card ────────────────────────────────────────────────────────────────── */
 .aew-bkcv2__card {
   --aew-bkcv2-align: center;          /* left | center | right (text-align driven) */
-  background: var(--aew-bkcv2-card-bg, var(--notched-cards));
-  border: 1px solid var(--aew-bkcv2-border, var(--notched-lines));
+  background: var(--aew-bkcv2-card-bg, var(--aew-cards));
+  border: 1px solid var(--aew-bkcv2-border, var(--aew-lines));
   border-radius: 24px;
   padding: 40px 32px;
   display: flex;
@@ -97,7 +97,7 @@
   font-size: 40px;
   line-height: 85%;
   text-transform: uppercase;
-  color: var(--aew-bkcv2-heading, var(--notched-secondary-bg));
+  color: var(--aew-bkcv2-heading, var(--aew-secondary-bg));
 }
 
 .aew-bkcv2__text {
@@ -106,7 +106,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 140%;
-  color: var(--aew-bkcv2-text, var(--notched-text));
+  color: var(--aew-bkcv2-text, var(--aew-text));
 }
 
 /* ── Footer: divider + duration + button ─────────────────────────────────── */
@@ -114,7 +114,7 @@
   margin-top: 24px;
   padding-top: 20px;
   width: 100%;
-  border-top: 1px solid var(--aew-bkcv2-divider, var(--notched-lines));
+  border-top: 1px solid var(--aew-bkcv2-divider, var(--aew-lines));
 }
 
 .aew-bkcv2__duration {
@@ -123,7 +123,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 140%;
-  color: var(--aew-bkcv2-duration, var(--notched-misc-accent));
+  color: var(--aew-bkcv2-duration, var(--aew-misc-accent));
 }
 
 /* ── Button — design-system button spec ──────────────────────────────────── */
@@ -140,14 +140,14 @@
   letter-spacing: 0.02em;
   padding: 20px 24px 16px;
   border-radius: 8px;
-  background-color: var(--aew-bkcv2-btn-bg, var(--notched-cta));
+  background-color: var(--aew-bkcv2-btn-bg, var(--aew-cta));
   color: var(--aew-bkcv2-btn-text, #FFFFFF);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .aew-bkcv2__btn:hover,
 .aew-bkcv2__btn:focus-visible {
-  background-color: var(--aew-bkcv2-btn-bg-hover, var(--notched-cta-hover));
+  background-color: var(--aew-bkcv2-btn-bg-hover, var(--aew-cta-hover));
   color: var(--aew-bkcv2-btn-text-hover, var(--aew-bkcv2-btn-text, #FFFFFF));
 }
 

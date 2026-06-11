@@ -1,6 +1,6 @@
 <?php
 /**
- * Comments V2 — Notched.
+ * Comments V2 — Acme.
  *
  * Renders the native WordPress comment list + form for the current post,
  * brand-styled, inside a card. Uses wp_list_comments() + comment_form() so
@@ -26,10 +26,10 @@ class Widget_Comments_V2 extends Widget_Base {
 	private const ASSET_SLUG = 'comments-v2';
 
 	public function get_name(): string      { return 'agency-comments-v2'; }
-	public function get_title(): string     { return esc_html__( 'Comments V2 (Notched)', 'agency-elementor-widgets' ); }
+	public function get_title(): string     { return esc_html__( 'Comments V2', 'agency-elementor-widgets' ); }
 	public function get_icon(): string      { return 'eicon-comments'; }
 	public function get_categories(): array { return [ 'agency-widgets' ]; }
-	public function get_keywords(): array   { return [ 'comments', 'discussion', 'blog', 'notched' ]; }
+	public function get_keywords(): array   { return [ 'comments', 'discussion', 'blog' ]; }
 
 	public function get_style_depends(): array  { return [ 'aew-tokens', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
 	public function get_script_depends(): array { return [ 'comment-reply', Widget_Assets::handle( self::ASSET_SLUG ) ]; }
