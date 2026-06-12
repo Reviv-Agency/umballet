@@ -95,6 +95,7 @@ final class Widgets_Loader {
 		require_once AEW_PLUGIN_DIR . 'widgets/class-widget-show-cards-v2.php';
 		require_once AEW_PLUGIN_DIR . 'widgets/class-widget-founder-quote-v2.php';
 		require_once AEW_PLUGIN_DIR . 'widgets/class-widget-footer-v3.php';
+		require_once AEW_PLUGIN_DIR . 'widgets/class-widget-image-hero-v2.php';
 		$widgets_manager->register( new Widget_Header() );
 		$widgets_manager->register( new Widget_Header_V2() );
 		$widgets_manager->register( new Widget_Hero() );
@@ -146,5 +147,6 @@ final class Widgets_Loader {
 		$widgets_manager->register( new Widget_Show_Cards_V2() );
 		$widgets_manager->register( new Widget_Founder_Quote_V2() );
 		$widgets_manager->register( new Widget_Footer_V3() );
+		$widgets_manager->register( new Widget_Image_Hero_V2() );
 	}
 }

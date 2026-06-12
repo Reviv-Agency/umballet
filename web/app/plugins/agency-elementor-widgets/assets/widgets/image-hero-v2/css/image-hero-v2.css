@@ -1,0 +1,112 @@
+/**
+ * Image Hero V2
+ * Background image + a single heading that can be pinned to any corner/edge/
+ * centre via the flex alignment on .aew-imhv2__content.
+ */
+
+/* Strip Elementor container padding + force full-bleed. */
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-image-hero-v2),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-image-hero-v2),
+.e-con:has(.elementor-widget-agency-image-hero-v2) {
+  --padding-top: 0px;
+  --padding-right: 0px;
+  --padding-bottom: 0px;
+  --padding-left: 0px;
+  padding: 0 !important;
+}
+
+.elementor-section:has(.elementor-widget-agency-image-hero-v2),
+.elementor-section:has(.elementor-widget-agency-image-hero-v2) > .elementor-container,
+.e-con:has(.elementor-widget-agency-image-hero-v2) {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* ── Brand tokens (brand-free: aew-* globals, neutral placeholders) ───────── */
+.aew-imhv2 {
+  --aew-cards:      var(--e-global-color-aew-cards, #ffffff);
+  --aew-text:       var(--e-global-color-aew-text, #1a1a1a);
+  --aew-secondary-bg: var(--e-global-color-aew-secondary-bg, #333333);
+}
+
+/* ── Outer block ─────────────────────────────────────────────────────────── */
+.aew-imhv2 {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.aew-imhv2 *,
+.aew-imhv2 *::before,
+.aew-imhv2 *::after {
+  box-sizing: border-box;
+}
+
+/* ── Image layer (background-image for reliable focal cover) ──────────────── */
+.aew-imhv2__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--aew-imhv2-bg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* ── Optional dark overlay ───────────────────────────────────────────────── */
+.aew-imhv2__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--aew-imhv2-overlay, rgba(0, 0, 0, 1));
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ── Content layer (flex positions the heading into a corner/edge) ───────── */
+.aew-imhv2__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  /* defaults: bottom-left (overridden by the v_align / h_align controls) */
+  align-items: flex-start;
+  justify-content: flex-end;
+  text-align: left;
+  padding: 48px;
+}
+
+/* ── Heading ─────────────────────────────────────────────────────────────── */
+/* Wrapper-class prefix → (0,2,0) beats the kit's h1..h6 colour rule (0,1,1). */
+.aew-imhv2 .aew-imhv2__heading {
+  margin: 0;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 85%;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--aew-imhv2-heading, var(--aew-cards));
+}
+
+.aew-imhv2__heading-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Tablet / mobile ─────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .aew-imhv2 { height: 520px; }
+  .aew-imhv2 .aew-imhv2__heading { font-size: 64px; }
+}
+
+@media (max-width: 768px) {
+  .aew-imhv2 { height: 420px; }
+  .aew-imhv2__media { background-image: var(--aew-imhv2-bg-m, var(--aew-imhv2-bg)); }
+  .aew-imhv2__content { padding: 24px; }
+  .aew-imhv2 .aew-imhv2__heading { font-size: 48px; }
+}

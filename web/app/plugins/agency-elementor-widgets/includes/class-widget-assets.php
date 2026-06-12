@@ -459,6 +459,14 @@ final class Widget_Assets {
 				'style_deps' => [ 'aew-tokens' ],
 			]
 		);
+
+		self::register_widget(
+			'image-hero-v2',
+			[
+				'style'      => 'css/image-hero-v2.css',
+				'style_deps' => [ 'aew-tokens' ],
+			]
+		);
 	}
 
 	/**
