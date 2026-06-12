@@ -128,7 +128,20 @@ class Widget_Footer_V3 extends Widget_Base {
 		$this->add_control( 'contact_phone', [ 'label' => esc_html__( 'Phone', 'agency-elementor-widgets' ), 'type' => Controls_Manager::TEXT, 'default' => '', 'condition' => [ 'show_contact' => 'yes' ] ] );
 
 		$srep = new Repeater();
-		$srep->add_control( 'icon', [ 'label' => esc_html__( 'Icon', 'agency-elementor-widgets' ), 'type' => Controls_Manager::MEDIA ] );
+		$srep->add_control( 'platform', [
+			'label'   => esc_html__( 'Icon', 'agency-elementor-widgets' ),
+			'type'    => Controls_Manager::SELECT,
+			'default' => 'instagram',
+			'options' => [
+				'instagram' => 'Instagram',
+				'facebook'  => 'Facebook',
+				'tiktok'    => 'TikTok',
+				'youtube'   => 'YouTube',
+				'x'         => 'X / Twitter',
+			],
+			'description' => esc_html__( 'Built-in glyph — recolourable below. Or override with a custom image.', 'agency-elementor-widgets' ),
+		] );
+		$srep->add_control( 'icon', [ 'label' => esc_html__( 'Custom icon (optional)', 'agency-elementor-widgets' ), 'type' => Controls_Manager::MEDIA, 'description' => esc_html__( 'A raster image here can\'t be recoloured.', 'agency-elementor-widgets' ) ] );
 		$srep->add_control( 'link', [ 'label' => esc_html__( 'Link', 'agency-elementor-widgets' ), 'type' => Controls_Manager::URL ] );
 		$srep->add_control( 'label', [ 'label' => esc_html__( 'Aria label', 'agency-elementor-widgets' ), 'type' => Controls_Manager::TEXT, 'default' => 'Social' ] );
 		$this->add_control( 'social', [ 'label' => esc_html__( 'Social icons', 'agency-elementor-widgets' ), 'type' => Controls_Manager::REPEATER, 'fields' => $srep->get_controls(), 'default' => [], 'title_field' => '{{{ label }}}', 'condition' => [ 'show_contact' => 'yes' ] ] );
@@ -212,6 +225,8 @@ class Widget_Footer_V3 extends Widget_Base {
 	private function style_contact(): void {
 		$this->start_controls_section( 'ss_contact', [ 'label' => esc_html__( 'Contact / social', 'agency-elementor-widgets' ), 'tab' => Controls_Manager::TAB_STYLE ] );
 		$this->add_control( 'icon_color', [ 'label' => esc_html__( 'Contact icon color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => [ '{{WRAPPER}}' => '--aew-ftv3-icon: {{VALUE}};' ] ] );
+		$this->add_control( 'social_color', [ 'label' => esc_html__( 'Social icon color', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR, 'default' => '', 'separator' => 'before', 'selectors' => [ '{{WRAPPER}}' => '--aew-ftv3-social: {{VALUE}};' ] ] );
+		$this->add_control( 'social_bg', [ 'label' => esc_html__( 'Social badge background', 'agency-elementor-widgets' ), 'type' => Controls_Manager::COLOR, 'default' => '', 'description' => esc_html__( 'Leave empty for plain glyphs; set a colour for circular badges.', 'agency-elementor-widgets' ), 'selectors' => [ '{{WRAPPER}}' => '--aew-ftv3-social-bg: {{VALUE}};' ] ] );
 		$this->add_responsive_control( 'social_size', [ 'label' => esc_html__( 'Social icon size', 'agency-elementor-widgets' ), 'type' => Controls_Manager::SLIDER, 'size_units' => [ 'px' ], 'range' => [ 'px' => [ 'min' => 16, 'max' => 48 ] ], 'default' => [ 'unit' => 'px', 'size' => 28 ], 'selectors' => [ '{{WRAPPER}} .aew-ftv3__social-link' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};' ] ] );
 		$this->end_controls_section();
 	}
@@ -271,6 +286,24 @@ class Widget_Footer_V3 extends Widget_Base {
 		];
 		$path = $icons[ $name ] ?? '';
 		return '<svg class="aew-ftv3__contact-ic" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">' . $path . '</svg>';
+	}
+
+	/**
+	 * Built-in single-colour social glyph (fill: currentColor → recolourable).
+	 *
+	 * @param string $platform instagram|facebook|tiktok|youtube|x.
+	 * @return string SVG markup.
+	 */
+	private function social_svg( string $platform ): string {
+		$icons = [
+			'instagram' => '<path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.6 9.5 2.6 9.9 2.6 12s0 2.5.1 3.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-3.7s0-2.5-.1-3.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4zm0 3.1A4.9 4.9 0 1 1 12 17a4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3z"/>',
+			'facebook'  => '<path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/>',
+			'tiktok'    => '<path d="M16.6 5.8a4.8 4.8 0 0 1-1-.1V15a4.6 4.6 0 1 1-4.6-4.6c.2 0 .4 0 .6.1v2.4a2.2 2.2 0 1 0 1.6 2.1V2h2.3a4.8 4.8 0 0 0 4.1 4.7v2.3a7 7 0 0 1-3-.7v-.1a4.8 4.8 0 0 0-.6-2.4z"/>',
+			'youtube'   => '<path d="M21.6 7.2s-.2-1.4-.8-2c-.7-.8-1.5-.8-1.9-.8C16.2 4.2 12 4.2 12 4.2h0s-4.2 0-6.9.2c-.4 0-1.2 0-1.9.8-.6.6-.8 2-.8 2S2.2 8.8 2.2 10.5v1.3c0 1.6.2 3.3.2 3.3s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.5.1 6.7.2 6.7.2s4.2 0 6.9-.2c.4 0 1.2 0 1.9-.8.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.3c0-1.6-.2-3.4-.2-3.4zM9.9 14.6V8.9l5.5 2.9-5.5 2.8z"/>',
+			'x'         => '<path d="M17.5 3h3l-6.6 7.5L21.8 21h-6l-4.7-6.1L5.7 21h-3l7-8L2.5 3h6.1l4.2 5.6L17.5 3zm-1.1 16h1.7L7.7 4.7H5.9L16.4 19z"/>',
+		];
+		$path = $icons[ $platform ] ?? $icons['instagram'];
+		return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' . $path . '</svg>';
 	}
 
 	/**
@@ -350,13 +383,18 @@ class Widget_Footer_V3 extends Widget_Base {
 						$icon     = $si['icon'] ?? [];
 						$icon_url = is_array( $icon ) ? ( $icon['url'] ?? '' ) : '';
 						$slink    = $this->parse_link( $si['link'] ?? [] );
-						if ( '' === $icon_url || '' === $slink['url'] ) {
+						if ( '' === $slink['url'] ) {
 							continue;
 						}
-						$lbl = trim( (string) ( $si['label'] ?? 'Social' ) );
+						$lbl      = trim( (string) ( $si['label'] ?? 'Social' ) );
+						$platform = (string) ( $si['platform'] ?? 'instagram' );
 						?>
-						<a class="aew-ftv3__social-link" href="<?php echo esc_url( $slink['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $lbl ); ?>">
-							<img src="<?php echo esc_url( $icon_url ); ?>" alt="<?php echo esc_attr( $lbl ); ?>" decoding="async" loading="lazy" />
+						<a class="aew-ftv3__social-link<?php echo '' === $icon_url ? ' aew-ftv3__social-link--glyph' : ''; ?>" href="<?php echo esc_url( $slink['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $lbl ); ?>">
+							<?php if ( '' !== $icon_url ) : ?>
+								<img src="<?php echo esc_url( $icon_url ); ?>" alt="<?php echo esc_attr( $lbl ); ?>" decoding="async" loading="lazy" />
+							<?php else : ?>
+								<?php echo $this->social_svg( $platform ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php endif; ?>
 						</a>
 					<?php endforeach; ?>
 				</div>
@@ -381,6 +419,8 @@ class Widget_Footer_V3 extends Widget_Base {
 			'link_color'    => '--aew-ftv3-link',
 			'link_hover'    => '--aew-ftv3-link-hover',
 			'icon_color'    => '--aew-ftv3-icon',
+			'social_color'  => '--aew-ftv3-social',
+			'social_bg'     => '--aew-ftv3-social-bg',
 		] );
 		if ( '' !== $color_vars ) {
 			$this->add_render_attribute( 'wrapper', 'style', $color_vars );

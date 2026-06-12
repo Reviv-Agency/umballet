@@ -173,11 +173,16 @@ a.aew-ftv3__link:focus-visible {
 
 .aew-ftv3__social-link {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 28px;
   height: 28px;
   border-radius: 50%;
   overflow: hidden;
-  transition: opacity 0.18s ease;
+  /* Recolourable glyph: text colour drives the SVG fill (currentColor). */
+  color: var(--aew-ftv3-social, var(--aew-ftv3-heading, var(--aew-cards)));
+  background: var(--aew-ftv3-social-bg, transparent);
+  transition: opacity 0.18s ease, color 0.18s ease, background-color 0.18s ease;
 }
 
 .aew-ftv3__social-link:hover,
@@ -190,6 +195,18 @@ a.aew-ftv3__link:focus-visible {
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* Inline glyph variant — leaves padding so a badge background reads as a circle. */
+.aew-ftv3__social-link--glyph {
+  padding: 4px;
+}
+
+.aew-ftv3__social-link svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: currentColor;
 }
 
 /* ── Tablet ──────────────────────────────────────────────────────────────── */
