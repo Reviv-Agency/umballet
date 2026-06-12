@@ -18,7 +18,9 @@
 
 .elementor-section:has(.elementor-widget-agency-image-hero-v2),
 .elementor-section:has(.elementor-widget-agency-image-hero-v2) > .elementor-container,
-.e-con:has(.elementor-widget-agency-image-hero-v2) {
+.e-con:has(.elementor-widget-agency-image-hero-v2),
+.e-con:has(.elementor-widget-agency-image-hero-v2) > .e-con-inner,
+.elementor-widget-agency-image-hero-v2 {
   max-width: 100% !important;
   width: 100% !important;
 }
@@ -77,7 +79,13 @@
   align-items: flex-start;
   justify-content: flex-end;
   text-align: left;
-  padding: 48px;
+  padding: var(--aew-imhv2-pad, 48px);
+}
+
+/* Top placements: clear the fixed site header so the heading isn't hidden
+   behind it (header ≈ 64px + breathing room). */
+.aew-imhv2--v-top .aew-imhv2__content {
+  padding-top: calc(var(--aew-imhv2-pad, 48px) + 72px);
 }
 
 /* ── Heading ─────────────────────────────────────────────────────────────── */
@@ -107,6 +115,5 @@
 @media (max-width: 768px) {
   .aew-imhv2 { height: 420px; }
   .aew-imhv2__media { background-image: var(--aew-imhv2-bg-m, var(--aew-imhv2-bg)); }
-  .aew-imhv2__content { padding: 24px; }
   .aew-imhv2 .aew-imhv2__heading { font-size: 48px; }
 }

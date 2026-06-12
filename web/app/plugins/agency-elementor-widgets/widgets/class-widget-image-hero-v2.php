@@ -128,7 +128,7 @@ class Widget_Image_Hero_V2 extends Widget_Base {
 				'center' => [ 'title' => esc_html__( 'Center', 'agency-elementor-widgets' ), 'icon' => 'eicon-text-align-center' ],
 				'right'  => [ 'title' => esc_html__( 'Right', 'agency-elementor-widgets' ), 'icon' => 'eicon-text-align-right' ],
 			],
-			'selectors'            => [ '{{WRAPPER}} .aew-imhv2__content' => 'justify-content: {{VALUE}}; text-align: {{TA}};' ],
+			'selectors'            => [ '{{WRAPPER}} .aew-imhv2__content' => 'justify-content: {{VALUE}};' ],
 			'selectors_dictionary' => [
 				'left'   => 'flex-start; text-align: left',
 				'center' => 'center; text-align: center',
@@ -159,7 +159,7 @@ class Widget_Image_Hero_V2 extends Widget_Base {
 			'range'          => [ 'px' => [ 'min' => 0, 'max' => 160 ] ],
 			'default'        => [ 'unit' => 'px', 'size' => 48 ],
 			'mobile_default' => [ 'unit' => 'px', 'size' => 24 ],
-			'selectors'      => [ '{{WRAPPER}} .aew-imhv2__content' => 'padding: {{SIZE}}{{UNIT}};' ],
+			'selectors'      => [ '{{WRAPPER}} .aew-imhv2__content' => '--aew-imhv2-pad: {{SIZE}}{{UNIT}};' ],
 		] );
 
 		$this->add_responsive_control( 'radius', [
@@ -243,7 +243,9 @@ class Widget_Image_Hero_V2 extends Widget_Base {
 		$tag        = in_array( $tag, [ 'h1', 'h2', 'h3' ], true ) ? $tag : 'h1';
 		$link       = $this->parse_link( $s['heading_link'] ?? [] );
 
-		$this->add_render_attribute( 'wrapper', 'class', 'aew-imhv2' );
+		$v_align = (string) ( $s['v_align'] ?? 'bottom' );
+		$v_align = in_array( $v_align, [ 'top', 'middle', 'bottom' ], true ) ? $v_align : 'bottom';
+		$this->add_render_attribute( 'wrapper', 'class', [ 'aew-imhv2', 'aew-imhv2--v-' . $v_align ] );
 		$this->add_render_attribute( 'wrapper', 'data-aew-image-hero-v2', '' );
 
 		$color_vars = Color_Vars::build( $this, $s, [
