@@ -569,7 +569,7 @@ body.admin-bar .aew-hv2.is-tickets-open .aew-hv2__tickets-overlay {
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--aew-background);
+  color: var(--aew-hv2-drawer-label, var(--aew-background));
 }
 
 .aew-hv2__tickets-nav {
@@ -594,14 +594,14 @@ body.admin-bar .aew-hv2.is-tickets-open .aew-hv2__tickets-overlay {
   font-size: 1.5rem;
   line-height: 1.05;
   letter-spacing: 0.03em;
-  color: color-mix(in srgb, var(--aew-background) 68%, transparent);
+  color: var(--aew-hv2-drawer-label, var(--aew-background));
   transition: color 0.18s ease;
   white-space: nowrap;
 }
 
 .aew-hv2__tickets-item > a:hover,
 .aew-hv2__tickets-item > a:focus-visible {
-  color: var(--aew-background);
+  color: var(--aew-hv2-drawer-label-hover, var(--aew-hv2-drawer-label, var(--aew-background)));
 }
 
 .aew-hv2__tickets-chevron {
@@ -616,7 +616,7 @@ body.admin-bar .aew-hv2.is-tickets-open .aew-hv2__tickets-overlay {
   list-style: none;
   height: 1px;
   margin: 14px 24px;
-  background: color-mix(in srgb, var(--aew-background) 28%, transparent);
+  background: color-mix(in srgb, var(--aew-hv2-drawer-label, var(--aew-background)) 24%, transparent);
 }
 
 /* The tickets drawer pads its social row inline with the list. */
