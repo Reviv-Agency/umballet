@@ -488,8 +488,15 @@ body.admin-bar .aew-hv2.is-open .aew-hv2__overlay {
   flex-shrink: 0;
   transition: opacity 0.18s ease;
 }
-.aew-hv2__drawer-close:hover {
+/* Keep the × the label colour on hover — a kit/theme `button:hover` rule
+   otherwise flips it to white (invisible on a light drawer). */
+.aew-hv2 .aew-hv2__drawer-close:hover {
+  color: var(--aew-hv2-drawer-label, var(--aew-background)) !important;
   opacity: 0.5;
+}
+.aew-hv2 .aew-hv2__drawer-close:hover svg,
+.aew-hv2 .aew-hv2__drawer-close:hover path {
+  fill: var(--aew-hv2-drawer-label, var(--aew-background)) !important;
 }
 
 /* ── Drawer accordion nav ────────────────────────────────────────────────── */

@@ -130,6 +130,7 @@ class Widget_Header_V2 extends Widget_Base
 		$this->add_control('show_cta_arrow', ['label' => 'Show arrow icon', 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'condition' => ['show_cta' => 'yes']]);
 		$this->add_control('cta_outline',   ['label' => 'Outline style', 'type' => Controls_Manager::SWITCHER, 'default' => '', 'description' => 'Transparent fill + border; reverses on hover.', 'condition' => ['show_cta' => 'yes']]);
 		$this->add_control('cta_opens_tickets', ['label' => 'Opens Tickets drawer (instead of link)', 'type' => Controls_Manager::SWITCHER, 'default' => '', 'condition' => ['show_cta' => 'yes']]);
+		$this->add_control('show_drawer_cta', ['label' => 'Show CTA inside drawer', 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'description' => 'Repeats the CTA in the hamburger drawer top bar.', 'condition' => ['show_cta' => 'yes']]);
 		$this->end_controls_section();
 	}
 
@@ -448,7 +449,7 @@ class Widget_Header_V2 extends Widget_Base
 							</a>
 						<?php endif; ?>
 
-						<?php if ('yes' === ($s['show_cta'] ?? '') && $cta_link['url']) : ?>
+						<?php if ('yes' === ($s['show_cta'] ?? '') && 'yes' === ($s['show_drawer_cta'] ?? 'yes') && $cta_link['url']) : ?>
 							<a class="aew-hv2__drawer-cta"
 								href="<?php echo esc_url($cta_link['url']); ?>">
 								<span><?php echo esc_html($s['cta_text'] ?? 'SHOP KITS'); ?></span>
