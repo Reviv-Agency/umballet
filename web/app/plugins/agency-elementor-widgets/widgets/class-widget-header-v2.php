@@ -79,6 +79,7 @@ class Widget_Header_V2 extends Widget_Base
 		$this->controls_phone();
 		$this->controls_donate();
 		$this->controls_cta();
+		$this->controls_tickets();
 		$this->controls_icons();
 		$this->controls_nav();
 		$this->controls_social();
@@ -127,6 +128,22 @@ class Widget_Header_V2 extends Widget_Base
 		$this->add_control('cta_text',      ['label' => 'Text', 'type' => Controls_Manager::TEXT, 'default' => 'SHOP KITS', 'condition' => ['show_cta' => 'yes']]);
 		$this->add_control('cta_link',      ['label' => 'Link', 'type' => Controls_Manager::URL, 'default' => ['url' => home_url('/shop/')], 'condition' => ['show_cta' => 'yes']]);
 		$this->add_control('show_cta_arrow', ['label' => 'Show arrow icon', 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'condition' => ['show_cta' => 'yes']]);
+		$this->add_control('cta_outline',   ['label' => 'Outline style', 'type' => Controls_Manager::SWITCHER, 'default' => '', 'description' => 'Transparent fill + border; reverses on hover.', 'condition' => ['show_cta' => 'yes']]);
+		$this->add_control('cta_opens_tickets', ['label' => 'Opens Tickets drawer (instead of link)', 'type' => Controls_Manager::SWITCHER, 'default' => '', 'condition' => ['show_cta' => 'yes']]);
+		$this->end_controls_section();
+	}
+
+	private function controls_tickets(): void
+	{
+		// Additive "Tickets" side-drawer opened by the CTA. Default OFF so existing
+		// headers are unaffected. Items can start a new group via "Divider before".
+		$this->start_controls_section('s_tickets', ['label' => 'Tickets drawer', 'condition' => ['cta_opens_tickets' => 'yes']]);
+		$this->add_control('tickets_heading', ['label' => 'Heading', 'type' => Controls_Manager::TEXT, 'default' => 'TICKETS']);
+		$rep = new Repeater();
+		$rep->add_control('label', ['label' => 'Label', 'type' => Controls_Manager::TEXT, 'default' => 'Show']);
+		$rep->add_control('link',  ['label' => 'Link', 'type' => Controls_Manager::URL]);
+		$rep->add_control('divider_before', ['label' => 'Divider before', 'type' => Controls_Manager::SWITCHER, 'default' => '']);
+		$this->add_control('tickets_items', ['label' => 'Items', 'type' => Controls_Manager::REPEATER, 'fields' => $rep->get_controls(), 'title_field' => '{{{ label }}}']);
 		$this->end_controls_section();
 	}
 
@@ -327,11 +344,15 @@ class Widget_Header_V2 extends Widget_Base
 							</a>
 						<?php endif; ?>
 
-						<!-- SHOP KITS CTA -->
-						<?php if ('yes' === ($s['show_cta'] ?? '') && $cta_link['url']) : ?>
-							<a class="aew-hv2__cta"
-								href="<?php echo esc_url($cta_link['url']); ?>"
-								<?php echo $cta_link['target'] ? 'target="' . esc_attr($cta_link['target']) . '"' : ''; ?>>
+						<!-- Primary CTA (link, or button that opens the Tickets drawer) -->
+						<?php
+						$cta_outline  = 'yes' === ($s['cta_outline'] ?? '');
+						$cta_tickets  = 'yes' === ($s['cta_opens_tickets'] ?? '');
+						$cta_classes  = 'aew-hv2__cta' . ($cta_outline ? ' aew-hv2__cta--outline' : '');
+						$cta_show      = 'yes' === ($s['show_cta'] ?? '') && ($cta_tickets || $cta_link['url']);
+						if ($cta_show) :
+							$cta_inner = function () use ($s) {
+								?>
 								<span class="aew-hv2__cta-text"><?php echo esc_html($s['cta_text'] ?? 'SHOP KITS'); ?></span>
 								<?php if ('yes' === ($s['show_cta_arrow'] ?? 'yes')) : ?>
 									<span class="aew-hv2__cta-arrow" aria-hidden="true">
@@ -339,8 +360,23 @@ class Widget_Header_V2 extends Widget_Base
 											<path d="M3 8h10M9 4l4 4-4 4" />
 										</svg>
 									</span>
-								<?php endif; ?>
-							</a>
+								<?php endif;
+							};
+							if ($cta_tickets) : ?>
+								<button type="button" class="<?php echo esc_attr($cta_classes); ?>"
+									data-aew-tickets-toggle
+									aria-expanded="false"
+									aria-haspopup="dialog"
+									aria-controls="aew-hv2-tickets-<?php echo esc_attr($wid); ?>">
+									<?php $cta_inner(); ?>
+								</button>
+							<?php else : ?>
+								<a class="<?php echo esc_attr($cta_classes); ?>"
+									href="<?php echo esc_url($cta_link['url']); ?>"
+									<?php echo $cta_link['target'] ? 'target="' . esc_attr($cta_link['target']) . '"' : ''; ?>>
+									<?php $cta_inner(); ?>
+								</a>
+							<?php endif; ?>
 						<?php endif; ?>
 
 						<!-- Hamburger -->
@@ -486,6 +522,70 @@ class Widget_Header_V2 extends Widget_Base
 
 				</div><!-- /.aew-hv2__drawer -->
 			</div><!-- /.aew-hv2__overlay -->
+
+			<!-- ── Tickets drawer (opened by the CTA) ── -->
+			<?php if ($cta_tickets) :
+				$tickets  = $s['tickets_items'] ?? [];
+				$t_social = ('yes' === ($s['show_social'] ?? '')) ? ($s['social_items'] ?? []) : [];
+			?>
+				<div class="aew-hv2__overlay aew-hv2__tickets-overlay" id="aew-hv2-tickets-<?php echo esc_attr($wid); ?>" hidden>
+					<div class="aew-hv2__drawer aew-hv2__tickets-drawer" role="dialog" aria-modal="true"
+						aria-label="<?php esc_attr_e('Tickets', 'agency-elementor-widgets'); ?>">
+
+						<div class="aew-hv2__tickets-head">
+							<span class="aew-hv2__tickets-title"><?php echo esc_html($s['tickets_heading'] ?? 'TICKETS'); ?></span>
+							<button type="button" class="aew-hv2__drawer-close aew-hv2__tickets-close"
+								aria-label="<?php esc_attr_e('Close', 'agency-elementor-widgets'); ?>">
+								<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" aria-hidden="true">
+									<path d="M171.3 158.4L113 100l58.4-58.4c3.6-3.6 3.6-9.4 0-13s-9.4-3.6-13 0L100 87 41.6 28.7c-3.6-3.6-9.4-3.6-13 0s-3.6 9.4 0 13L87 100l-58.4 58.4c-3.6 3.6-3.6 9.4 0 13s9.4 3.6 13 0L100 113l58.4 58.4c3.6 3.6 9.4 3.6 13 0s3.5-9.5-.1-13z" />
+								</svg>
+							</button>
+						</div>
+
+						<?php if (is_array($tickets) && ! empty($tickets)) : ?>
+							<nav class="aew-hv2__tickets-nav" aria-label="<?php esc_attr_e('Tickets', 'agency-elementor-widgets'); ?>">
+								<ul class="aew-hv2__tickets-list">
+									<?php foreach ($tickets as $ti) :
+										$tl = $this->parse_link($ti['link'] ?? []);
+										if ('' === $tl['url']) continue;
+									?>
+										<?php if ('yes' === ($ti['divider_before'] ?? '')) : ?>
+											<li class="aew-hv2__tickets-divider" aria-hidden="true"></li>
+										<?php endif; ?>
+										<li class="aew-hv2__tickets-item">
+											<a href="<?php echo esc_url($tl['url']); ?>"
+												<?php echo $tl['target'] ? 'target="' . esc_attr($tl['target']) . '"' : ''; ?>>
+												<span class="aew-hv2__tickets-label"><?php echo esc_html($ti['label'] ?? ''); ?></span>
+												<svg class="aew-hv2__tickets-chevron" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="12" height="12" aria-hidden="true">
+													<path d="M46.5 28.9 20.6 3c-.6-.6-1.6-.6-2.2 0l-4.8 4.8c-.6.6-.6 1.6 0 2.2l19.8 20-19.9 19.9c-.6.6-.6 1.6 0 2.2l4.8 4.8c.6.6 1.6.6 2.2 0l21-21 4.8-4.8c.8-.6.8-1.6.2-2.2z" />
+												</svg>
+											</a>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							</nav>
+						<?php endif; ?>
+
+						<?php if (is_array($t_social) && ! empty($t_social)) : ?>
+							<div class="aew-hv2__drawer-social">
+								<?php foreach ($t_social as $si) :
+									$icon     = $si['icon'] ?? [];
+									$icon_url = is_array($icon) ? ($icon['url'] ?? '') : '';
+									$slink    = $this->parse_link($si['link'] ?? []);
+									if ('' === $icon_url || '' === $slink['url']) continue;
+									$slabel = trim((string) ($si['label'] ?? 'Social'));
+								?>
+									<a class="aew-hv2__drawer-social-link" href="<?php echo esc_url($slink['url']); ?>"
+										target="_blank" rel="noopener" aria-label="<?php echo esc_attr($slabel); ?>">
+										<img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($slabel); ?>" width="30" height="30" decoding="async" loading="lazy" />
+									</a>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+
+					</div><!-- /.aew-hv2__tickets-drawer -->
+				</div><!-- /.aew-hv2__tickets-overlay -->
+			<?php endif; ?>
 		</header>
 <?php
 	}

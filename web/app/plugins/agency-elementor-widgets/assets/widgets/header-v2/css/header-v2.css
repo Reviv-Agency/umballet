@@ -224,6 +224,27 @@ body.admin-bar .aew-hv2__bar {
   display: block;
 }
 
+/* ── Outline CTA variant (transparent fill + border; reverses on hover) ───── */
+.aew-hv2__cta--outline {
+  background: transparent;
+  color: var(--aew-hv2-cta-col, var(--aew-cards, #fff));
+  border: 1px solid var(--aew-hv2-cta-border, var(--aew-cards, #fff));
+}
+
+.aew-hv2__cta--outline:hover,
+.aew-hv2__cta--outline:focus-visible {
+  background-color: var(--aew-hv2-cta-col, var(--aew-cards, #fff));
+  color: var(--aew-text, #1B150E);
+}
+
+/* It's a <button> when it opens the Tickets drawer — kill native button chrome. */
+button.aew-hv2__cta {
+  cursor: pointer;
+  font: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 /* ── Secondary (Donate) link in the bar ──────────────────────────────────── */
 .aew-hv2__donate {
   display: inline-flex;
@@ -256,7 +277,7 @@ body.admin-bar .aew-hv2__bar {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  color: var(--aew-cta);
+  color: inherit;            /* follows the Donate text colour */
 }
 
 .aew-hv2__donate-heart svg {
@@ -503,6 +524,102 @@ body.admin-bar .aew-hv2.is-open .aew-hv2__overlay {
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* ── Tickets drawer (second overlay opened by the CTA) ────────────────────── */
+/* Both drawers share .aew-hv2__overlay/.aew-hv2__drawer, so scope show/hide by
+   state: tickets shows only on .is-tickets-open and stays off-screen while the
+   main hamburger drawer (.is-open) is open. */
+.aew-hv2.is-open .aew-hv2__tickets-overlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.aew-hv2.is-open .aew-hv2__tickets-drawer {
+  transform: translateX(100%);
+}
+.aew-hv2.is-tickets-open .aew-hv2__tickets-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.aew-hv2.is-tickets-open .aew-hv2__tickets-drawer {
+  transform: translateX(0);
+}
+body.admin-bar .aew-hv2.is-tickets-open .aew-hv2__tickets-overlay {
+  top: var(--wp-admin--admin-bar--height, 32px);
+}
+
+.aew-hv2__tickets-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px 0;
+  flex-shrink: 0;
+}
+
+.aew-hv2__tickets-title {
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--aew-background);
+}
+
+.aew-hv2__tickets-nav {
+  padding: 8px 0 1rem;
+}
+
+.aew-hv2__tickets-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.aew-hv2__tickets-item > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 11px 24px;
+  text-decoration: none;
+  font-family: "Teko", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  color: color-mix(in srgb, var(--aew-background) 68%, transparent);
+  transition: color 0.18s ease;
+  white-space: nowrap;
+}
+
+.aew-hv2__tickets-item > a:hover,
+.aew-hv2__tickets-item > a:focus-visible {
+  color: var(--aew-background);
+}
+
+.aew-hv2__tickets-chevron {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* Group divider line between ticket groups */
+.aew-hv2__tickets-divider {
+  list-style: none;
+  height: 1px;
+  margin: 14px 24px;
+  background: color-mix(in srgb, var(--aew-background) 28%, transparent);
+}
+
+/* The tickets drawer pads its social row inline with the list. */
+.aew-hv2__tickets-drawer .aew-hv2__drawer-social {
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 /* Staggered entrance — items slide in from right when drawer opens */

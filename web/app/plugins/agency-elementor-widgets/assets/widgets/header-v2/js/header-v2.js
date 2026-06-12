@@ -62,6 +62,41 @@
 			});
 		}
 
+		// ── Tickets drawer (opened by the CTA button) ───────────────────────────
+		(function initTicketsDrawer() {
+			var tToggle  = header.querySelector('[data-aew-tickets-toggle]');
+			var tOverlay = header.querySelector('.aew-hv2__tickets-overlay');
+			if (!tToggle || !tOverlay) return;
+			var tClose = tOverlay.querySelector('.aew-hv2__tickets-close');
+			tOverlay.removeAttribute('hidden');
+
+			function tOpen() {
+				if (header.classList.contains('is-open')) close(); // close main drawer first
+				header.classList.add('is-tickets-open');
+				tToggle.setAttribute('aria-expanded', 'true');
+				document.body.classList.add('aew-hv2-open');
+			}
+			function tCloseFn() {
+				header.classList.remove('is-tickets-open');
+				tToggle.setAttribute('aria-expanded', 'false');
+				if (!header.classList.contains('is-open')) document.body.classList.remove('aew-hv2-open');
+			}
+
+			tToggle.addEventListener('click', function () {
+				header.classList.contains('is-tickets-open') ? tCloseFn() : tOpen();
+			});
+			if (tClose) tClose.addEventListener('click', tCloseFn);
+			tOverlay.addEventListener('click', function (e) { if (e.target === tOverlay) tCloseFn(); });
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape' && header.classList.contains('is-tickets-open')) tCloseFn();
+			});
+			if (closeOnClick) {
+				tOverlay.querySelectorAll('.aew-hv2__tickets-list a').forEach(function (a) {
+					a.addEventListener('click', tCloseFn);
+				});
+			}
+		})();
+
 		// ── Smart sticky: hide on scroll-down, reveal on scroll-up ──────────────
 		// So the menu is always reachable with a small upward scroll instead of
 		// returning to the very top of the page.
