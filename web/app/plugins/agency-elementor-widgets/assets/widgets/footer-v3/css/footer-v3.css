@@ -1,0 +1,212 @@
+/**
+ * Footer V3
+ * Dark multi-column footer: N columns, each stacking heading + divider + link
+ * groups, plus an optional contact block (address/email/phone + social).
+ * Desktop = N-up grid (default 3); tablet = 2; mobile = 1.
+ */
+
+/* Strip Elementor container padding + force full-bleed. */
+.elementor-column
+  > .elementor-element-populated:has(.elementor-widget-agency-footer-v3),
+.e-con:has(> .e-con-inner > .elementor-widget-agency-footer-v3),
+.e-con:has(.elementor-widget-agency-footer-v3) {
+  --padding-top: 0px;
+  --padding-right: 0px;
+  --padding-bottom: 0px;
+  --padding-left: 0px;
+  padding: 0 !important;
+}
+
+.elementor-section:has(.elementor-widget-agency-footer-v3),
+.elementor-section:has(.elementor-widget-agency-footer-v3) > .elementor-container,
+.e-con:has(.elementor-widget-agency-footer-v3) {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* ── Brand tokens (brand-free: read aew-* globals, neutral-grey placeholder) ── */
+/* The active site's <site>-colors mu-plugin seeds the aew-* globals; the greys
+   are only placeholders shown if no colour plugin is present. Source of truth:
+   design-system.md. NOTHING brand-specific is hardcoded here. */
+.aew-ftv3 {
+  --aew-cards:            var(--e-global-color-aew-cards, #ffffff);
+  --aew-background:       var(--e-global-color-aew-background, #f4f4f4);
+  --aew-lines:           var(--e-global-color-aew-lines, #dddddd);
+  --aew-secondary-bg:    var(--e-global-color-aew-secondary-bg, #333333);
+  --aew-secondary-accent: var(--e-global-color-aew-secondary-accent, #555555);
+  --aew-text:            var(--e-global-color-aew-text, #1a1a1a);
+  --aew-cta:             var(--e-global-color-aew-cta, #444444);
+}
+
+/* ── Outer block (full-bleed dark background) ────────────────────────────── */
+.aew-ftv3 {
+  width: 100%;
+  background-color: var(--aew-ftv3-bg, var(--aew-text));
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.aew-ftv3 *,
+.aew-ftv3 *::before,
+.aew-ftv3 *::after {
+  box-sizing: border-box;
+}
+
+.aew-ftv3__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+/* ── Grid of columns ─────────────────────────────────────────────────────── */
+.aew-ftv3__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 48px;
+}
+
+.aew-ftv3__col {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+/* ── Group (heading + divider + links) ───────────────────────────────────── */
+.aew-ftv3__group {
+  display: block;
+}
+
+/* Wrapper-class prefix → (0,2,0) beats the kit's h1..h6 colour rule (0,1,1). */
+.aew-ftv3 .aew-ftv3__heading {
+  margin: 0 0 14px;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--aew-ftv3-heading, var(--aew-cards));
+}
+
+.aew-ftv3__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 0 0 18px;
+  background: var(--aew-ftv3-divider, color-mix(in srgb, var(--aew-cards) 30%, transparent));
+}
+
+.aew-ftv3__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.aew-ftv3__spacer {
+  height: 14px;
+}
+
+.aew-ftv3__link {
+  display: inline-block;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--aew-ftv3-link, color-mix(in srgb, var(--aew-cards) 60%, transparent));
+  transition: color 0.18s ease;
+}
+
+a.aew-ftv3__link:hover,
+a.aew-ftv3__link:focus-visible {
+  color: var(--aew-ftv3-link-hover, var(--aew-cards));
+}
+
+.aew-ftv3__link--plain {
+  cursor: default;
+}
+
+/* ── Contact block ───────────────────────────────────────────────────────── */
+.aew-ftv3__contact-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 10px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--aew-ftv3-link, color-mix(in srgb, var(--aew-cards) 60%, transparent));
+}
+
+.aew-ftv3__contact-line a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.aew-ftv3__contact-line a:hover {
+  color: var(--aew-ftv3-link-hover, var(--aew-cards));
+}
+
+.aew-ftv3__contact-ic {
+  flex-shrink: 0;
+  color: var(--aew-ftv3-icon, var(--aew-ftv3-heading, var(--aew-cards)));
+}
+
+/* ── Social icons row ────────────────────────────────────────────────────── */
+.aew-ftv3__social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.aew-ftv3__social-link {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: opacity 0.18s ease;
+}
+
+.aew-ftv3__social-link:hover,
+.aew-ftv3__social-link:focus-visible {
+  opacity: 0.75;
+}
+
+.aew-ftv3__social-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Tablet ──────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .aew-ftv3__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 44px;
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .aew-ftv3 { padding-left: 16px; padding-right: 16px; }
+  .aew-ftv3__inner { padding: 32px 0; }
+  .aew-ftv3__grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+  }
+  .aew-ftv3 .aew-ftv3__heading { font-size: 22px; }
+}
