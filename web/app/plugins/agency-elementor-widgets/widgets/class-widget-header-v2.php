@@ -77,11 +77,14 @@ class Widget_Header_V2 extends Widget_Base
 	{
 		$this->controls_logo();
 		$this->controls_phone();
+		$this->controls_donate();
 		$this->controls_cta();
 		$this->controls_icons();
 		$this->controls_nav();
+		$this->controls_social();
 		$this->style_bar();
 		$this->style_phone();
+		$this->style_donate();
 		$this->style_cta();
 		$this->style_icons();
 		$this->style_drawer();
@@ -102,6 +105,18 @@ class Widget_Header_V2 extends Widget_Base
 		$this->add_control('show_phone',        ['label' => 'Show', 'type' => Controls_Manager::SWITCHER, 'default' => 'yes']);
 		$this->add_control('phone_number',      ['label' => 'Number', 'type' => Controls_Manager::TEXT, 'default' => '801.410.4255', 'condition' => ['show_phone' => 'yes']]);
 		$this->add_control('phone_hide_mobile', ['label' => 'Hide on mobile', 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'condition' => ['show_phone' => 'yes']]);
+		$this->end_controls_section();
+	}
+
+	private function controls_donate(): void
+	{
+		// Additive secondary action (e.g. "DONATE") shown in the bar before the
+		// primary CTA. Default OFF so existing headers are byte-identical.
+		$this->start_controls_section('s_donate', ['label' => 'Secondary button (Donate)']);
+		$this->add_control('show_donate',  ['label' => 'Show', 'type' => Controls_Manager::SWITCHER, 'default' => '']);
+		$this->add_control('donate_text',  ['label' => 'Text', 'type' => Controls_Manager::TEXT, 'default' => 'DONATE', 'condition' => ['show_donate' => 'yes']]);
+		$this->add_control('donate_link',  ['label' => 'Link', 'type' => Controls_Manager::URL, 'default' => ['url' => home_url('/donate/')], 'condition' => ['show_donate' => 'yes']]);
+		$this->add_control('donate_heart', ['label' => 'Show heart icon', 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'condition' => ['show_donate' => 'yes']]);
 		$this->end_controls_section();
 	}
 
@@ -143,6 +158,20 @@ class Widget_Header_V2 extends Widget_Base
 		$this->end_controls_section();
 	}
 
+	private function controls_social(): void
+	{
+		// Additive social-icon row in the drawer footer. Default OFF so existing
+		// headers are unaffected; supply icon images + links per site.
+		$this->start_controls_section('s_social', ['label' => 'Social (Drawer footer)']);
+		$this->add_control('show_social', ['label' => 'Show', 'type' => Controls_Manager::SWITCHER, 'default' => '']);
+		$rep = new Repeater();
+		$rep->add_control('icon', ['label' => 'Icon', 'type' => Controls_Manager::MEDIA]);
+		$rep->add_control('link', ['label' => 'Link', 'type' => Controls_Manager::URL]);
+		$rep->add_control('label', ['label' => 'Aria label', 'type' => Controls_Manager::TEXT, 'default' => 'Social']);
+		$this->add_control('social_items', ['label' => 'Icons', 'type' => Controls_Manager::REPEATER, 'fields' => $rep->get_controls(), 'title_field' => '{{{ label }}}', 'condition' => ['show_social' => 'yes']]);
+		$this->end_controls_section();
+	}
+
 	// ── STYLE SECTIONS ────────────────────────────────────────────────────────
 
 	private function style_bar(): void
@@ -174,6 +203,15 @@ class Widget_Header_V2 extends Widget_Base
 		$this->add_control('cta_color_hover', ['label' => 'Hover text color', 'type' => Controls_Manager::COLOR, 'default' => '#FFFFFF', 'selectors' => ['{{WRAPPER}} .aew-hv2__cta:hover' => 'color: {{VALUE}};', '{{WRAPPER}} .aew-hv2__cta:focus-visible' => 'color: {{VALUE}};']]);
 		$this->add_control('cta_radius',   ['label' => 'Border radius', 'type' => Controls_Manager::SLIDER, 'size_units' => ['px'], 'default' => ['unit' => 'px', 'size' => 6], 'selectors' => ['{{WRAPPER}} .aew-hv2__cta' => 'border-radius: {{SIZE}}{{UNIT}};']]);
 		$this->add_group_control(Group_Control_Typography::get_type(), ['name' => 'cta_typo', 'selector' => '{{WRAPPER}} .aew-hv2__cta', 'fields_options' => ['font_family' => ['default' => 'Teko'], 'font_weight' => ['default' => '600'], 'font_size'   => ['default' => ['unit' => 'px', 'size' => 16]], 'line_height' => ['default' => ['unit' => 'em', 'size' => 0.85]]]]);
+		$this->end_controls_section();
+	}
+
+	private function style_donate(): void
+	{
+		$this->start_controls_section('ss_donate', ['label' => 'Secondary button (Donate)', 'tab' => Controls_Manager::TAB_STYLE]);
+		$this->add_control('donate_color',       ['label' => 'Text color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__donate' => 'color: {{VALUE}};']]);
+		$this->add_control('donate_color_hover', ['label' => 'Hover text color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__donate:hover' => 'color: {{VALUE}};', '{{WRAPPER}} .aew-hv2__donate:focus-visible' => 'color: {{VALUE}};']]);
+		$this->add_group_control(Group_Control_Typography::get_type(), ['name' => 'donate_typo', 'selector' => '{{WRAPPER}} .aew-hv2__donate', 'fields_options' => ['font_family' => ['default' => 'Teko'], 'font_weight' => ['default' => '600'], 'font_size' => ['default' => ['unit' => 'px', 'size' => 16]], 'line_height' => ['default' => ['unit' => 'em', 'size' => 0.85]]]]);
 		$this->end_controls_section();
 	}
 
@@ -268,6 +306,24 @@ class Widget_Header_V2 extends Widget_Base
 							<a class="aew-hv2__phone<?php echo ('yes' === ($s['phone_hide_mobile'] ?? '')) ? ' aew-hv2__phone--hide-mobile' : ''; ?>"
 								href="tel:<?php echo esc_attr($phone_tel); ?>">
 								<?php echo esc_html($phone_raw); ?>
+							</a>
+						<?php endif; ?>
+
+						<!-- Secondary (Donate) -->
+						<?php
+						$donate_link = $this->parse_link($s['donate_link'] ?? []);
+						if ('yes' === ($s['show_donate'] ?? '') && $donate_link['url']) : ?>
+							<a class="aew-hv2__donate"
+								href="<?php echo esc_url($donate_link['url']); ?>"
+								<?php echo $donate_link['target'] ? 'target="' . esc_attr($donate_link['target']) . '"' : ''; ?>>
+								<span class="aew-hv2__donate-text"><?php echo esc_html($s['donate_text'] ?? 'DONATE'); ?></span>
+								<?php if ('yes' === ($s['donate_heart'] ?? 'yes')) : ?>
+									<span class="aew-hv2__donate-heart" aria-hidden="true">
+										<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="16" height="16">
+											<path d="M12 21s-7.534-4.86-10.07-9.04C.314 9.36.79 6.2 3.2 4.84c1.94-1.1 4.34-.6 5.86 1.02L12 9l2.94-3.14c1.52-1.62 3.92-2.12 5.86-1.02 2.41 1.36 2.886 4.52 1.27 7.12C19.534 16.14 12 21 12 21z" />
+										</svg>
+									</span>
+								<?php endif; ?>
 							</a>
 						<?php endif; ?>
 
@@ -404,6 +460,28 @@ class Widget_Header_V2 extends Widget_Base
 								<?php endforeach; ?>
 							</ul>
 						</nav>
+					<?php endif; ?>
+
+					<!-- Drawer social icons -->
+					<?php
+					$social = ('yes' === ($s['show_social'] ?? '')) ? ($s['social_items'] ?? []) : [];
+					if (is_array($social) && ! empty($social)) : ?>
+						<div class="aew-hv2__drawer-social">
+							<?php foreach ($social as $si) :
+								$icon     = $si['icon'] ?? [];
+								$icon_url = is_array($icon) ? ($icon['url'] ?? '') : '';
+								$slink    = $this->parse_link($si['link'] ?? []);
+								if ('' === $icon_url || '' === $slink['url']) continue;
+								$slabel = trim((string) ($si['label'] ?? 'Social'));
+							?>
+								<a class="aew-hv2__drawer-social-link"
+									href="<?php echo esc_url($slink['url']); ?>"
+									target="_blank" rel="noopener"
+									aria-label="<?php echo esc_attr($slabel); ?>">
+									<img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($slabel); ?>" width="30" height="30" decoding="async" loading="lazy" />
+								</a>
+							<?php endforeach; ?>
+						</div>
 					<?php endif; ?>
 
 				</div><!-- /.aew-hv2__drawer -->
