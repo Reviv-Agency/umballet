@@ -243,9 +243,15 @@ class Widget_Header_V2 extends Widget_Base
 	private function style_drawer(): void
 	{
 		$this->start_controls_section('ss_drawer', ['label' => 'Drawer', 'tab' => Controls_Manager::TAB_STYLE]);
-		$this->add_control('drawer_bg',          ['label' => 'Background', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer' => 'background-color: {{VALUE}};']]);
-		$this->add_control('drawer_parent_color', ['label' => 'Parent link color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer-list .is-parent > a' => 'color: {{VALUE}};']]);
-		$this->add_control('drawer_child_color',  ['label' => 'Child link color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}} .aew-hv2__drawer-list .is-child > a' => 'color: {{VALUE}};']]);
+		// Colour controls assign to CSS vars on the wrapper (editor preview); render()
+		// inlines the resolved value via Color_Vars so global-bound picks survive on
+		// the front end (gotcha #19). The stylesheet consumes each var with a token
+		// fallback, so untouched controls look exactly as before.
+		$this->add_control('drawer_bg',          ['label' => 'Background', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}}' => '--aew-hv2-drawer-bg: {{VALUE}};']]);
+		$this->add_control('drawer_label_color', ['label' => 'Menu item color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}}' => '--aew-hv2-drawer-label: {{VALUE}};']]);
+		$this->add_control('drawer_label_hover', ['label' => 'Menu item color (hover)', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}}' => '--aew-hv2-drawer-label-hover: {{VALUE}};']]);
+		$this->add_control('drawer_sub_color',   ['label' => 'Submenu item color', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}}' => '--aew-hv2-drawer-sub: {{VALUE}};']]);
+		$this->add_control('drawer_sub_hover',   ['label' => 'Submenu item color (hover)', 'type' => Controls_Manager::COLOR, 'default' => '', 'selectors' => ['{{WRAPPER}}' => '--aew-hv2-drawer-sub-hover: {{VALUE}};']]);
 		$this->end_controls_section();
 	}
 
@@ -273,8 +279,20 @@ class Widget_Header_V2 extends Widget_Base
 		if (function_exists('WC') && WC()->cart) {
 			$cart_count = WC()->cart->get_cart_contents_count();
 		}
+
+		// Resolve drawer colour controls → inline CSS vars on the header so global-
+		// bound picks survive on the front end (gotcha #19 / §6.8). The control
+		// `selectors` drive the editor preview; this inline value wins on live.
+		$color_vars = Color_Vars::build($this, $s, [
+			'drawer_bg'          => '--aew-hv2-drawer-bg',
+			'drawer_label_color' => '--aew-hv2-drawer-label',
+			'drawer_label_hover' => '--aew-hv2-drawer-label-hover',
+			'drawer_sub_color'   => '--aew-hv2-drawer-sub',
+			'drawer_sub_hover'   => '--aew-hv2-drawer-sub-hover',
+		]);
+		$header_style = '' !== $color_vars ? ' style="' . esc_attr($color_vars) . '"' : '';
 ?>
-		<header class="aew-hv2" data-aew-header-v2 data-close-on-click="<?php echo esc_attr($close); ?>">
+		<header class="aew-hv2" data-aew-header-v2 data-close-on-click="<?php echo esc_attr($close); ?>"<?php echo $header_style; ?>>
 			<div class="aew-hv2__bar">
 				<div class="aew-hv2__bar-inner">
 

@@ -20,15 +20,15 @@
    is design-system.md. Update there first; copy here second. */
 .aew-hv2 {
   --aew-cards: var(--e-global-color-aew-cards, #ffffff);
-  --aew-background: var(--e-global-color-aew-background, #F4F4F4);
-  --aew-lines: var(--e-global-color-aew-lines, #DDDDDD);
+  --aew-background: var(--e-global-color-aew-background, #f4f4f4);
+  --aew-lines: var(--e-global-color-aew-lines, #dddddd);
   --aew-misc-accent: var(--e-global-color-aew-misc-accent, #666666);
-  --aew-secondary-cards: var(--e-global-color-aew-secondary-cards, #EEEEEE);
+  --aew-secondary-cards: var(--e-global-color-aew-secondary-cards, #eeeeee);
   --aew-secondary-bg: var(--e-global-color-aew-secondary-bg, #333333);
   --aew-secondary-accent: var(--e-global-color-aew-secondary-accent, #555555);
-  --aew-text: var(--e-global-color-aew-text, #1A1A1A);
+  --aew-text: var(--e-global-color-aew-text, #1a1a1a);
   --aew-cta: var(--e-global-color-aew-cta, #444444);
-  --aew-cta-hover: var(--e-global-color-aew-cta-hover, #2B2B2B);
+  --aew-cta-hover: var(--e-global-color-aew-cta-hover, #2b2b2b);
 }
 
 .aew-hv2 {
@@ -234,7 +234,7 @@ body.admin-bar .aew-hv2__bar {
 .aew-hv2__cta--outline:hover,
 .aew-hv2__cta--outline:focus-visible {
   background-color: var(--aew-hv2-cta-col, var(--aew-cards, #fff));
-  color: var(--aew-text, #1B150E);
+  color: var(--aew-text, #1b150e);
 }
 
 /* It's a <button> when it opens the Tickets drawer — kill native button chrome. */
@@ -259,7 +259,9 @@ button.aew-hv2__cta {
   text-decoration: none;
   white-space: nowrap;
   color: var(--aew-background);
-  transition: color 0.18s ease, opacity 0.18s ease;
+  transition:
+    color 0.18s ease,
+    opacity 0.18s ease;
   flex-shrink: 0;
 }
 
@@ -277,7 +279,7 @@ button.aew-hv2__cta {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  color: inherit;            /* follows the Donate text colour */
+  color: inherit; /* follows the Donate text colour */
 }
 
 .aew-hv2__donate-heart svg {
@@ -365,7 +367,7 @@ body.admin-bar .aew-hv2.is-open .aew-hv2__overlay {
   bottom: 0;
   width: fit-content;
   min-width: min(320px, 95vw);
-  background: var(--aew-text);
+  background: var(--aew-hv2-drawer-bg, var(--aew-text));
   padding: 0;
   box-shadow: -8px 0 40px rgba(0, 0, 0, 0.35);
   transform: translateX(100%);
@@ -387,7 +389,7 @@ body.admin-bar .aew-hv2.is-open .aew-hv2__overlay {
   gap: 22px;
   padding: 0 20px;
   min-height: 64px;
-  background: var(--aew-text);
+  background: var(--aew-hv2-drawer-bg, var(--aew-text));
   flex-shrink: 0;
 }
 
@@ -499,10 +501,11 @@ body.admin-bar .aew-hv2.is-open .aew-hv2__overlay {
 /* ── Drawer social icons (footer of the drawer) ──────────────────────────── */
 .aew-hv2__drawer-social {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 14px;
   padding: 1.25rem 0 1.75rem;
-  margin-top: auto;            /* pin to the bottom of the flex-column drawer */
+  margin-top: auto; /* pin to the bottom of the flex-column drawer */
 }
 
 .aew-hv2__drawer-social-link {
@@ -704,21 +707,21 @@ button.aew-hv2__drawer-item-row {
   font-weight: 800;
   font-size: 1.4rem;
   line-height: 1.2;
-  color: var(--aew-background);
+  color: var(--aew-hv2-drawer-label, var(--aew-background));
   text-decoration: none;
   padding: 10px 0 8px;
   flex: 1;
   transition: color 0.18s ease;
 }
 .aew-hv2__drawer-label:hover {
-  color: var(--aew-cta-hover);
+  color: var(--aew-hv2-drawer-label-hover, var(--aew-cta-hover));
 }
 
 .aew-hv2__drawer-toggle:hover {
   opacity: 0.8;
 }
 .aew-hv2__drawer-toggle:hover .aew-hv2__drawer-label {
-  color: var(--aew-cta-hover);
+  color: var(--aew-hv2-drawer-label-hover, var(--aew-cta-hover));
 }
 .aew-hv2__drawer-toggle[aria-expanded="true"] .aew-hv2__drawer-chevron {
   transform: rotate(180deg);
@@ -752,14 +755,14 @@ button.aew-hv2__drawer-item-row {
   font-weight: 800;
   font-size: 1.4rem;
   line-height: 1.4;
-  color: var(--aew-background);
+  color: var(--aew-hv2-drawer-sub, var(--aew-background));
   text-decoration: none;
   display: block;
   padding: 5px 24px;
   transition: color 0.18s ease;
 }
 .aew-hv2__drawer-submenu a:hover {
-  color: var(--aew-cta-hover);
+  color: var(--aew-hv2-drawer-sub-hover, var(--aew-cta-hover));
 }
 
 /* ── Mobile (≤768px) ─────────────────────────────────────────────────────── */
@@ -903,12 +906,12 @@ button.aew-hv2__drawer-item-row {
     line-height: 0.95 !important;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--aew-secondary-accent) !important;
+    color: var(--aew-hv2-drawer-label, var(--aew-secondary-accent)) !important;
     padding: 0;
   }
   .aew-hv2__drawer-label:hover,
   .aew-hv2__drawer-toggle:hover .aew-hv2__drawer-label {
-    color: var(--aew-cta) !important;
+    color: var(--aew-hv2-drawer-label-hover, var(--aew-cta)) !important;
   }
 
   .aew-hv2__drawer-chevron {
@@ -929,11 +932,11 @@ button.aew-hv2__drawer-item-row {
     line-height: 1 !important;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--aew-secondary-bg) !important;
+    color: var(--aew-hv2-drawer-sub, var(--aew-secondary-bg)) !important;
     padding: 10px 0;
   }
   .aew-hv2__drawer-submenu a:hover {
-    color: var(--aew-cta) !important;
+    color: var(--aew-hv2-drawer-sub-hover, var(--aew-cta)) !important;
   }
 
   /* Phone wraps onto its own row below SHOP KITS + X */
