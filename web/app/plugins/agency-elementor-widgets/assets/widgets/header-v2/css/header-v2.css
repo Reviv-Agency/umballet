@@ -482,7 +482,7 @@ body.admin-bar .aew-hv2.is-open .aew-hv2__overlay {
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  color: var(--aew-background);
+  color: var(--aew-hv2-drawer-label, var(--aew-background));
   cursor: pointer;
   line-height: 0;
   flex-shrink: 0;
@@ -727,6 +727,7 @@ button.aew-hv2__drawer-item-row {
   transform: rotate(180deg);
 }
 .aew-hv2__drawer-chevron {
+  color: var(--aew-hv2-drawer-label, var(--aew-background));
   fill: currentColor;
   display: block;
   flex-shrink: 0;
@@ -752,8 +753,8 @@ button.aew-hv2__drawer-item-row {
 
 .aew-hv2__drawer-submenu a {
   font-family: "Lato", sans-serif;
-  font-weight: 800;
-  font-size: 1.4rem;
+  font-weight: 400;
+  font-size: 1.05rem;
   line-height: 1.4;
   color: var(--aew-hv2-drawer-sub, var(--aew-background));
   text-decoration: none;
